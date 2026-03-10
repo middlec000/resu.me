@@ -6,7 +6,6 @@
   };
   outputs =
     {
-      # self,
       nixpkgs,
       flake-utils,
       ...
@@ -23,7 +22,7 @@
             pkgs.git
             pkgs.ruff
             pkgs.uv
-            pkgs.resumed
+            pkgs.nodejs
           ];
         };
       }
