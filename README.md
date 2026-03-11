@@ -24,8 +24,29 @@ Hire Jason to build website
 
 ## Notes
 
-https://jsonresume.org/schema
+Google Gemini API Key: https://aistudio.google.com/api-keys?projectFilter=gen-lang-client-0692511141
 
 ```bash
-./node_modules/.bin/resumed render examples/json_resume.json --theme jsonresume-theme-modern --output examples/json_resume.html
+# Validate resume conforms to schema
+./node_modules/.bin/resumed validate examples/json_schema_example.json
+
+# Transform resume to html with specific format
+./node_modules/.bin/resumed render examples/json_resume.json --theme jsonresume-theme-straightforward --output examples/json_resume.html
+
+# Tailor resume to job posting
+node src/tailor_resume.js
+
+# Transform resume to html with specific format
+./node_modules/.bin/resumed render model_output/resume_tailored_1.json --theme jsonresume-theme-straightforward --output model_output/resume_tailored_1.html
+
+# Validate resume conforms to schema
+./node_modules/.bin/resumed validate model_output/resume_tailored_1.json
+
+
 ```
+
+## Data Sources
+* `examples/json_schema_example.json`
+    * https://jsonresume.org/schema
+* `examples/job_posting_example_1.txt`
+    * https://icrunchdata.com/job/10305028/staff-data-scientist-product-applied-ai/

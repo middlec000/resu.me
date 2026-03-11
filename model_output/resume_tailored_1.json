@@ -1,0 +1,182 @@
+{
+  "awards": [],
+  "basics": {
+    "email": "example@gmail.com",
+    "image": "",
+    "label": "Lead Data Scientist",
+    "location": {
+      "address": "",
+      "city": "Bellingham",
+      "countryCode": "US",
+      "postalCode": "",
+      "region": "WA"
+    },
+    "name": "Colin Middleton",
+    "phone": "(xxx)-xxx-xxxx",
+    "profiles": [
+      {
+        "network": "GitHub",
+        "url": "https://middlec000.github.io/",
+        "username": "middlec000"
+      }
+    ],
+    "summary": "Lead Data Scientist specializing in advanced analytics, statistical modeling, and AI product development to drive significant business impact. Proven ability to establish data science functions, partner with cross-functional stakeholders to align technical work with strategic priorities, and deliver quantified results that build organizational trust in data-driven decision-making. Adept at owning end-to-end analytical projects, developing innovative solutions for ambiguous problems, and leveraging Python and SQL for complex data analysis and model implementation.",
+    "url": "https://middlec000.github.io/"
+  },
+  "certificates": [],
+  "education": [
+    {
+      "area": "Applied Math",
+      "courses": [
+        "Outstanding Graduate (2021)",
+        "Graduate Service Appointment (2020 - 2021)"
+      ],
+      "endDate": "2021-06-01",
+      "institution": "Eastern Washington University",
+      "score": "4.0",
+      "startDate": "2019-09-01",
+      "studyType": "MS"
+    },
+    {
+      "area": "Math",
+      "courses": [
+        "Chemistry Minor"
+      ],
+      "endDate": "2017-12-01",
+      "institution": "Western Washington University",
+      "score": "3.5",
+      "startDate": "2013-09-01",
+      "studyType": "BS"
+    }
+  ],
+  "interests": [],
+  "languages": [],
+  "projects": [
+    {
+      "description": "Collaborated with data providers and city government stakeholders to align on data strategy and present findings to the Spokane City Council.",
+      "endDate": "2023-10-01",
+      "highlights": [
+        "Led training and evaluation of predictive models (Linear Regression, Cox Proportional Hazards, LSTM, Logistic Regression, ANN), achieving a peak AUC of 0.81 with Logistic Regression, demonstrating strong statistical analysis and AI/ML capabilities.",
+        "Addressed extreme class imbalance (0.39% positive class) via minority oversampling for robust model performance."
+      ],
+      "name": "Homelessness Prediction",
+      "startDate": "2020-06-01"
+    }
+  ],
+  "publications": [
+    {
+      "name": "The value of utility payment history in predicting first-time homelessness",
+      "publisher": "Plos one",
+      "releaseDate": "2023-10-01",
+      "summary": "Middleton, Colin D., et al. Plos one 18.10 (2023): e0292305. Showcasing expertise in predictive modeling and quantitative research.",
+      "url": "https://doi.org/10.1371/journal.pone.0292305"
+    }
+  ],
+  "references": [],
+  "skills": [
+    {
+      "keywords": [
+        "Python (polars, pandas, NumPy, statsmodels, scikit-learn, matplotlib, seaborn)",
+        "SQL"
+      ],
+      "name": "Programming Languages"
+    },
+    {
+      "keywords": [
+        "Git",
+        "Jupyter Notebooks",
+        "dbt",
+        "Anaconda"
+      ],
+      "name": "Data Science Tools"
+    },
+    {
+      "keywords": [
+        "Linear/Logistic Regression",
+        "Cox Proportional Hazards",
+        "Decision Trees",
+        "K-Means/Hierarchical Clustering",
+        "PCA"
+      ],
+      "name": "Machine Learning"
+    },
+    {
+      "keywords": [
+        "Smoothing",
+        "Averaging",
+        "Autoregression",
+        "Theta"
+      ],
+      "name": "Time Series Analysis"
+    },
+    {
+      "keywords": [
+        "Hypothesis testing",
+        "correlation analysis",
+        "data visualization",
+        "dimensionality reduction",
+        "class balancing",
+        "imputation",
+        "text processing",
+        "statistical analysis"
+      ],
+      "name": "Data Analysis & Preparation"
+    }
+  ],
+  "volunteer": [],
+  "work": [
+    {
+      "highlights": [
+        "Designed and built next-generation prediction models for bill routing grounded in contract structure, delivering more granular, explainable outputs that gave business stakeholders clear visibility into routing decisions and optimized operational efficiency.",
+        "Architected a modular codebase for model analysis pipelines, enabling flexible reuse across multiple use cases and significantly reducing the cost of future analyses, reflecting analytical thought leadership and infrastructure development.",
+        "Designed and built an ETL pipeline for savings prediction models, implementing robust handling of malformed data to ensure consistent, reliable model inputs at scale, critical for AI product reliability.",
+        "Led a cross-functional initiative to expand analytical capabilities, partnering with product and operations stakeholders to define requirements, align priorities, gather feedback, and drive adoption, demonstrating strong collaboration and ownership.",
+        "Architected an intelligent backlog prioritization framework that optimized resource allocation, enabling human reviewers to focus on highest-impact work items, addressing ambiguous problems with data-driven solutions.",
+        "Designed and built an end-to-end prediction system for a bill treatment product, covering model development, scoring, and output delivery — establishing a reusable foundation for future model work and owning project outcomes.",
+        "Led the effort to standardize and automate recurring analyses, reducing manual effort and enabling the team to scale output without proportional headcount growth, driving process improvements."
+      ],
+      "name": "MedRisk",
+      "position": "Data Scientist",
+      "startDate": "2025-05-01",
+      "summary": "Philadelphia, PA"
+    },
+    {
+      "endDate": "2025-02-01",
+      "highlights": [
+        "Led the design and implementation of a CFR-compliant forecasting framework for the Medicare Shared Savings Program client segment, resulting in 15% improved prediction accuracy, enhanced client satisfaction, and a clear business case for continued model investment, directly measuring return on investment.",
+        "Spearheaded development of an enterprise-grade data ingestion and versioning pipeline, enabling robust data testing, cross-version model comparison, and transparent reporting that improved trust in model outputs and data integrity.",
+        "Designed and deployed a comprehensive tracking system for model inputs, producing quantified insights that directly informed sales strategy and executive decision-making, providing analytical thought leadership.",
+        "Led 50+ individualized growth analyses for strategic prospects, directly contributing to a 30% increase in client acquisition — establishing data science as a measurable driver of revenue growth and identifying new opportunities."
+      ],
+      "name": "Pearl Health",
+      "position": "Data Scientist II",
+      "startDate": "2024-06-01",
+      "summary": "New York, NY"
+    },
+    {
+      "endDate": "2024-06-01",
+      "highlights": [
+        "Developed advanced forecasting and prediction models for client and prospect KPIs, leveraging statistical techniques including exponential smoothing, multivariate regression, and Theta modeling to support growth-oriented analytics for the client acquisition team.",
+        "Led the comprehensive refactoring of a mission-critical prediction tool (12k+ lines of Python), implementing modular architecture, configuration management, and documentation — transforming a fragile system into a scalable, maintainable platform for the team, demonstrating leadership and coding expertise.",
+        "Engineered a proprietary I/O system that increased input accuracy by 25% and reduced processing time by 40%, eliminating a significant operational bottleneck and improving throughput at scale, showcasing problem-solving and process improvement.",
+        "Conducted large-scale statistical analysis of KPI variability across provider networks, translating complex findings into operational recommendations that non-technical stakeholders could act on directly, blending analytical and product-specific expertise."
+      ],
+      "name": "Pearl Health",
+      "position": "Data Scientist I",
+      "startDate": "2023-05-01",
+      "summary": "New York, NY"
+    },
+    {
+      "endDate": "2023-05-01",
+      "highlights": [
+        "Migrated and enhanced a client reporting tool from SAS to Python, improving maintainability and delivering a 10x reduction in runtime — a high-impact, low-disruption efficiency win demonstrating strong coding skills.",
+        "Resolved a critical bug in a client pricing tool, increasing pricing accuracy by 5% and directly improving revenue operations, highlighting problem-solving and business impact.",
+        "Contributed to hiring and team-building efforts, including designing an applicant tracking system, participating in job fairs, interviewing candidates, and managing the candidate pipeline, demonstrating indirect oversight and capability development."
+      ],
+      "name": "Gordian Data",
+      "position": "Data Scientist",
+      "startDate": "2022-07-01",
+      "summary": "Seattle, WA"
+    }
+  ]
+}

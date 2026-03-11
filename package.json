@@ -1,6 +1,8 @@
 {
+  "type": "module",
   "dependencies": {
-    "jsonresume-theme-modern": "^0.0.18",
+    "@google/genai": "^1.44.0",
+    "jsonresume-theme-straightforward": "^0.2.0",
     "resumed": "^6.1.0"
   }
 }
