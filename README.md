@@ -50,3 +50,7 @@ node src/tailor_resume.js
     * https://jsonresume.org/schema
 * `examples/job_posting_example_1.txt`
     * https://icrunchdata.com/job/10305028/staff-data-scientist-product-applied-ai/
+
+## To Do
+1. Tell the AI model not to change any dates in the resume.
+1. Address issue of AI adding `"endDate": "Present"` to most recent job listing.
