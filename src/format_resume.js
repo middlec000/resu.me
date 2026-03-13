@@ -1,9 +1,6 @@
-import { execFile } from 'child_process'
 import fs from 'fs/promises'
 import path from 'path'
-import { promisify } from 'util'
-
-const execFileAsync = promisify(execFile)
+import { render } from 'resumed'
 
 async function main () {
   const inputPath = path.join(
@@ -16,15 +13,10 @@ async function main () {
 
   await fs.mkdir(outputDir, { recursive: true })
 
-  const resumed = path.join(process.cwd(), 'node_modules', '.bin', 'resumed')
-  await execFileAsync(resumed, [
-    'render',
-    inputPath,
-    '--theme',
-    'jsonresume-theme-straightforward',
-    '--output',
-    outputPath
-  ])
+  await render(inputPath, {
+    theme: 'jsonresume-theme-straightforward',
+    output: outputPath
+  })
 
   console.log(`Successfully saved formatted resume to ${outputPath}`)
 }
