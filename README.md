@@ -44,6 +44,8 @@ node src/tailor_resume.js; tput bel
 
 node src/format_resume.js; tput bel
 
+node src/run.js
+
 # Transform resume to html with specific format
 ./node_modules/.bin/resumed render model_output/resume_tailored_1.json --theme jsonresume-theme-straightforward --output model_output/resume_tailored_1.html
 
