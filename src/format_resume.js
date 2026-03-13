@@ -1,6 +1,7 @@
 import fs from 'fs/promises'
 import path from 'path'
 import { render } from 'resumed'
+import theme from 'jsonresume-theme-straightforward'
 
 async function main () {
   const inputPath = path.join(
@@ -11,12 +12,11 @@ async function main () {
   const outputDir = path.join(process.cwd(), 'formatted_resume')
   const outputPath = path.join(outputDir, 'resume_tailored.html')
 
+  const resumeData = JSON.parse(await fs.readFile(inputPath, 'utf-8'))
   await fs.mkdir(outputDir, { recursive: true })
 
-  await render(inputPath, {
-    theme: 'jsonresume-theme-straightforward',
-    output: outputPath
-  })
+  const html = await render(resumeData, theme)
+  await fs.writeFile(outputPath, html, 'utf-8')
 
   console.log(`Successfully saved formatted resume to ${outputPath}`)
 }
