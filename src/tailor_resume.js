@@ -22,15 +22,26 @@ async function main() {
   const resumePath = path.join(process.cwd(), "examples", "json_resume.json");
   const resumeData = JSON.parse(await fs.readFile(resumePath, "utf-8"));
 
-  const prompt = `Act as a professional recruiter. Using the job posting provided in <JOB_POST> and the candidate info in <RESUME_JSON>, generate a tailored version of the resume in the specified JSON schema.
+  const prompt = `
+  Act as a professional recruiter. Using the job posting provided in <JOB_POST> and the candidate info in <RESUME_JSON>, generate a tailored version of the resume in the specified JSON schema.
+
+  CRITICAL QUALITY CONSTRAINTS:
+- Ensure the output is a valid JSON object matching the schema exactly.
+- ONLY use information from the provided RESUME.
+- Do NOT change any dates or invent new information that is not present in the RESUME.
+
+<RESUME_JSON>
+${JSON.stringify(resumeData, null, 2)}
+</RESUME_JSON>
 
 <JOB_POST>
 ${jobPosting}
 </JOB_POST>
+`;
 
-<RESUME_JSON>
-${JSON.stringify(resumeData, null, 2)}
-</RESUME_JSON>`;
+  const outputDir = path.join(process.cwd(), "model_output");
+  await fs.mkdir(outputDir, { recursive: true });
+  await fs.writeFile(path.join(outputDir, "prompt.txt"), prompt, "utf-8");
 
   const response = await ai.models.generateContent({
     model: "gemini-2.5-flash",
@@ -216,13 +227,22 @@ ${JSON.stringify(resumeData, null, 2)}
     },
   });
 
-  const responseText = response.text;
-  
-  const outputDir = path.join(process.cwd(), "model_output");
-  await fs.mkdir(outputDir, { recursive: true });
-  
+  const parsed = JSON.parse(response.text);
+
+  function stripEmpty(obj) {
+    if (Array.isArray(obj)) return obj.map(stripEmpty);
+    if (obj && typeof obj === "object") {
+      return Object.fromEntries(
+        Object.entries(obj)
+          .filter(([, v]) => v !== "")
+          .map(([k, v]) => [k, stripEmpty(v)])
+      );
+    }
+    return obj;
+  }
+
   const outputPath = path.join(outputDir, "resume_tailored_1.json");
-  await fs.writeFile(outputPath, responseText, "utf-8");
+  await fs.writeFile(outputPath, JSON.stringify(stripEmpty(parsed), null, 2), "utf-8");
   console.log(`Successfully saved tailored resume to ${outputPath}`);
 }
 

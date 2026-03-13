@@ -40,9 +40,9 @@ node src/tailor_resume.js
 ./node_modules/.bin/resumed render model_output/resume_tailored_1.json --theme jsonresume-theme-straightforward --output model_output/resume_tailored_1.html
 
 # Validate resume conforms to schema
-./node_modules/.bin/resumed validate model_output/resume_tailored_1.json
+./node_modules/.bin/resumed validate "model_output copy/resume_tailored_1.json"
 
-
+npx resumed validate model_output/resume_tailored_1.json
 ```
 
 ## Data Sources
@@ -52,5 +52,3 @@ node src/tailor_resume.js
     * https://icrunchdata.com/job/10305028/staff-data-scientist-product-applied-ai/
 
 ## To Do
-1. Tell the AI model not to change any dates in the resume.
-1. Address issue of AI adding `"endDate": "Present"` to most recent job listing.
