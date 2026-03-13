@@ -34,7 +34,7 @@ Google Gemini API Key: https://aistudio.google.com/api-keys?projectFilter=gen-la
 ./node_modules/.bin/resumed render examples/json_resume.json --theme jsonresume-theme-straightforward --output examples/json_resume.html
 
 # Tailor resume to job posting
-node src/tailor_resume.js
+node src/tailor_resume.js; tput bel
 
 # Transform resume to html with specific format
 ./node_modules/.bin/resumed render model_output/resume_tailored_1.json --theme jsonresume-theme-straightforward --output model_output/resume_tailored_1.html
