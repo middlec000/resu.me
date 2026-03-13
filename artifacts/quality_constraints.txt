@@ -1,0 +1,4 @@
+CRITICAL QUALITY CONSTRAINTS:
+- Ensure the output is a valid JSON object matching the schema exactly.
+- ONLY use information from the provided RESUME.
+- Do NOT change any dates or invent new information that is not present in the RESUME.

@@ -1,0 +1,226 @@
+
+Act as a professional recruiter.
+
+Using the job posting provided in <JOB_POST> and the candidate info in <RESUME_JSON>, generate a tailored version of the resume in the specified JSON schema.
+
+CRITICAL QUALITY CONSTRAINTS:
+- Ensure the output is a valid JSON object matching the schema exactly.
+- ONLY use information from the provided RESUME.
+- Do NOT change any dates or invent new information that is not present in the RESUME.
+
+<RESUME_JSON>
+{
+  "basics": {
+    "name": "Colin Middleton",
+    "label": "Lead Data Scientist",
+    "image": "",
+    "email": "example@gmail.com",
+    "phone": "(xxx)-xxx-xxxx",
+    "url": "https://middlec000.github.io/",
+    "summary": "Lead Data Scientist with deep expertise in building prediction models and analytics capabilities that drive measurable operational efficiency and growth. Adept at establishing data science functions from the ground up, partnering with cross-functional stakeholders to align technical work with business priorities, and delivering clear, quantified results that build organizational trust in data-driven decision-making.",
+    "location": {
+      "address": "",
+      "postalCode": "",
+      "city": "Bellingham",
+      "countryCode": "US",
+      "region": "WA"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "middlec000",
+        "url": "https://middlec000.github.io/"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "MedRisk",
+      "position": "Data Scientist",
+      "startDate": "2025-05-01",
+      "summary": "Philadelphia, PA",
+      "highlights": [
+        "Designed and built next-generation prediction models for bill routing grounded in contract structure, delivering more granular, explainable outputs that gave business stakeholders clear visibility into routing decisions.",
+        "Architected modular codebase for model analysis pipelines, enabling flexible reuse across multiple use cases and significantly reducing the cost of future analyses.",
+        "Designed and built ETL pipeline for savings prediction models, implementing robust handling of malformed data to ensure consistent, reliable model inputs at scale.",
+        "Led cross-functional initiative to expand analytical capabilities, partnering with product and operations stakeholders to define requirements, align priorities, gather feedback, and drive adoption.",
+        "Architected intelligent backlog prioritization framework that optimized resource allocation, enabling human reviewers to focus on highest-impact work items.",
+        "Designed and built end-to-end prediction system for a bill treatment product, covering model development, scoring, and output delivery — establishing a reusable foundation for future model work.",
+        "Led effort to standardize and automate recurring analyses, reducing manual effort and enabling the team to scale output without proportional headcount growth."
+      ]
+    },
+    {
+      "name": "Pearl Health",
+      "position": "Data Scientist II",
+      "startDate": "2024-06-01",
+      "endDate": "2025-02-01",
+      "summary": "New York, NY",
+      "highlights": [
+        "Led the design and implementation of a CFR-compliant forecasting framework for the Medicare Shared Savings Program client segment, resulting in 15% improved prediction accuracy, enhanced client satisfaction, and a clear business case for continued model investment.",
+        "Spearheaded development of an enterprise-grade data ingestion and versioning pipeline, enabling robust data testing, cross-version model comparison, and transparent reporting that improved trust in model outputs.",
+        "Designed and deployed a comprehensive tracking system for model inputs, producing quantified insights that directly informed sales strategy and executive decision-making.",
+        "Led 50+ individualized growth analyses for strategic prospects, directly contributing to a 30% increase in client acquisition — establishing data science as a measurable driver of revenue growth."
+      ]
+    },
+    {
+      "name": "Pearl Health",
+      "position": "Data Scientist I",
+      "startDate": "2023-05-01",
+      "endDate": "2024-06-01",
+      "summary": "New York, NY",
+      "highlights": [
+        "Developed advanced forecasting and prediction models for client and prospect KPIs, leveraging statistical techniques including exponential smoothing, multivariate regression, and Theta modeling to support growth-oriented analytics for the client acquisition team.",
+        "Led the comprehensive refactoring of a mission-critical prediction tool (12k+ lines of Python), implementing modular architecture, configuration management, and documentation — transforming a fragile system into a scalable, maintainable platform for the team.",
+        "Engineered a proprietary I/O system that increased input accuracy by 25% and reduced processing time by 40%, eliminating a significant operational bottleneck and improving throughput at scale.",
+        "Conducted large-scale statistical analysis of KPI variability across provider networks, translating complex findings into operational recommendations that non-technical stakeholders could act on directly."
+      ]
+    },
+    {
+      "name": "Gordian Data",
+      "position": "Data Scientist",
+      "startDate": "2022-07-01",
+      "endDate": "2023-05-01",
+      "summary": "Seattle, WA",
+      "highlights": [
+        "Migrated and enhanced a client reporting tool from SAS to Python, improving maintainability and delivering a 10x reduction in runtime — a high-impact, low-disruption efficiency win.",
+        "Resolved a critical bug in a client pricing tool, increasing pricing accuracy by 5% and directly improving revenue operations.",
+        "Contributed to hiring and team-building efforts, including designing an applicant tracking system, participating in job fairs, interviewing candidates, and managing the candidate pipeline."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Eastern Washington University",
+      "area": "Applied Math",
+      "studyType": "MS",
+      "startDate": "2019-09-01",
+      "endDate": "2021-06-01",
+      "score": "4.0",
+      "courses": [
+        "Outstanding Graduate (2021)",
+        "Graduate Service Appointment (2020 - 2021)"
+      ]
+    },
+    {
+      "institution": "Western Washington University",
+      "area": "Math",
+      "studyType": "BS",
+      "startDate": "2013-09-01",
+      "endDate": "2017-12-01",
+      "score": "3.5",
+      "courses": [
+        "Chemistry Minor"
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "name": "The value of utility payment history in predicting first-time homelessness",
+      "publisher": "Plos one",
+      "releaseDate": "2023-10-01",
+      "url": "https://doi.org/10.1371/journal.pone.0292305",
+      "summary": "Middleton, Colin D., et al. Plos one 18.10 (2023): e0292305."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming Languages",
+      "level": "",
+      "keywords": [
+        "Python (polars, pandas, NumPy, statsmodels, scikit-learn, matplotlib, seaborn)",
+        "SQL"
+      ]
+    },
+    {
+      "name": "Data Science Tools",
+      "level": "",
+      "keywords": [
+        "Git",
+        "Jupyter Notebooks",
+        "dbt",
+        "Anaconda"
+      ]
+    },
+    {
+      "name": "Machine Learning",
+      "level": "",
+      "keywords": [
+        "Linear/Logistic Regression",
+        "Cox Proportional Hazards",
+        "Decision Trees",
+        "K-Means/Hierarchical Clustering",
+        "PCA"
+      ]
+    },
+    {
+      "name": "Time Series Analysis",
+      "level": "",
+      "keywords": [
+        "Smoothing",
+        "Averaging",
+        "Autoregression",
+        "Theta"
+      ]
+    },
+    {
+      "name": "Data Analysis/Preparation",
+      "level": "",
+      "keywords": [
+        "Hypothesis testing",
+        "correlation analysis",
+        "data visualization",
+        "dimensionality reduction",
+        "class balancing",
+        "imputation",
+        "text processing"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Homelessness Prediction",
+      "startDate": "2020-06-01",
+      "endDate": "2023-10-01",
+      "description": "Collaborated with data providers and city government stakeholders to align on data strategy and present findings to the Spokane City Council.",
+      "highlights": [
+        "Led training and evaluation of predictive models (Linear Regression, Cox Proportional Hazards, LSTM, Logistic Regression, ANN), achieving a peak AUC of 0.81 with Logistic Regression.",
+        "Addressed extreme class imbalance (0.39% positive class) via minority oversampling."
+      ]
+    }
+  ]
+}
+</RESUME_JSON>
+<JOB_POST>
+Job Description
+Minimum qualifications:
+
+    Bachelor's degree in Statistics, Mathematics, Data Science, Engineering, Physics, Economics, or a related quantitative field.
+    10 years of work experience using analytics to solve product or business problems, performing statistical analysis, and coding (e.g., Python, R, SQL) (or 8 years work experience and a Master's degree).
+
+Preferred qualifications:
+
+    Master's degree in Statistics, Mathematics, Data Science, Engineering, Physics, Economics, or a related quantitative field.
+    12 years of work experience using analytics to solve product or business problems, performing statistical analysis, and coding (e.g., Python, R, SQL).
+
+About the job
+
+Help serve Google's worldwide user base of more than a billion people. Data Scientists provide quantitative support, market understanding and a strategic perspective to our partners throughout the organization. As a data-loving member of the team, you serve as an analytics expert for your partners, using numbers to help them make better decisions. You will weave stories with meaningful insight from data. You'll make critical recommendations for your fellow Googlers in Engineering and Product Management. You relish tallying up the numbers one minute and communicating your findings to a team leader the next.
+
+We're looking for a creative data scientist to join a small, agile team developing new AI products and infrastructure. As part of this team, you will leverage your expertise to drive decision-making with data including making recommendations, measuring return on investment, and identifying new opportunities to pursue.
+
+Applied AI builds conversational agents deployed at a large scale that achieve very meaningful results in the real world. Some examples include the customer agent built for large call center environments, to fast food ordering handled by our Food AI agent. The team is transforming how enterprises connect with customers through the power of AI. We also offer unique experiences for team members where you get to work directly with the model builders (Google DeepMind / Vertex), learn and work with brilliant AI leaders, and have access to Global 1000 customers via our existing Google Cloud relationships. The opportunity in this space is tremendous.
+The US base salary range for this full-time position is $183,000-$271,000 + bonus + equity + benefits. Our salary ranges are determined by role, level, and location. Within the range, individual pay is determined by work location and additional factors, including job-related skills, experience, and relevant education or training. Your recruiter can share more about the specific salary range for your preferred location during the hiring process.
+ 
+Please note that the compensation details listed in US role postings reflect the base salary only, and do not include bonus, equity, or benefits. Learn more about benefits at Google: https://careers.google.com/benefits/
+Responsibilities
+
+    Perform analysis utilizing relevant tools (e.g., SQL, R, Python). Provide analytical thought leadership through proactive and strategic contributions (e.g., suggests new analyses, infrastructure or experiments to drive improvements in the business).
+    Own outcomes for projects by covering problem definition, metrics development, data extraction and manipulation, visualization, creation, implementation of analytical/statistical models, and presentation to stakeholders.
+    Develop solutions, lead, and manage problems that may be ambiguous and lacking clear precedent by framing problems, generating hypotheses, and making recommendations from a perspective that combines both, analytical and product-specific expertise.
+    Oversee the integration of cross-functional and cross-organizational project/process timelines, develop process improvements and recommendations, and help define operational goals and objectives.
+    Directly or indirectly oversee the contributions of others and develop colleagues’ capabilities in the area of specialization.
+
+Salary
+$183,000-$271,000 + bonus + equity + benefits
+
+</JOB_POST>

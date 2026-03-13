@@ -1,0 +1,1 @@
+Using the job posting provided in <JOB_POST> and the candidate info in <RESUME_JSON>, generate a tailored version of the resume in the specified JSON schema.

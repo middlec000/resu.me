@@ -13,31 +13,31 @@ async function getApiKey() {
 const apiKey = await getApiKey();
 const ai = new GoogleGenAI({ apiKey });
 
-async function main() {
-  // Load job posting as a string
-  const jobPostingPath = path.join(process.cwd(), "examples", "job_posting_example_1.txt");
-  const jobPosting = await fs.readFile(jobPostingPath, "utf-8");
+async function getPrompt(model_input_dir, artifacts_dir) {
+  const jobPosting = await fs.readFile(path.join(model_input_dir, "job_posting.txt"), "utf-8");
+  const resumeData = JSON.parse(await fs.readFile(path.join(model_input_dir, "base_resume.json"), "utf-8"));
+  const userPrompt = await fs.readFile(path.join(model_input_dir, "user_prompt.txt"), "utf-8");
+  const standardInstructions = await fs.readFile(path.join(artifacts_dir, "standard_instructions.txt"), "utf-8");
+  const qualityConstraints = await fs.readFile(path.join(artifacts_dir, "quality_constraints.txt"), "utf-8");
 
-  // Load resume as a dictionary (JSON object)
-  const resumePath = path.join(process.cwd(), "examples", "json_resume.json");
-  const resumeData = JSON.parse(await fs.readFile(resumePath, "utf-8"));
-
-  const prompt = `
-  Act as a professional recruiter. Using the job posting provided in <JOB_POST> and the candidate info in <RESUME_JSON>, generate a tailored version of the resume in the specified JSON schema.
-
-  CRITICAL QUALITY CONSTRAINTS:
-- Ensure the output is a valid JSON object matching the schema exactly.
-- ONLY use information from the provided RESUME.
-- Do NOT change any dates or invent new information that is not present in the RESUME.
-
+  return `
+${userPrompt}
+${standardInstructions}
+${qualityConstraints}
 <RESUME_JSON>
 ${JSON.stringify(resumeData, null, 2)}
 </RESUME_JSON>
-
 <JOB_POST>
 ${jobPosting}
 </JOB_POST>
 `;
+}
+
+async function main() {
+  const prompt = await getPrompt(
+    path.join(process.cwd(), "model_input"),
+    path.join(process.cwd(), "artifacts")
+  );
 
   const outputDir = path.join(process.cwd(), "model_output");
   await fs.mkdir(outputDir, { recursive: true });
@@ -241,7 +241,7 @@ ${jobPosting}
     return obj;
   }
 
-  const outputPath = path.join(outputDir, "resume_tailored_1.json");
+  const outputPath = path.join(outputDir, "resume_tailored.json");
   await fs.writeFile(outputPath, JSON.stringify(stripEmpty(parsed), null, 2), "utf-8");
   console.log(`Successfully saved tailored resume to ${outputPath}`);
 }

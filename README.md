@@ -42,7 +42,7 @@ node src/tailor_resume.js
 # Validate resume conforms to schema
 ./node_modules/.bin/resumed validate "model_output copy/resume_tailored_1.json"
 
-npx resumed validate model_output/resume_tailored_1.json
+npx resumed validate model_output/resume_tailored.json
 ```
 
 ## Data Sources
