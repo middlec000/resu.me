@@ -1,6 +1,12 @@
 import { GoogleGenAI } from '@google/genai'
 
-function buildPrompt ({ jobPosting, resumeData, userPrompt, standardInstructions, qualityConstraints }) {
+function buildPrompt ({
+  jobPosting,
+  resumeData,
+  userPrompt,
+  standardInstructions,
+  qualityConstraints
+}) {
   return `
 ${userPrompt}
 ${standardInstructions}
@@ -26,19 +32,48 @@ function stripEmpty (obj) {
   return obj
 }
 
-export async function tailorResume ({ apiKey, jobPosting, resumeData, userPrompt, standardInstructions, qualityConstraints, responseSchema }) {
-  const prompt = buildPrompt({ jobPosting, resumeData, userPrompt, standardInstructions, qualityConstraints })
-
-  const ai = new GoogleGenAI({ apiKey })
-  const response = await ai.models.generateContent({
-    model: 'gemini-2.5-flash',
-    contents: prompt,
-    config: {
-      responseMimeType: 'application/json',
-      responseSchema
-    }
+export async function tailorResume ({
+  apiKey,
+  jobPosting,
+  resumeData,
+  userPrompt,
+  standardInstructions,
+  qualityConstraints,
+  responseSchema
+}) {
+  const prompt = buildPrompt({
+    jobPosting,
+    resumeData,
+    userPrompt,
+    standardInstructions,
+    qualityConstraints
   })
 
-  const resumeJson = JSON.stringify(stripEmpty(JSON.parse(response.text)), null, 2)
+  const ai = new GoogleGenAI({ apiKey })
+
+  const timeout = new Promise((_, reject) =>
+    setTimeout(
+      () => reject(new Error('Gemini API request timed out after 1 minute')),
+      60_000
+    )
+  )
+
+  const response = await Promise.race([
+    ai.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: prompt,
+      config: {
+        responseMimeType: 'application/json',
+        responseSchema
+      }
+    }),
+    timeout
+  ])
+
+  const resumeJson = JSON.stringify(
+    stripEmpty(JSON.parse(response.text)),
+    null,
+    2
+  )
   return { resumeJson, prompt }
 }

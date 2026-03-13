@@ -124,11 +124,11 @@
     {
       "highlights": [
         "Designed and built next-generation prediction models for bill routing grounded in contract structure, delivering more granular, explainable outputs that gave business stakeholders clear visibility into routing decisions.",
-        "Led cross-functional initiative to expand analytical capabilities, partnering with product and operations stakeholders to define requirements, align priorities, gather feedback, and drive adoption.",
         "Architected modular codebase for model analysis pipelines, enabling flexible reuse across multiple use cases and significantly reducing the cost of future analyses.",
+        "Designed and built ETL pipeline for savings prediction models, implementing robust handling of malformed data to ensure consistent, reliable model inputs at scale.",
+        "Led cross-functional initiative to expand analytical capabilities, partnering with product and operations stakeholders to define requirements, align priorities, gather feedback, and drive adoption.",
         "Architected intelligent backlog prioritization framework that optimized resource allocation, enabling human reviewers to focus on highest-impact work items.",
         "Designed and built end-to-end prediction system for a bill treatment product, covering model development, scoring, and output delivery — establishing a reusable foundation for future model work.",
-        "Designed and built ETL pipeline for savings prediction models, implementing robust handling of malformed data to ensure consistent, reliable model inputs at scale.",
         "Led effort to standardize and automate recurring analyses, reducing manual effort and enabling the team to scale output without proportional headcount growth."
       ],
       "name": "MedRisk",
@@ -141,8 +141,8 @@
       "highlights": [
         "Led the design and implementation of a CFR-compliant forecasting framework for the Medicare Shared Savings Program client segment, resulting in 15% improved prediction accuracy, enhanced client satisfaction, and a clear business case for continued model investment.",
         "Spearheaded development of an enterprise-grade data ingestion and versioning pipeline, enabling robust data testing, cross-version model comparison, and transparent reporting that improved trust in model outputs.",
-        "Led 50+ individualized growth analyses for strategic prospects, directly contributing to a 30% increase in client acquisition — establishing data science as a measurable driver of revenue growth.",
-        "Designed and deployed a comprehensive tracking system for model inputs, producing quantified insights that directly informed sales strategy and executive decision-making."
+        "Designed and deployed a comprehensive tracking system for model inputs, producing quantified insights that directly informed sales strategy and executive decision-making.",
+        "Led 50+ individualized growth analyses for strategic prospects, directly contributing to a 30% increase in client acquisition — establishing data science as a measurable driver of revenue growth."
       ],
       "name": "Pearl Health",
       "position": "Data Scientist II",

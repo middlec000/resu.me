@@ -36,15 +36,21 @@ async function main () {
   ])
 
   // Tailor resume
-  const { resumeJson, prompt } = await tailorResume({
-    apiKey,
-    jobPosting,
-    resumeData,
-    userPrompt,
-    standardInstructions,
-    qualityConstraints,
-    responseSchema
-  })
+  let resumeJson, prompt
+  try {
+    ;({ resumeJson, prompt } = await tailorResume({
+      apiKey,
+      jobPosting,
+      resumeData,
+      userPrompt,
+      standardInstructions,
+      qualityConstraints,
+      responseSchema
+    }))
+  } catch (err) {
+    console.error(`Error: ${err.message}`)
+    process.exit(1)
+  }
 
   // Format resume
   const html = await formatResume(resumeJson, theme)
