@@ -20,8 +20,6 @@
           name = "resu_me_environment";
           buildInputs = [
             pkgs.git
-            pkgs.ruff
-            pkgs.uv
             pkgs.nodejs
           ];
         };
