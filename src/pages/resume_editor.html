@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Editor</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a1a;
+      font-size: 14px;
+    }
+
+    /* ── Layout ── */
+    .app { display: flex; height: 100vh; overflow: hidden; }
+
+    .editor {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    .preview {
+      width: 400px;
+      background: #1e1e2e;
+      color: #cdd6f4;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .preview-header {
+      background: #181825;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: #6c7086;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #313244;
+    }
+
+    .preview-filename { color: #89b4fa; font-family: monospace; }
+
+    .preview pre {
+      padding: 16px;
+      font-family: 'Courier New', 'Consolas', monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .page-header h1 { font-size: 22px; font-weight: 700; }
+    .page-header p { color: #666; font-size: 13px; margin-top: 3px; }
+
+    .header-actions { display: flex; gap: 8px; align-items: center; }
+
+    /* ── Buttons ── */
+    .btn {
+      padding: 7px 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+      font-weight: 500;
+      transition: opacity 0.15s;
+    }
+    .btn:hover { opacity: 0.85; }
+    .btn:active { opacity: 0.7; }
+
+    .btn-primary { background: #004687; color: white; }
+    .btn-ghost { background: white; color: #444; border: 1px solid #d1d5db; }
+    .btn-danger-ghost {
+      background: transparent;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+    .btn-add {
+      width: 100%;
+      background: white;
+      color: #0369a1;
+      border: 1px dashed #7dd3fc;
+      padding: 8px;
+      border-radius: 6px;
+      margin-top: 10px;
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 500;
+      font-family: inherit;
+      transition: background 0.15s;
+    }
+    .btn-add:hover { background: #f0f9ff; }
+
+    /* ── Sections ── */
+    .section {
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 18px;
+      cursor: pointer;
+      user-select: none;
+      border-bottom: 1px solid transparent;
+    }
+
+    .section:not(.collapsed) .section-header {
+      border-bottom-color: #f0f0f0;
+    }
+
+    .section-header h2 { font-size: 15px; font-weight: 600; }
+
+    .section-chevron {
+      color: #999;
+      font-size: 12px;
+      transition: transform 0.2s;
+    }
+    .section.collapsed .section-chevron { transform: rotate(-90deg); }
+
+    .section-body { padding: 16px 18px; }
+    .section.collapsed .section-body { display: none; }
+
+    .subsection-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+      margin-top: 18px;
+    }
+
+    /* ── Entry cards ── */
+    .entry {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .entry-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Form fields ── */
+    .field-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .field label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .field input,
+    .field textarea {
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 7px 10px;
+      font-size: 13px;
+      font-family: inherit;
+      background: white;
+      color: #1a1a1a;
+      width: 100%;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 68px;
+      line-height: 1.5;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: #004687;
+      box-shadow: 0 0 0 2px rgba(0,70,135,0.12);
+    }
+
+    /* ── Tags input ── */
+    .tags-field { margin-bottom: 10px; }
+
+    .tags-field > label {
+      font-size: 11px;
+      font-weight: 600;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .tags-container {
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 5px 7px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      cursor: text;
+      min-height: 38px;
+      align-content: flex-start;
+    }
+
+    .tags-container:focus-within {
+      border-color: #004687;
+      box-shadow: 0 0 0 2px rgba(0,70,135,0.12);
+    }
+
+    .tag {
+      background: #dbeafe;
+      color: #1e40af;
+      border-radius: 4px;
+      padding: 3px 7px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      max-width: 100%;
+    }
+
+    .tag span { word-break: break-word; }
+
+    .tag-x {
+      cursor: pointer;
+      opacity: 0.5;
+      font-size: 14px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .tag-x:hover { opacity: 1; }
+
+    .tag-input {
+      border: none;
+      outline: none;
+      padding: 3px 2px;
+      font-size: 13px;
+      font-family: inherit;
+      flex: 1;
+      min-width: 100px;
+      height: 26px;
+      background: transparent;
+    }
+
+    .tags-hint {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 3px;
+    }
+
+    /* ── Vertical list input (highlights, courses) ── */
+    .list-container {
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .list-container:focus-within {
+      border-color: #004687;
+      box-shadow: 0 0 0 2px rgba(0,70,135,0.12);
+    }
+
+    .list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 7px 10px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .list-bullet {
+      color: #004687;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 15px;
+    }
+
+    .list-item-text {
+      flex: 1;
+      word-break: break-word;
+    }
+
+    .list-item-x {
+      cursor: pointer;
+      opacity: 0.35;
+      font-size: 16px;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .list-item-x:hover { opacity: 0.8; }
+
+    .list-add-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      background: #fafafa;
+    }
+
+    .list-add-icon {
+      color: #bbb;
+      font-size: 16px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .list-input {
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 13px;
+      font-family: inherit;
+      flex: 1;
+      padding: 2px 0;
+      color: #1a1a1a;
+    }
+
+    .list-input::placeholder { color: #bbb; }
+
+    /* ── JSON syntax colors ── */
+    .json-key    { color: #89b4fa; }
+    .json-string { color: #a6e3a1; }
+    .json-number { color: #fab387; }
+    .json-bool   { color: #f38ba8; }
+    .json-null   { color: #6c7086; }
+    .json-punct  { color: #cdd6f4; }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #1a1a1a;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      transition: transform 0.25s ease;
+      z-index: 9999;
+      pointer-events: none;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── File input ── */
+    .file-label { cursor: pointer; }
+    #file-input { display: none; }
+  </style>
+</head>
+<body>
+
+<div class="app">
+  <!-- ── Editor Panel ── -->
+  <div class="editor">
+    <div class="page-header">
+      <div>
+        <h1>Resume Editor</h1>
+        <p>JSON Resume format &mdash; all fields optional</p>
+      </div>
+      <div class="header-actions">
+        <label class="btn btn-ghost file-label">
+          Load JSON
+          <input type="file" id="file-input" accept=".json">
+        </label>
+        <button class="btn btn-ghost" id="copy-btn">Copy JSON</button>
+        <button class="btn btn-primary" id="download-btn">Download JSON</button>
+      </div>
+    </div>
+
+    <!-- ── Basics ── -->
+    <div class="section" id="section-basics">
+      <div class="section-header" onclick="toggleSection('basics')">
+        <h2>Basics</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div class="field-row">
+          <div class="field"><label>Name</label><input id="basics-name" data-path="basics.name" placeholder="Full name" oninput="updatePreview()"></div>
+          <div class="field"><label>Label</label><input id="basics-label" data-path="basics.label" placeholder="e.g. Software Engineer" oninput="updatePreview()"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Email</label><input id="basics-email" type="email" data-path="basics.email" placeholder="you@example.com" oninput="updatePreview()"></div>
+          <div class="field"><label>Phone</label><input id="basics-phone" data-path="basics.phone" placeholder="(555) 555-5555" oninput="updatePreview()"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Website URL</label><input id="basics-url" data-path="basics.url" placeholder="https://..." oninput="updatePreview()"></div>
+          <div class="field"><label>Image URL</label><input id="basics-image" data-path="basics.image" placeholder="https://..." oninput="updatePreview()"></div>
+        </div>
+        <div class="field">
+          <label>Summary</label>
+          <textarea id="basics-summary" data-path="basics.summary" placeholder="Brief professional summary..." oninput="updatePreview()"></textarea>
+        </div>
+
+        <p class="subsection-label">Location</p>
+        <div class="field-row">
+          <div class="field"><label>Address</label><input id="basics-location-address" data-path="basics.location.address" placeholder="123 Main St" oninput="updatePreview()"></div>
+          <div class="field"><label>Postal Code</label><input id="basics-location-postalCode" data-path="basics.location.postalCode" placeholder="12345" oninput="updatePreview()"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>City</label><input id="basics-location-city" data-path="basics.location.city" placeholder="City" oninput="updatePreview()"></div>
+          <div class="field"><label>Region</label><input id="basics-location-region" data-path="basics.location.region" placeholder="State / Province" oninput="updatePreview()"></div>
+          <div class="field"><label>Country Code</label><input id="basics-location-countryCode" data-path="basics.location.countryCode" placeholder="US" oninput="updatePreview()"></div>
+        </div>
+
+        <p class="subsection-label">Profiles</p>
+        <div id="profiles-entries"></div>
+        <button class="btn-add" onclick="addEntry('profiles')">+ Add Profile</button>
+      </div>
+    </div>
+
+    <!-- ── Work ── -->
+    <div class="section collapsed" id="section-work">
+      <div class="section-header" onclick="toggleSection('work')">
+        <h2>Work Experience</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div id="work-entries"></div>
+        <button class="btn-add" onclick="addEntry('work')">+ Add Work Entry</button>
+      </div>
+    </div>
+
+    <!-- ── Volunteer ── -->
+    <div class="section collapsed" id="section-volunteer">
+      <div class="section-header" onclick="toggleSection('volunteer')">
+        <h2>Volunteer</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div id="volunteer-entries"></div>
+        <button class="btn-add" onclick="addEntry('volunteer')">+ Add Volunteer Entry</button>
+      </div>
+    </div>
+
+    <!-- ── Education ── -->
+    <div class="section collapsed" id="section-education">
+      <div class="section-header" onclick="toggleSection('education')">
+        <h2>Education</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div id="education-entries"></div>
+        <button class="btn-add" onclick="addEntry('education')">+ Add Education Entry</button>
+      </div>
+    </div>
+
+    <!-- ── Awards ── -->
+    <div class="section collapsed" id="section-awards">
+      <div class="section-header" onclick="toggleSection('awards')">
+        <h2>Awards</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div id="awards-entries"></div>
+        <button class="btn-add" onclick="addEntry('awards')">+ Add Award</button>
+      </div>
+    </div>
+
+    <!-- ── Certificates ── -->
+    <div class="section collapsed" id="section-certificates">
+      <div class="section-header" onclick="toggleSection('certificates')">
+        <h2>Certificates</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div id="certificates-entries"></div>
+        <button class="btn-add" onclick="addEntry('certificates')">+ Add Certificate</button>
+      </div>
+    </div>
+
+    <!-- ── Publications ── -->
+    <div class="section collapsed" id="section-publications">
+      <div class="section-header" onclick="toggleSection('publications')">
+        <h2>Publications</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div id="publications-entries"></div>
+        <button class="btn-add" onclick="addEntry('publications')">+ Add Publication</button>
+      </div>
+    </div>
+
+    <!-- ── Skills ── -->
+    <div class="section collapsed" id="section-skills">
+      <div class="section-header" onclick="toggleSection('skills')">
+        <h2>Skills</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div id="skills-entries"></div>
+        <button class="btn-add" onclick="addEntry('skills')">+ Add Skill Group</button>
+      </div>
+    </div>
+
+    <!-- ── Languages ── -->
+    <div class="section collapsed" id="section-languages">
+      <div class="section-header" onclick="toggleSection('languages')">
+        <h2>Languages</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div id="languages-entries"></div>
+        <button class="btn-add" onclick="addEntry('languages')">+ Add Language</button>
+      </div>
+    </div>
+
+    <!-- ── Interests ── -->
+    <div class="section collapsed" id="section-interests">
+      <div class="section-header" onclick="toggleSection('interests')">
+        <h2>Interests</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div id="interests-entries"></div>
+        <button class="btn-add" onclick="addEntry('interests')">+ Add Interest</button>
+      </div>
+    </div>
+
+    <!-- ── References ── -->
+    <div class="section collapsed" id="section-references">
+      <div class="section-header" onclick="toggleSection('references')">
+        <h2>References</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div id="references-entries"></div>
+        <button class="btn-add" onclick="addEntry('references')">+ Add Reference</button>
+      </div>
+    </div>
+
+    <!-- ── Projects ── -->
+    <div class="section collapsed" id="section-projects">
+      <div class="section-header" onclick="toggleSection('projects')">
+        <h2>Projects</h2>
+        <span class="section-chevron">▼</span>
+      </div>
+      <div class="section-body">
+        <div id="projects-entries"></div>
+        <button class="btn-add" onclick="addEntry('projects')">+ Add Project</button>
+      </div>
+    </div>
+
+  </div><!-- /editor -->
+
+  <!-- ── Preview Panel ── -->
+  <div class="preview">
+    <div class="preview-header">
+      <span class="preview-filename">resume.json</span>
+      <span style="font-size:11px;">live preview</span>
+    </div>
+    <pre id="json-preview"></pre>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ──────────────────────────────────────────────────────────────────────────────
+// Entry ID counters
+// ──────────────────────────────────────────────────────────────────────────────
+const counters = {};
+function nextId(section) {
+  if (counters[section] === undefined) counters[section] = 0;
+  return counters[section]++;
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Section toggle
+// ──────────────────────────────────────────────────────────────────────────────
+function toggleSection(name) {
+  document.getElementById('section-' + name).classList.toggle('collapsed');
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Tags helper
+// ──────────────────────────────────────────────────────────────────────────────
+function makeTags(labelText, containerId, hint) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'tags-field';
+
+  const lbl = document.createElement('label');
+  lbl.textContent = labelText;
+  wrapper.appendChild(lbl);
+
+  const container = document.createElement('div');
+  container.className = 'tags-container';
+  container.id = containerId;
+
+  const input = document.createElement('input');
+  input.className = 'tag-input';
+  input.placeholder = hint || 'Type and press Enter…';
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ',') {
+      e.preventDefault();
+      const val = input.value.trim().replace(/,$/, '');
+      if (val) {
+        addTag(container, val);
+        input.value = '';
+        updatePreview();
+      }
+    } else if (e.key === 'Backspace' && input.value === '') {
+      const tags = container.querySelectorAll('.tag');
+      if (tags.length) {
+        tags[tags.length - 1].remove();
+        updatePreview();
+      }
+    }
+  });
+
+  input.addEventListener('blur', () => {
+    const val = input.value.trim().replace(/,$/, '');
+    if (val) {
+      addTag(container, val);
+      input.value = '';
+      updatePreview();
+    }
+  });
+
+  container.appendChild(input);
+  container.addEventListener('click', () => input.focus());
+  wrapper.appendChild(container);
+
+  if (hint) {
+    const h = document.createElement('div');
+    h.className = 'tags-hint';
+    h.textContent = 'Press Enter or comma to add';
+    wrapper.appendChild(h);
+  }
+
+  return wrapper;
+}
+
+function addTag(container, value) {
+  const tag = document.createElement('div');
+  tag.className = 'tag';
+  tag.dataset.value = value;
+
+  const span = document.createElement('span');
+  span.textContent = value;
+
+  const x = document.createElement('span');
+  x.className = 'tag-x';
+  x.textContent = '×';
+  x.onclick = () => { tag.remove(); updatePreview(); };
+
+  tag.appendChild(span);
+  tag.appendChild(x);
+
+  // Insert before the input
+  const input = container.querySelector('.tag-input');
+  container.insertBefore(tag, input);
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Vertical list helper (highlights, courses)
+// ──────────────────────────────────────────────────────────────────────────────
+function makeList(labelText, containerId, hint) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'tags-field';
+
+  const lbl = document.createElement('label');
+  lbl.textContent = labelText;
+  wrapper.appendChild(lbl);
+
+  const container = document.createElement('div');
+  container.className = 'list-container';
+  container.id = containerId;
+
+  const addRow = document.createElement('div');
+  addRow.className = 'list-add-row';
+
+  const addIcon = document.createElement('span');
+  addIcon.className = 'list-add-icon';
+  addIcon.textContent = '+';
+
+  const input = document.createElement('input');
+  input.className = 'list-input';
+  input.placeholder = hint || 'Add item…';
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const v = input.value.trim();
+      if (v) { addListItem(container, v, addRow); input.value = ''; updatePreview(); }
+    }
+  });
+
+  input.addEventListener('blur', () => {
+    const v = input.value.trim();
+    if (v) { addListItem(container, v, addRow); input.value = ''; updatePreview(); }
+  });
+
+  addRow.appendChild(addIcon);
+  addRow.appendChild(input);
+  container.appendChild(addRow);
+  wrapper.appendChild(container);
+  return wrapper;
+}
+
+function addListItem(container, value, addRow) {
+  const item = document.createElement('div');
+  item.className = 'list-item';
+  item.dataset.value = value;
+
+  const bullet = document.createElement('span');
+  bullet.className = 'list-bullet';
+  bullet.textContent = '•';
+
+  const text = document.createElement('span');
+  text.className = 'list-item-text';
+  text.textContent = value;
+
+  const x = document.createElement('span');
+  x.className = 'list-item-x';
+  x.textContent = '×';
+  x.onclick = () => { item.remove(); updatePreview(); };
+
+  item.appendChild(bullet);
+  item.appendChild(text);
+  item.appendChild(x);
+  container.insertBefore(item, addRow);
+}
+
+function getTagValues(containerId) {
+  const c = document.getElementById(containerId);
+  if (!c) return [];
+  // Works for both .tag (chips) and .list-item (bullets) via shared data-value attr
+  return [...c.querySelectorAll('[data-value]')].map(t => t.dataset.value);
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Field helpers
+// ──────────────────────────────────────────────────────────────────────────────
+function field(labelText, id, placeholder, type) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'field';
+  const lbl = document.createElement('label');
+  lbl.textContent = labelText;
+  const inp = type === 'textarea' ? document.createElement('textarea') : document.createElement('input');
+  if (type && type !== 'textarea') inp.type = type;
+  inp.id = id;
+  inp.placeholder = placeholder || '';
+  inp.addEventListener('input', updatePreview);
+  wrapper.appendChild(lbl);
+  wrapper.appendChild(inp);
+  return wrapper;
+}
+
+function row(...fields) {
+  const r = document.createElement('div');
+  r.className = 'field-row';
+  fields.forEach(f => r.appendChild(f));
+  return r;
+}
+
+function val(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Entry builders — returns a DOM element for each entry type
+// ──────────────────────────────────────────────────────────────────────────────
+const entryBuilders = {
+
+  profiles(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Profile ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Network', `profiles-${id}-network`, 'e.g. LinkedIn'),
+      field('Username', `profiles-${id}-username`, 'e.g. johndoe')
+    ));
+    div.appendChild(row(
+      field('URL', `profiles-${id}-url`, 'https://...')
+    ));
+    return div;
+  },
+
+  work(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Work Entry ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Company', `work-${id}-name`, 'Company name'),
+      field('Position', `work-${id}-position`, 'Job title')
+    ));
+    div.appendChild(row(
+      field('Start Date', `work-${id}-startDate`, 'YYYY-MM-DD'),
+      field('End Date', `work-${id}-endDate`, 'YYYY-MM-DD or leave blank')
+    ));
+    div.appendChild(row(
+      field('URL', `work-${id}-url`, 'https://company.com')
+    ));
+    div.appendChild(row(
+      field('Summary', `work-${id}-summary`, 'Brief description or location…', 'textarea')
+    ));
+    div.appendChild(makeList('Highlights', `work-${id}-highlights`, 'Add a highlight…'));
+    return div;
+  },
+
+  volunteer(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Volunteer Entry ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Organization', `volunteer-${id}-organization`, 'Organization name'),
+      field('Position', `volunteer-${id}-position`, 'Role title')
+    ));
+    div.appendChild(row(
+      field('Start Date', `volunteer-${id}-startDate`, 'YYYY-MM-DD'),
+      field('End Date', `volunteer-${id}-endDate`, 'YYYY-MM-DD')
+    ));
+    div.appendChild(row(
+      field('URL', `volunteer-${id}-url`, 'https://...')
+    ));
+    div.appendChild(row(
+      field('Summary', `volunteer-${id}-summary`, 'Brief description…', 'textarea')
+    ));
+    div.appendChild(makeList('Highlights', `volunteer-${id}-highlights`, 'Add a highlight…'));
+    return div;
+  },
+
+  education(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Education Entry ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Institution', `education-${id}-institution`, 'University / School'),
+      field('Study Type', `education-${id}-studyType`, 'e.g. BS, MS, PhD')
+    ));
+    div.appendChild(row(
+      field('Area', `education-${id}-area`, 'Field of study'),
+      field('Score / GPA', `education-${id}-score`, 'e.g. 3.9')
+    ));
+    div.appendChild(row(
+      field('Start Date', `education-${id}-startDate`, 'YYYY-MM-DD'),
+      field('End Date', `education-${id}-endDate`, 'YYYY-MM-DD')
+    ));
+    div.appendChild(row(
+      field('URL', `education-${id}-url`, 'https://...')
+    ));
+    div.appendChild(makeList('Courses / Honors', `education-${id}-courses`, 'Add a course or honor…'));
+    return div;
+  },
+
+  awards(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Award ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Title', `awards-${id}-title`, 'Award name'),
+      field('Date', `awards-${id}-date`, 'YYYY-MM-DD')
+    ));
+    div.appendChild(row(
+      field('Awarder', `awards-${id}-awarder`, 'Organization / Person')
+    ));
+    div.appendChild(row(
+      field('Summary', `awards-${id}-summary`, 'Brief description…', 'textarea')
+    ));
+    return div;
+  },
+
+  certificates(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Certificate ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Name', `certificates-${id}-name`, 'Certificate name'),
+      field('Date', `certificates-${id}-date`, 'YYYY-MM-DD')
+    ));
+    div.appendChild(row(
+      field('Issuer', `certificates-${id}-issuer`, 'Issuing organization'),
+      field('URL', `certificates-${id}-url`, 'https://...')
+    ));
+    return div;
+  },
+
+  publications(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Publication ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Name', `publications-${id}-name`, 'Title of publication')
+    ));
+    div.appendChild(row(
+      field('Publisher', `publications-${id}-publisher`, 'Publisher / Journal'),
+      field('Release Date', `publications-${id}-releaseDate`, 'YYYY-MM-DD')
+    ));
+    div.appendChild(row(
+      field('URL', `publications-${id}-url`, 'https://doi.org/...')
+    ));
+    div.appendChild(row(
+      field('Summary', `publications-${id}-summary`, 'Citation or description…', 'textarea')
+    ));
+    return div;
+  },
+
+  skills(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Skill Group ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Name', `skills-${id}-name`, 'e.g. Programming Languages'),
+      field('Level', `skills-${id}-level`, 'e.g. Advanced')
+    ));
+    div.appendChild(makeTags('Keywords', `skills-${id}-keywords`, 'Add a keyword…'));
+    return div;
+  },
+
+  languages(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Language ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Language', `languages-${id}-language`, 'e.g. English'),
+      field('Fluency', `languages-${id}-fluency`, 'e.g. Native, Fluent, Beginner')
+    ));
+    return div;
+  },
+
+  interests(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Interest ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Name', `interests-${id}-name`, 'e.g. Open Source')
+    ));
+    div.appendChild(makeTags('Keywords', `interests-${id}-keywords`, 'Add a keyword…'));
+    return div;
+  },
+
+  references(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Reference ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Name', `references-${id}-name`, 'Full name')
+    ));
+    div.appendChild(row(
+      field('Reference', `references-${id}-reference`, 'Quote or contact info…', 'textarea')
+    ));
+    return div;
+  },
+
+  projects(id) {
+    const div = document.createElement('div');
+    div.className = 'entry';
+    div.dataset.id = id;
+    div.innerHTML = `<div class="entry-header"><span class="entry-label">Project ${id + 1}</span></div>`;
+    div.querySelector('.entry-header').appendChild(removeBtn(div));
+    div.appendChild(row(
+      field('Name', `projects-${id}-name`, 'Project name')
+    ));
+    div.appendChild(row(
+      field('Start Date', `projects-${id}-startDate`, 'YYYY-MM-DD'),
+      field('End Date', `projects-${id}-endDate`, 'YYYY-MM-DD')
+    ));
+    div.appendChild(row(
+      field('URL', `projects-${id}-url`, 'https://...')
+    ));
+    div.appendChild(row(
+      field('Description', `projects-${id}-description`, 'Brief description…', 'textarea')
+    ));
+    div.appendChild(makeList('Highlights', `projects-${id}-highlights`, 'Add a highlight…'));
+    return div;
+  }
+};
+
+function removeBtn(entryDiv) {
+  const btn = document.createElement('button');
+  btn.className = 'btn btn-danger-ghost';
+  btn.textContent = 'Remove';
+  btn.onclick = () => { entryDiv.remove(); updatePreview(); };
+  return btn;
+}
+
+function addEntry(section) {
+  const id = nextId(section);
+  const container = document.getElementById(section + '-entries');
+  if (!container) return;
+  const builder = entryBuilders[section];
+  if (!builder) return;
+  container.appendChild(builder(id));
+  updatePreview();
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Build JSON from DOM
+// ──────────────────────────────────────────────────────────────────────────────
+function readEntries(section, fields, tagFields) {
+  const container = document.getElementById(section + '-entries');
+  if (!container) return [];
+  const entries = [];
+  container.querySelectorAll('.entry').forEach(entry => {
+    const id = entry.dataset.id;
+    const obj = {};
+    fields.forEach(f => {
+      const v = val(`${section}-${id}-${f}`);
+      if (v) obj[f] = v;
+    });
+    (tagFields || []).forEach(f => {
+      const tags = getTagValues(`${section}-${id}-${f}`);
+      if (tags.length) obj[f] = tags;
+    });
+    if (Object.keys(obj).length) entries.push(obj);
+  });
+  return entries;
+}
+
+function buildResume() {
+  const resume = {};
+
+  // ── Basics ──
+  const basics = {};
+  ['name','label','image','email','phone','url','summary'].forEach(f => {
+    const v = val('basics-' + f);
+    if (v) basics[f] = v;
+  });
+
+  const loc = {};
+  ['address','postalCode','city','region','countryCode'].forEach(f => {
+    const v = val('basics-location-' + f);
+    if (v) loc[f] = v;
+  });
+  if (Object.keys(loc).length) basics.location = loc;
+
+  const profiles = [];
+  document.querySelectorAll('#profiles-entries .entry').forEach(entry => {
+    const id = entry.dataset.id;
+    const obj = {};
+    ['network','username','url'].forEach(f => {
+      const v = val(`profiles-${id}-${f}`);
+      if (v) obj[f] = v;
+    });
+    if (Object.keys(obj).length) profiles.push(obj);
+  });
+  if (profiles.length) basics.profiles = profiles;
+
+  if (Object.keys(basics).length) resume.basics = basics;
+
+  // ── Arrays ──
+  const work = readEntries('work', ['name','position','url','startDate','endDate','summary'], ['highlights']);
+  if (work.length) resume.work = work;
+
+  const volunteer = readEntries('volunteer', ['organization','position','url','startDate','endDate','summary'], ['highlights']);
+  if (volunteer.length) resume.volunteer = volunteer;
+
+  const education = readEntries('education', ['institution','url','area','studyType','startDate','endDate','score'], ['courses']);
+  if (education.length) resume.education = education;
+
+  const awards = readEntries('awards', ['title','date','awarder','summary']);
+  if (awards.length) resume.awards = awards;
+
+  const certificates = readEntries('certificates', ['name','date','issuer','url']);
+  if (certificates.length) resume.certificates = certificates;
+
+  const publications = readEntries('publications', ['name','publisher','releaseDate','url','summary']);
+  if (publications.length) resume.publications = publications;
+
+  const skills = readEntries('skills', ['name','level'], ['keywords']);
+  if (skills.length) resume.skills = skills;
+
+  const languages = readEntries('languages', ['language','fluency']);
+  if (languages.length) resume.languages = languages;
+
+  const interests = readEntries('interests', ['name'], ['keywords']);
+  if (interests.length) resume.interests = interests;
+
+  const references = readEntries('references', ['name','reference']);
+  if (references.length) resume.references = references;
+
+  const projects = readEntries('projects', ['name','startDate','endDate','description','url'], ['highlights']);
+  if (projects.length) resume.projects = projects;
+
+  return resume;
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// JSON syntax highlighting
+// ──────────────────────────────────────────────────────────────────────────────
+function highlight(json) {
+  return json
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(
+      /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+      match => {
+        if (/^"/.test(match)) {
+          if (/:$/.test(match)) return `<span class="json-key">${match}</span>`;
+          return `<span class="json-string">${match}</span>`;
+        }
+        if (/true|false/.test(match)) return `<span class="json-bool">${match}</span>`;
+        if (/null/.test(match)) return `<span class="json-null">${match}</span>`;
+        return `<span class="json-number">${match}</span>`;
+      }
+    );
+}
+
+function updatePreview() {
+  const json = JSON.stringify(buildResume(), null, 2);
+  document.getElementById('json-preview').innerHTML = highlight(json);
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Copy / Download
+// ──────────────────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+document.getElementById('copy-btn').onclick = () => {
+  const json = JSON.stringify(buildResume(), null, 2);
+  navigator.clipboard.writeText(json).then(() => showToast('Copied to clipboard'));
+};
+
+document.getElementById('download-btn').onclick = () => {
+  const json = JSON.stringify(buildResume(), null, 2);
+  const a = document.createElement('a');
+  a.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(json);
+  a.download = 'resume.json';
+  a.click();
+  showToast('Downloaded resume.json');
+};
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Load from JSON
+// ──────────────────────────────────────────────────────────────────────────────
+document.getElementById('file-input').addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      populateForm(data);
+      showToast('Loaded ' + file.name);
+    } catch {
+      showToast('Error: invalid JSON');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+function setVal(id, value) {
+  const el = document.getElementById(id);
+  if (el && value !== undefined && value !== null) el.value = value;
+}
+
+function populateTagsContainer(containerId, values) {
+  const container = document.getElementById(containerId);
+  if (!container || !Array.isArray(values)) return;
+  if (container.classList.contains('list-container')) {
+    container.querySelectorAll('.list-item').forEach(t => t.remove());
+    const addRow = container.querySelector('.list-add-row');
+    values.forEach(v => { if (v) addListItem(container, v, addRow); });
+  } else {
+    // tags-container
+    container.querySelectorAll('.tag').forEach(t => t.remove());
+    values.forEach(v => { if (v) addTag(container, v); });
+  }
+}
+
+function populateForm(data) {
+  if (!data) return;
+
+  // ── Basics ──
+  const b = data.basics || {};
+  setVal('basics-name', b.name);
+  setVal('basics-label', b.label);
+  setVal('basics-image', b.image);
+  setVal('basics-email', b.email);
+  setVal('basics-phone', b.phone);
+  setVal('basics-url', b.url);
+  setVal('basics-summary', b.summary);
+
+  if (b.location) {
+    setVal('basics-location-address', b.location.address);
+    setVal('basics-location-postalCode', b.location.postalCode);
+    setVal('basics-location-city', b.location.city);
+    setVal('basics-location-region', b.location.region);
+    setVal('basics-location-countryCode', b.location.countryCode);
+  }
+
+  document.getElementById('profiles-entries').innerHTML = '';
+  (b.profiles || []).forEach(p => {
+    const id = nextId('profiles');
+    const entry = entryBuilders.profiles(id);
+    document.getElementById('profiles-entries').appendChild(entry);
+    setVal(`profiles-${id}-network`, p.network);
+    setVal(`profiles-${id}-username`, p.username);
+    setVal(`profiles-${id}-url`, p.url);
+  });
+
+  // ── Array sections ──
+  function loadSection(section, items, scalars, tagFields) {
+    document.getElementById(section + '-entries').innerHTML = '';
+    (items || []).forEach(item => {
+      const id = nextId(section);
+      const entry = entryBuilders[section](id);
+      document.getElementById(section + '-entries').appendChild(entry);
+      scalars.forEach(f => setVal(`${section}-${id}-${f}`, item[f]));
+      (tagFields || []).forEach(f => populateTagsContainer(`${section}-${id}-${f}`, item[f]));
+    });
+  }
+
+  loadSection('work', data.work,
+    ['name','position','url','startDate','endDate','summary'], ['highlights']);
+  loadSection('volunteer', data.volunteer,
+    ['organization','position','url','startDate','endDate','summary'], ['highlights']);
+  loadSection('education', data.education,
+    ['institution','url','area','studyType','startDate','endDate','score'], ['courses']);
+  loadSection('awards', data.awards,
+    ['title','date','awarder','summary']);
+  loadSection('certificates', data.certificates,
+    ['name','date','issuer','url']);
+  loadSection('publications', data.publications,
+    ['name','publisher','releaseDate','url','summary']);
+  loadSection('skills', data.skills,
+    ['name','level'], ['keywords']);
+  loadSection('languages', data.languages,
+    ['language','fluency']);
+  loadSection('interests', data.interests,
+    ['name'], ['keywords']);
+  loadSection('references', data.references,
+    ['name','reference']);
+  loadSection('projects', data.projects,
+    ['name','startDate','endDate','description','url'], ['highlights']);
+
+  // Expand sections that have data
+  ['work','volunteer','education','awards','certificates','publications',
+   'skills','languages','interests','references','projects'].forEach(s => {
+    const container = document.getElementById(s + '-entries');
+    if (container && container.children.length > 0) {
+      document.getElementById('section-' + s).classList.remove('collapsed');
+    }
+  });
+
+  updatePreview();
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Init
+// ──────────────────────────────────────────────────────────────────────────────
+updatePreview();
+</script>
+</body>
+</html>
