@@ -1,0 +1,350 @@
+{
+  "basics": {
+    "name": "Luna Lovegood",
+    "label": "Magizoologist, Field Naturalist & Investigative Journalist",
+    "image": "",
+    "email": "luna@thequibbler.co.uk",
+    "phone": "0114-QUIBBLE",
+    "url": "",
+    "summary": "Open-minded and exceptionally perceptive magizoologist with expertise in rare, disputed, and misclassified magical creatures. Contributor and assistant editor at The Quibbler, with a particular focus on cryptofaunal investigation and Wrackspurt phenomenology. Decorated member of Dumbledore's Army and veteran of the Battle of Hogwarts. Widely regarded as one of the most original thinkers in contemporary British wizarding natural philosophy. Comfortable operating in remote and hostile environments. Possesses an unusually high tolerance for social scepticism.",
+    "location": {
+      "address": "The Lovegood House, Ottery St Catchpole",
+      "postalCode": "EX12 7LN",
+      "city": "Ottery St Catchpole",
+      "countryCode": "GB",
+      "region": "Devon"
+    },
+    "profiles": [
+      {
+        "network": "The Quibbler (print)",
+        "username": "L. Lovegood, Staff Correspondent",
+        "url": ""
+      },
+      {
+        "network": "Owl Post",
+        "username": "Luna@LovegoodResidence",
+        "url": ""
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Scamander & Lovegood Magizoological Research",
+      "position": "Senior Field Researcher & Species Documentarian",
+      "url": "",
+      "startDate": "2001-03-01",
+      "endDate": "",
+      "summary": "Conducts long-form field expeditions across five continents in partnership with husband Rolf Scamander (grandson of Newt Scamander) to document, classify, and advocate for the protection of rare and previously unrecognised magical species. Specialises in creatures that exist on the boundary between accepted taxonomy and cryptozoological speculation.",
+      "highlights": [
+        "Co-discovered and formally documented the Blibbering Humdinger's summer migration corridor through the Scottish Highlands — overturning six decades of Ministry consensus that the creature was purely mythological",
+        "Produced the first photographic and pensieve-archived evidence of a living Crumple-Horned Snorkack in the wild, obtained during a three-month expedition to northern Sweden",
+        "Authored formal species protection applications for four newly documented creatures, successfully securing XXXXX-grade temporary preservation status for two",
+        "Developed a novel passive observation methodology using scent-neutralising charms and low-resonance Disillusionment spells that has been adopted by field magizoologists internationally",
+        "Led a successful campaign to reclassify the Nargle from 'unclassified' to 'Class II — Documented but Elusive', following the collection of seventeen independent herd observations in Welsh mistletoe groves",
+        "Trained ten junior wildlife researchers in field documentation, ethical capture-and-release protocols, and Nundu-adjacent safety procedures"
+      ]
+    },
+    {
+      "name": "The Quibbler",
+      "position": "Senior Correspondent & Assistant Editor",
+      "url": "",
+      "startDate": "1999-09-01",
+      "endDate": "",
+      "summary": "Regular contributor and editorial collaborator at The Quibbler, the wizarding world's most independently-minded periodical. Responsible for cryptofaunal investigations, alternative healing spotlights, and Wrackspurt behavioural pattern reporting. Assisted in maintaining editorial independence during the publication's period of Ministry-hostile coverage.",
+      "highlights": [
+        "Authored 'The Truth About Harry Potter', the first sympathetic and credible profile of Harry Potter's account of Voldemort's return, published at a time when the mainstream wizarding press refused to cover the story — a pivotal piece in shifting public opinion",
+        "Contributed the landmark 17-part series 'Creatures the Ministry Doesn't Want You to See', which attracted the publication's highest recorded readership",
+        "Maintained editorial operations during the period when editor Xenophilius Lovegood was held captive by Death Eaters, keeping four pending issues to press",
+        "Developed The Quibbler's first structured fact-checking process for creature sighting submissions, significantly improving the quality of field reports",
+        "Interviewed twelve survivors of the Battle of Hogwarts for the 1999 memorial issue, producing the most comprehensive first-hand account published in the wizarding press"
+      ]
+    },
+    {
+      "name": "Hogwarts School of Witchcraft and Wizardry",
+      "position": "Student Teaching Assistant — Care of Magical Creatures",
+      "url": "",
+      "startDate": "1995-09-01",
+      "endDate": "1996-06-01",
+      "summary": "Volunteered as an informal assistant to Professor Grubbly-Plank and later Professor Hagrid in the Care of Magical Creatures class, providing supplementary context on creature behaviour drawn from independent reading and field observation.",
+      "highlights": [
+        "Prepared supplementary illustrated lecture notes on Thestrals, including behavioural characteristics and care requirements, which were distributed to the class",
+        "One of only two students able to see and handle Thestrals from first year, providing crucial ground-level guidance to classmates experiencing their first encounter",
+        "Identified a misclassification in the class textbook's description of Knarl feeding habits and submitted a formal correction, later acknowledged by the publisher"
+      ]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Dumbledore's Army",
+      "position": "Core Member & Combat Operations Participant",
+      "url": "",
+      "startDate": "1995-10-01",
+      "endDate": "1998-05-02",
+      "summary": "One of the founding members of Dumbledore's Army secret Defence Against the Dark Arts training group. Participated in all training sessions and multiple direct combat engagements, including the Battle of the Department of Mysteries and the Battle of Hogwarts.",
+      "highlights": [
+        "Participated in the Battle of the Department of Mysteries, fighting alongside Harry Potter and four other students against a squad of twelve Death Eaters — sustained minor injuries, continued fighting",
+        "Performed with exceptional composure and tactical effectiveness at the Battle of Hogwarts, defending multiple corridors alongside Ginny Weasley and Hermione Granger",
+        "Maintained the DA signal coins network during the 1997–98 academic year under Carrow-controlled Hogwarts, providing communication infrastructure for student resistance",
+        "Provided tactical intelligence on the Room of Requirement's layout and properties, facilitating its use as a refuge and staging area"
+      ]
+    },
+    {
+      "organization": "Society for the Welfare of Magical Creatures (Unofficial)",
+      "position": "Founding Advocate",
+      "url": "",
+      "startDate": "2000-01-01",
+      "endDate": "2003-06-01",
+      "summary": "Co-founded and ran an informal advocacy network pressing the Ministry's Beast Division to extend protections to cryptofaunal species pending formal classification.",
+      "highlights": [
+        "Submitted twelve formal petitions to the Beast Division on behalf of disputed-status creatures",
+        "Organised the first 'Creatures in Limbo' symposium, attended by thirty-two magizoologists and Ministry officials",
+        "Secured provisional protected-habitat status for three nesting sites pending formal species review"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Hogwarts School of Witchcraft and Wizardry",
+      "url": "",
+      "area": "General Magical Education — Ravenclaw House",
+      "studyType": "O.W.L.s and N.E.W.T.s",
+      "startDate": "1992-09-01",
+      "endDate": "1999-06-01",
+      "score": "7 O.W.L.s; 4 N.E.W.T.s",
+      "courses": [
+        "Care of Magical Creatures — Outstanding (O.W.L. and N.E.W.T.)",
+        "Defence Against the Dark Arts — Outstanding (O.W.L. and N.E.W.T.)",
+        "Charms — Exceeds Expectations (O.W.L. and N.E.W.T.)",
+        "Transfiguration — Exceeds Expectations (O.W.L.)",
+        "Potions — Acceptable (O.W.L.)",
+        "Astronomy — Exceeds Expectations (O.W.L.)",
+        "Divination — Outstanding (O.W.L.) — note: results disputed by Professor Trelawney on procedural grounds",
+        "History of Magic — Acceptable (O.W.L.)"
+      ]
+    },
+    {
+      "institution": "Wizarding Academy of Natural Philosophy (correspondence programme)",
+      "url": "",
+      "area": "Cryptofaunal Studies and Field Magizoology",
+      "studyType": "Diploma",
+      "startDate": "1999-09-01",
+      "endDate": "2001-06-01",
+      "score": "Distinction",
+      "courses": [
+        "Advanced Species Classification Methodology",
+        "Field Documentation and Magical Taxonomy",
+        "Ethical Treatment and Observation of Magical Creatures",
+        "Cryptozoological Evidence Standards",
+        "Magical Ecosystem Interactions"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Order of Merlin, Third Class",
+      "date": "1998-12-10",
+      "awarder": "Ministry of Magic",
+      "summary": "Awarded for exceptional bravery and service during the Battle of Hogwarts and associated resistance operations against Voldemort's regime."
+    },
+    {
+      "title": "Xenophilius Lovegood Award for Unconventional Journalism",
+      "date": "2003-07-01",
+      "awarder": "Independent Wizarding Press Association",
+      "summary": "Annual award recognising outstanding investigative journalism on under-reported subjects within the wizarding world. Awarded for the 'Creatures the Ministry Doesn't Want You to See' series."
+    },
+    {
+      "title": "Ravenclaw Academic Commendation",
+      "date": "1998-06-01",
+      "awarder": "Hogwarts School of Witchcraft and Wizardry",
+      "summary": "Awarded to graduating Ravenclaw students demonstrating exceptional independent scholarship over their academic career. Cited for original contributions to Care of Magical Creatures coursework."
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Class II Field Magizoologist Licence",
+      "date": "2001-08-20",
+      "issuer": "Ministry of Magic — Beast Division",
+      "url": ""
+    },
+    {
+      "name": "Nundu-Proximate Environment Safety Certification",
+      "date": "2003-02-14",
+      "issuer": "International Confederation of Wizards — Creature Studies Committee",
+      "url": ""
+    }
+  ],
+  "publications": [
+    {
+      "name": "The Truth About Harry Potter",
+      "publisher": "The Quibbler",
+      "releaseDate": "1996-02-01",
+      "url": "",
+      "summary": "Interview-based profile of Harry Potter presenting his first-hand account of Voldemort's return at the Triwizard Tournament. Published against significant mainstream press scepticism. Later recognised as the most accurate contemporaneous account of the Second Wizarding War's opening events."
+    },
+    {
+      "name": "Nargles of the West: A Field Taxonomy",
+      "publisher": "Journal of Magical Natural History",
+      "releaseDate": "2004-05-01",
+      "url": "",
+      "summary": "Peer-reviewed field study documenting seventeen independent Nargle colony observations in Welsh mistletoe groves, including habitat preferences, seasonal behaviour patterns, and interactions with neighbouring magical fauna. Led to the first formal reclassification of the Nargle in Ministry taxonomy."
+    },
+    {
+      "name": "On the Wrackspurt and Its Influence on Cognitive Enchantment Susceptibility",
+      "publisher": "The Quibbler",
+      "releaseDate": "2002-11-01",
+      "url": "",
+      "summary": "Theoretical paper proposing a mechanism by which Wrackspurt infestation may correlate with increased susceptibility to certain classes of mind-affecting charms. Controversial within the mainstream magical academic community; cited extensively within independent research circles."
+    },
+    {
+      "name": "Magical Creature Field Guide: Disputed and Misclassified Species (Vol. 1)",
+      "publisher": "Scamander & Lovegood Natural Philosophy Press",
+      "releaseDate": "2006-03-01",
+      "url": "",
+      "summary": "Co-authored with Rolf Scamander. A comprehensive reference work covering 41 creature species whose Ministry classification is disputed, unresolved, or based on outdated evidence. Includes original observational data from fourteen expeditions across eight countries."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Field Magizoology",
+      "level": "Expert",
+      "keywords": [
+        "Creature observation and documentation",
+        "Capture-and-release protocols",
+        "Habitat assessment",
+        "Species classification",
+        "Cryptofaunal investigation"
+      ]
+    },
+    {
+      "name": "Combat & Defensive Magic",
+      "level": "Advanced",
+      "keywords": [
+        "Stunning spells",
+        "Shield charms",
+        "Non-verbal casting",
+        "Reductor curses",
+        "Protective enchantments"
+      ]
+    },
+    {
+      "name": "Investigative Journalism",
+      "level": "Proficient",
+      "keywords": [
+        "Source interview techniques",
+        "Independent fact verification",
+        "Editorial judgment under pressure",
+        "Long-form feature writing",
+        "Photography"
+      ]
+    },
+    {
+      "name": "Charms",
+      "level": "Advanced",
+      "keywords": [
+        "Disillusionment charms",
+        "Scent-neutralising enchantments",
+        "Tracking spells",
+        "Accio",
+        "Patronus Charm (non-corporeal)"
+      ]
+    },
+    {
+      "name": "Ravenclaw-Tradition Lateral Thinking",
+      "level": "Master",
+      "keywords": [
+        "Unconventional problem framing",
+        "Pattern recognition across unrelated domains",
+        "Comfort with ambiguity",
+        "Immunity to groupthink"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "Swedish",
+      "fluency": "Conversational (field research use)"
+    },
+    {
+      "language": "Mermish",
+      "fluency": "Basic (underwater communications only)"
+    },
+    {
+      "language": "Troll",
+      "fluency": "Elementary"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Cryptofaunal Research",
+      "keywords": [
+        "Crumple-Horned Snorkacks",
+        "Blibbering Humdingers",
+        "Nargles",
+        "Heliopaths",
+        "Wrackspurts"
+      ]
+    },
+    {
+      "name": "Radish Jewellery Design",
+      "keywords": [
+        "Dirigible Plum accessories",
+        "Spectrespecs modification",
+        "Wearable magical detector crafting"
+      ]
+    },
+    {
+      "name": "Astronomy & Astral Phenomena",
+      "keywords": [
+        "Planetary alignments",
+        "Celestial creature migration",
+        "Night sky observation"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "name": "Harry Potter, Auror & Order of the Phoenix Member",
+      "reference": "Luna was one of the most loyal and dependable people I've ever known. In the Department of Mysteries, she kept her head when the rest of us were panicking, and she fought brilliantly. She has a way of seeing things that other people miss — I used to think it was just eccentric, but more often than not she turned out to be right. I'd trust her with my life, and I have done."
+    },
+    {
+      "name": "Rolf Scamander, Magizoologist & Co-Researcher",
+      "reference": "In fourteen years of joint fieldwork, Luna has never once accepted a creature classification she hadn't personally verified. She has an almost uncanny ability to locate and observe creatures without distressing them, and her attention to the nuances of animal behaviour exceeds anyone else I've worked with. The Blibbering Humdinger discovery alone would have secured her place in the field — the Snorkack evidence will, when the academic community catches up, be considered one of the great finds of the century."
+    },
+    {
+      "name": "Xenophilius Lovegood, Editor — The Quibbler",
+      "reference": "Luna has inherited my absolute commitment to printing the truth as it is, not as people wish it to be. The Potter article required courage I sometimes doubted I possessed, but she never wavered. She will go further than I ever did. She already has."
+    }
+  ],
+  "projects": [
+    {
+      "name": "Operation Snorkack — Northern Sweden Expedition",
+      "startDate": "2005-06-01",
+      "endDate": "2005-09-15",
+      "description": "A three-month solo field expedition to northern Sweden to document the habitat and behavioural patterns of the Crumple-Horned Snorkack. Utilised a proprietary passive observation platform and a novel sympathetic-magic tracking system developed over two years of preparation.",
+      "highlights": [
+        "Obtained the first verified photographic and pensieve-archived evidence of a living Crumple-Horned Snorkack",
+        "Mapped a 40-square-kilometre habitat range and documented seventeen discrete behavioural observations",
+        "Submitted formal evidence package to the Ministry's Beast Division; review ongoing",
+        "Survived an unexpected confrontation with a territorial Erkling in week six with no lasting injuries"
+      ],
+      "url": ""
+    },
+    {
+      "name": "The Nargle Reclassification Project",
+      "startDate": "2002-04-01",
+      "endDate": "2004-12-01",
+      "description": "Systematic multi-site field study of Nargle colony behaviour in Welsh mistletoe groves, designed to provide sufficient evidence for a formal Ministry reclassification from 'unclassified' to 'documented species'.",
+      "highlights": [
+        "Identified seventeen distinct colony sites across eight counties",
+        "Documented seasonal behaviour patterns, nesting habits, and Nargle-mistletoe symbiotic relationship",
+        "Successfully petitioned for reclassification — the first new creature formally added to the Ministry's Class II list in eleven years",
+        "Peer-reviewed publication in the Journal of Magical Natural History cited 43 times within five years"
+      ],
+      "url": ""
+    }
+  ]
+}

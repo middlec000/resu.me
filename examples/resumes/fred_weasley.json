@@ -1,0 +1,323 @@
+{
+  "basics": {
+    "name": "Fred Weasley",
+    "label": "Entrepreneur, Joke Product Developer & Professional Troublemaker",
+    "image": "",
+    "email": "fred@weasleyswizardwheezes.co.uk",
+    "phone": "0113-WHEEZES",
+    "url": "https://weasleyswizardwheezes.co.uk",
+    "summary": "High-energy, inventive entrepreneur with a proven track record of disrupting the magical novelty market. Co-founder of Weasleys' Wizard Wheezes, one of Diagon Alley's fastest-growing retail establishments. Seasoned Quidditch athlete, decorated Order of the Phoenix operative, and relentless product innovator. Adept at enchantment design, product safety testing (self-administered), brand management, and covert infiltration. Thrives under pressure — including actual Death Eater attacks. Seeking new challenges in magical commerce, defence contracting, or creative enchantment.",
+    "location": {
+      "address": "93 Diagon Alley (above the shop)",
+      "postalCode": "EC1W 1WW",
+      "city": "London",
+      "countryCode": "GB",
+      "region": "England"
+    },
+    "profiles": [
+      {
+        "network": "Owl Post",
+        "username": "FredW@WeasleyPost",
+        "url": ""
+      },
+      {
+        "network": "The Daily Prophet Classifieds",
+        "username": "WeasleyWheezes",
+        "url": ""
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Weasleys' Wizard Wheezes",
+      "position": "Co-Founder & Head of Product Development",
+      "url": "https://weasleyswizardwheezes.co.uk",
+      "startDate": "1996-04-01",
+      "endDate": "",
+      "summary": "Co-founded and operate a full-service joke and novelty shop at 93 Diagon Alley with twin brother George Weasley. Responsible for overseeing new product concepty, enchantment prototyping, supply chain sourcing, and day-to-day retail operations. Grew the business from a Hogwarts-dormitory black market operation to a brick-and-mortar shop grossing over 700 Galleons per week.",
+      "highlights": [
+        "Designed and brought to market over 35 original joke products including Skiving Snackboxes, Extendable Ears, Decoy Detonators, and Peruvian Instant Darkness Powder",
+        "Scaled the business from dormitory-based mail order to a flagship Diagon Alley shopfront within six months of leaving Hogwarts",
+        "Developed the U-No-Poo marketing campaign, one of the most talked-about advertising efforts in the British wizarding market of 1996",
+        "Recruited and trained a team of six shop assistants, implementing structured product demonstration protocols and customer service standards",
+        "Pioneered the Weasley's Wildfire Whiz-Bangs line of advanced fireworks, capable of self-propulsion, reforming after severing charms, and evading Stunning spells",
+        "Negotiated exclusive ingredient sourcing contracts with three apothecaries and two independent magical material importers",
+        "Maintained product safety compliance with the Ministry of Magic's Office for the Detection and Confiscation of Counterfeit Defensive Spells and Protective Objects — with only four formal warnings",
+        "Generated seed funding entirely through personal savings earned via Hogwarts-based product sales while maintaining O.W.L. and N.E.W.T. coursework simultaneously"
+      ]
+    },
+    {
+      "name": "Hogwarts School of Witchcraft and Wizardry — Gryffindor Quidditch Team",
+      "position": "Beater (Starting, 7 Seasons)",
+      "url": "",
+      "startDate": "1989-09-01",
+      "endDate": "1996-04-01",
+      "summary": "Served as one of two starting Beaters for the Gryffindor Quidditch team across seven seasons. Worked in close coordination with twin brother George to execute precision bludger redirection strategies. Contributed to multiple Quidditch Cup victories and earned a reputation as one of the most technically skilled and psychologically unnerving Beaters in Hogwarts inter-house history.",
+      "highlights": [
+        "Co-developed the 'Twin Bludger Pincer' manoeuvre with George Weasley, a dual-Beater offensive tactic never previously recorded in Hogwarts competitive play",
+        "Achieved a 91% Bludger-on-target accuracy rate across recorded competitive matches, the highest in Gryffindor history during the 1990s",
+        "Contributed to three Gryffindor Quidditch Cup victories (1993–94, 1995–96, 1996–97 pending)",
+        "Played in adverse weather conditions including severe storms, Dementor incursions, and matches with unofficial rule changes imposed by corrupt Ministry officials",
+        "Mentored younger team members in bat technique, aerial positioning, and in-game psychological tactics",
+        "Served as acting team captain in the absence of the appointed captain during the 1995–96 season under Ministry-imposed educational decrees"
+      ]
+    },
+    {
+      "name": "Order of the Phoenix",
+      "position": "Field Operative & Logistics Specialist",
+      "url": "",
+      "startDate": "1996-06-01",
+      "endDate": "",
+      "summary": "Active member of the clandestine resistance organisation working against Lord Voldemort and the Death Eaters. Undertook high-risk intelligence gathering, protective escort, and supply operations. Participated in multiple direct engagements with hostile actors.",
+      "highlights": [
+        "Participated in the aerial escort of Harry Potter from 4 Privet Drive to the Burrow under heavy Death Eater attack as part of Operation Seven Potters",
+        "Sustained serious injury (loss of ear via Sectumsempra cast by Severus Snape) during the extraction mission and returned to active duty within three weeks",
+        "Provided Peruvian Instant Darkness Powder and other Wheezes products as tactical supply to Order field teams at no cost",
+        "Coordinated use of Extendable Ears for passive surveillance of Ministry communications during the period of Death Eater infiltration",
+        "Participated in the defence of Hogwarts castle during the Battle of Hogwarts, leading a section of the castle's ground-floor defences"
+      ]
+    },
+    {
+      "name": "Hogwarts School of Witchcraft and Wizardry",
+      "position": "Informal Enchantment & Prank Distribution Operator",
+      "url": "",
+      "startDate": "1989-09-01",
+      "endDate": "1996-04-01",
+      "summary": "Operated an informal product testing and distribution network throughout the Hogwarts student body, providing early-stage versions of joke products in exchange for feedback and modest financial compensation. Also served as an unofficial consultant to students seeking creative solutions to rule enforcement.",
+      "highlights": [
+        "Successfully entered the underage Triwizard Tournament Age Line using a self-developed Aging Potion variant — a partial success that confirmed the principle, if not the efficacy, of the formula",
+        "Collaborated with George to enchant snowballs to pelt the back of Professor Quirrell's turban autonomously, unknowingly striking Lord Voldemort in the face",
+        "Developed and deployed a suite of diversionary enchantments allowing Dumbledore's Army to conduct secret Defence Against the Dark Arts training sessions undetected",
+        "Organised the legendary Gryffindor Common Room Fireworks Incident of 1993, now considered a benchmark event in Hogwarts institutional memory"
+      ]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Dumbledore's Army",
+      "position": "Co-Organiser & Combat Training Facilitator",
+      "url": "",
+      "startDate": "1995-10-01",
+      "endDate": "1996-06-01",
+      "summary": "Helped establish and support the secret student defence organisation during the Ministry's suppression of practical Defence Against the Dark Arts instruction.",
+      "highlights": [
+        "Assisted in sourcing and securing the Room of Requirement as a secret training venue",
+        "Participated in all training sessions, contributing practical knowledge of jinxes, hexes, and non-verbal casting",
+        "Helped maintain operational security of the group's communications and meeting schedules"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Hogwarts School of Witchcraft and Wizardry",
+      "url": "",
+      "area": "General Magical Education",
+      "studyType": "O.W.L.s (Ordinary Wizarding Levels)",
+      "startDate": "1989-09-01",
+      "endDate": "1996-04-01",
+      "score": "3 O.W.L.s (Passed: Charms, Transfiguration, Defence Against the Dark Arts)",
+      "courses": [
+        "Charms — Exceeds Expectations",
+        "Transfiguration — Exceeds Expectations",
+        "Defence Against the Dark Arts — Outstanding",
+        "Potions — Acceptable",
+        "Herbology — Acceptable",
+        "Care of Magical Creatures — Acceptable",
+        "History of Magic — Poor (attendance inconsistent)",
+        "Divination — Dropped (described as 'a load of woolly guesswork')"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Gryffindor Quidditch Cup — Winner",
+      "date": "1994-05-15",
+      "awarder": "Hogwarts School of Witchcraft and Wizardry",
+      "summary": "Member of the victorious Gryffindor Quidditch team that defeated all house opponents to claim the 1993–94 Quidditch Cup."
+    },
+    {
+      "title": "Gryffindor Quidditch Cup — Winner",
+      "date": "1996-05-12",
+      "awarder": "Hogwarts School of Witchcraft and Wizardry",
+      "summary": "Returning champion — contributed to Gryffindor's 1995–96 Quidditch Cup victory with a season-best bludger accuracy rating."
+    },
+    {
+      "title": "Most Enterprising Exit from Hogwarts",
+      "date": "1996-04-01",
+      "awarder": "Hogwarts Student Body (informal)",
+      "summary": "Upon departure from Hogwarts in protest of Dolores Umbridge's administration, launched a full indoor Wildfire Whiz-Bang display across the castle and departed via broomstick. Standing ovation received from students and several members of staff."
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Basic Broomstick Operator Licence (Class II — Competitive)",
+      "date": "1993-01-15",
+      "issuer": "Department of Magical Transportation, Ministry of Magic",
+      "url": ""
+    },
+    {
+      "name": "Retail Enchantment Product Safety Compliance (Provisional)",
+      "date": "1996-09-10",
+      "issuer": "Office for the Detection and Confiscation of Counterfeit Defensive Spells, Ministry of Magic",
+      "url": ""
+    }
+  ],
+  "publications": [
+    {
+      "name": "Weasleys' Wizard Wheezes Product Catalogue, Volume I",
+      "publisher": "Weasleys' Wizard Wheezes (self-published)",
+      "releaseDate": "1996-10-01",
+      "url": "",
+      "summary": "Inaugural product catalogue featuring descriptions, pricing, and instructional diagrams for 23 original Weasley joke products. Written with George Weasley. Distributed to all Hogwarts years via owl post; confiscated at the Hogwarts gate and promptly re-mailed."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Enchantment & Charm Design",
+      "level": "Expert",
+      "keywords": [
+        "Self-activating enchantments",
+        "Timed charm release",
+        "Sympathetic magic (twin-linked)",
+        "Bespoke jinx development",
+        "Anti-countercurse design"
+      ]
+    },
+    {
+      "name": "Quidditch",
+      "level": "Elite Amateur",
+      "keywords": [
+        "Bludger targeting",
+        "Aerial coordination",
+        "Bat technique",
+        "In-game psychological tactics",
+        "Broomstick handling (Cleansweep 11)"
+      ]
+    },
+    {
+      "name": "Business Operations",
+      "level": "Proficient",
+      "keywords": [
+        "Retail management",
+        "Staff training",
+        "Product pricing strategy",
+        "Customer experience design",
+        "Supply chain negotiation"
+      ]
+    },
+    {
+      "name": "Combat Magic",
+      "level": "Advanced",
+      "keywords": [
+        "Stunning spells",
+        "Shield charms",
+        "Jinxes and hexes",
+        "Non-verbal casting",
+        "Tactical use of novelty items in combat"
+      ]
+    },
+    {
+      "name": "Potions",
+      "level": "Intermediate",
+      "keywords": [
+        "Edible enchantment bases",
+        "Antidote formulation",
+        "Aging potions (prototype)",
+        "Puking Pastille active compound"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "Gobbledegook",
+      "fluency": "Basic (sufficient for Gringotts negotiations)"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Experimental Enchantment",
+      "keywords": [
+        "Autonomous object animation",
+        "Sensory-targeted hexes",
+        "Firework choreography",
+        "Portable darkness technology"
+      ]
+    },
+    {
+      "name": "Quidditch",
+      "keywords": [
+        "Beater strategy analysis",
+        "Amateur Quidditch league",
+        "Broom maintenance"
+      ]
+    },
+    {
+      "name": "Pranking & Comedy",
+      "keywords": [
+        "Situational comedy",
+        "Physical gags",
+        "Institutional disruption",
+        "Authority-targeted humour"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "name": "George Weasley, Co-Founder — Weasleys' Wizard Wheezes",
+      "reference": "Fred is, without question, the funniest person I've ever met — and I've known him his entire life. His instincts for what people find funny are uncanny. As a business partner, he matches every creative idea with a practical implementation plan. He once redesigned an entire product line in forty-eight hours after a raw material shortage. I have never met anyone more capable or more deserving of success. Also I literally cannot tell us apart so I'm contractually obliged to give him a good reference."
+    },
+    {
+      "name": "Lee Jordan, Quidditch Commentator & Close Associate",
+      "reference": "Fred Weasley is one of the most genuinely brilliant enchanters I've had the privilege of watching work. His product ideas consistently seem impossible until he and George actually make them. On the pitch he was absolute class — professional sides would pay serious Galleons for that Beater combination. Off it, if there's ever a problem that needs solving creatively, Fred's the first person you want in the room."
+    },
+    {
+      "name": "Albus Dumbledore, Headmaster — Hogwarts School of Witchcraft and Wizardry",
+      "reference": "Mister Weasley possesses a quite remarkable aptitude for enchantment that his academic record does not adequately reflect. He and his brother represent a variety of talent this school sees rarely — the ability to turn imagination directly into functional magical artefacts. I confess I found the fireworks display on the occasion of his departure to be one of the finer spectacles the Great Hall has seen in some years."
+    }
+  ],
+  "projects": [
+    {
+      "name": "Skiving Snackbox — Full Product Line",
+      "startDate": "1993-09-01",
+      "endDate": "1996-04-01",
+      "description": "A line of dual-action sweets that induce convincing illness symptoms (nosebleeds, fever, fainting, vomiting) upon eating one end, with an antidote built into the other end. Developed over three years of iterative testing — primarily on Fred himself — to achieve the correct symptom intensity, duration, and antidote reliability.",
+      "highlights": [
+        "Achieved 100% symptom induction reliability across all eight Snackbox varieties",
+        "Calibrated antidote response time to under 90 seconds in all weather conditions and age groups",
+        "Successfully passed through confiscation attempts by Filch and Umbridge by disguising products as standard sweets",
+        "Generated estimated 70 Galleons in pre-launch orders from within Hogwarts alone before the shop opened"
+      ],
+      "url": ""
+    },
+    {
+      "name": "Extendable Ears — Listening Device",
+      "startDate": "1994-06-01",
+      "endDate": "1995-08-01",
+      "description": "A flesh-coloured listening device capable of being extended under doors, through keyholes, and around corners at distances up to twenty feet. Uses a sympathetic vibration enchantment to relay sound to a receiver end held by the listener.",
+      "highlights": [
+        "Overcame Ministry-grade Anti-Eavesdropping Charms through a novel sympathetic resonance technique developed independently",
+        "Product adopted by the Order of the Phoenix for intelligence-gathering operations",
+        "Sold out within four days of the Diagon Alley shop opening",
+        "Second-generation version extended maximum range to 30 feet and added a muffling filter for background noise"
+      ],
+      "url": ""
+    },
+    {
+      "name": "Weasley's Wildfire Whiz-Bangs — Advanced Fireworks",
+      "startDate": "1995-01-01",
+      "endDate": "1996-03-01",
+      "description": "A professional-grade line of self-guiding enchanted fireworks capable of resisting Finite Incantatem, splitting when attacked with Severing Charms, and reforming into larger versions of themselves. Designed to be both spectacular and tactically disruptive.",
+      "highlights": [
+        "Demonstrated live inside Hogwarts castle during Umbridge's tenure — fireworks evaded all faculty efforts to remove them for approximately six hours",
+        "dragons and catherine wheel variants proved impervious to standard countercharm catalogue",
+        "Product deployed as both entertainment and tactical distraction during the 1997 Diagon Alley period",
+        "Currently the highest-margin product line in the Wheezes catalogue"
+      ],
+      "url": ""
+    }
+  ]
+}

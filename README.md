@@ -50,7 +50,10 @@ node src/run.js
 ./node_modules/.bin/resumed render model_output/resume_tailored_1.json --theme jsonresume-theme-straightforward --output model_output/resume_tailored_1.html
 
 # Validate resume conforms to schema
-./node_modules/.bin/resumed validate "model_output copy/resume_tailored_1.json"
+./node_modules/.bin/resumed validate examples/fred_weasley.json
+./node_modules/.bin/resumed validate examples/luna_lovegood.json
+./node_modules/.bin/resumed validate examples/moaning_mertle.json
+./node_modules/.bin/resumed validate examples/neville_longbottom.json
 
 npx resumed validate model_output/resume_tailored.json
 ```
@@ -59,7 +62,7 @@ npx resumed validate model_output/resume_tailored.json
 
 - `examples/json_schema_example.json`
   - https://jsonresume.org/schema
-- `examples/job_posting_example_1.txt`
-  - https://icrunchdata.com/job/10305028/staff-data-scientist-product-applied-ai/
+- `artifacts/resume_schema_v1.json`
+  - Generated from https://jsonresume.org/schema
 
 ## To Do
