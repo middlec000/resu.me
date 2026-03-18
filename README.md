@@ -4,6 +4,23 @@
 
 ### V0
 
+No persisted state (no db)
+
+- Format resume as json standard
+  - Input
+    - PDF or text
+    - (Optional) User can manually add content through UI
+  - Output
+    - JSON standardized resume (must be saved by user to local storage)
+- Resume tailoring tool
+  - Input
+    - JSON base resume
+    - Job description (pasted text into text box)
+    - Selection of theme
+  - Output
+    - Tailored resume JSON standardized file
+    - Formatted tailored resume (PDF)
+
 Inputs
 Expansive Resume Dataset (formatted)
 Job Description (formatted)
