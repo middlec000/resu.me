@@ -1,0 +1,1 @@
+Extract the resume information from the following text and structure it as JSON conforming exactly to the provided schema. Preserve all content faithfully — do not summarise, embellish, or omit any information present in the source text.

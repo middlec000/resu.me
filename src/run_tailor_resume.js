@@ -93,7 +93,11 @@ async function main () {
   const outputDir = path.join(process.cwd(), 'output')
   await fs.mkdir(outputDir, { recursive: true })
   await Promise.all([
-    fs.writeFile(path.join(outputDir, 'prompt.txt'), prompt, 'utf-8'),
+    fs.writeFile(
+      path.join(outputDir, 'prompt_tailor_resume_to_job_posting.txt'),
+      prompt,
+      'utf-8'
+    ),
     fs.writeFile(
       path.join(outputDir, 'resume_tailored.json'),
       resumeJson,
