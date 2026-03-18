@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "awards": [
+    {
+      "awarder": "Ministry of Magic",
+      "date": "Dec 1998",
+      "summary": "",
+      "title": "Order of Merlin, First Class"
+    },
+    {
+      "awarder": "Hogwarts School of Witchcraft and Wizardry",
+      "date": "Jun 1998",
+      "summary": "",
+      "title": "Hogwarts School Medal for Magical Merit"
+    },
+    {
+      "awarder": "Wizarding Botanical Society",
+      "date": "Sep 2007",
+      "summary": "",
+      "title": "Outstanding Achievement in Herbological Research"
+    }
+  ],
+  "basics": {
+    "email": "n.longbottom@hogwarts.ac.uk",
+    "image": "",
+    "label": "Professor of Herbology",
+    "location": {
+      "address": "",
+      "city": "Hogwarts",
+      "countryCode": "",
+      "postalCode": "",
+      "region": "Scottish Highlands"
+    },
+    "name": "Neville Longbottom",
+    "phone": "",
+    "profiles": [],
+    "summary": "Highly accomplished Herbology scholar and internationally recognised experimental botanist with extensive experience in field research, species documentation, and operating in challenging, occasionally hazardous environments. Proven leader and decorated veteran, adept at independent work, problem-solving under pressure, and maintaining conviction in the face of scepticism. Expertise in magically-responsive plant cultivars, conservation of endangered wizarding flora, and the discovery and documentation of previously uncatalogued magical species. Former Auror with tactical field experience.",
+    "url": ""
+  },
+  "certificates": [],
+  "education": [
+    {
+      "area": "General Magical Education",
+      "courses": [
+        "Gryffindor House"
+      ],
+      "endDate": "Jun 1998",
+      "institution": "Hogwarts School of Witchcraft and Wizardry",
+      "score": "GPA: 5 O.W.L.s; 3 N.E.W.T.s",
+      "startDate": "Sep 1991",
+      "studyType": "O.W.L.s and N.E.W.T.s",
+      "url": ""
+    },
+    {
+      "area": "Advanced Magical Botany Research Methods",
+      "courses": [],
+      "endDate": "Jun 2005",
+      "institution": "Wizarding Botanical Society",
+      "score": "GPA: Fellow Full Membership",
+      "startDate": "Sep 2003",
+      "studyType": "Fellowship (MWBS)",
+      "url": ""
+    }
+  ],
+  "interests": [
+    {
+      "keywords": [
+        "Venomous Tentacula propagation",
+        "Devil's Snare ecology",
+        "Magical orchidology",
+        "Mandrake cultivation variants",
+        "Gillyweed habitat research",
+        "Uncatalogued species documentation"
+      ],
+      "name": "Magical Botany"
+    },
+    {
+      "keywords": [
+        "Kitchen garden",
+        "Heirloom vegetable cultivation",
+        "Composting",
+        "Beekeeping"
+      ],
+      "name": "Gardening (Muggle)"
+    }
+  ],
+  "languages": [],
+  "projects": [
+    {
+      "description": "Catalogued 63 species of endangered magical flora across the Hogwarts grounds and surrounding region. Established a living seed bank of over 200 species in the Hogwarts greenhouse complex, including difficult-to-cultivate species. Developed propagation protocols for four species previously considered uncultivable in captivity. Trained twelve botanical researchers from partner institutions in magical plant handling and cultivation, demonstrating mentorship capabilities.",
+      "endDate": "",
+      "highlights": [],
+      "name": "Hogwarts Rare Wizarding Flora Preservation Programme",
+      "startDate": "",
+      "url": ""
+    }
+  ],
+  "publications": [
+    {
+      "name": "Aggressive Cultivar Suppression in Hogwarts Grounds: A 20-Year Survey",
+      "publisher": "",
+      "releaseDate": "Jun 2020",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "name": "Mandrake Restorative Draught Potency: The Impact of Soil Composition and Maturation Rate",
+      "publisher": "",
+      "releaseDate": "Mar 2010",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "name": "Teaching Herbology to Traumatised Learners: A Framework for Post-Conflict Magical Education",
+      "publisher": "",
+      "releaseDate": "Nov 2005",
+      "summary": "",
+      "url": ""
+    }
+  ],
+  "references": [],
+  "skills": [
+    {
+      "keywords": [
+        "Cultivation of magical and mundane plant species",
+        "Magical hazardous plant handling",
+        "Plant-based potion ingredient preparation",
+        "Endangered species propagation",
+        "Greenhouse design and management",
+        "Field botanical surveys",
+        "Identification of unknown species"
+      ],
+      "level": "",
+      "name": "Herbology & Magical Botany"
+    },
+    {
+      "keywords": [
+        "Stunning spells",
+        "Shield charms",
+        "Reductor curses",
+        "Non-verbal casting",
+        "Tactical use of magical plants in combat",
+        "Field self-defence"
+      ],
+      "level": "",
+      "name": "Combat Magic & Field Safety"
+    },
+    {
+      "keywords": [
+        "Crisis leadership",
+        "Resistance operations",
+        "Team coordination under hostile conditions",
+        "Independent decision-making",
+        "Mentoring"
+      ],
+      "level": "",
+      "name": "Leadership & Independent Operations"
+    },
+    {
+      "keywords": [
+        "Experimental design",
+        "Field botanical surveys",
+        "Species documentation",
+        "Publication preparation",
+        "Interdisciplinary collaboration",
+        "Observational data gathering",
+        "Evidence package preparation"
+      ],
+      "level": "",
+      "name": "Magical Field Research & Documentation"
+    },
+    {
+      "keywords": [
+        "Ingredient sourcing and quality assessment",
+        "Restorative Draught components",
+        "Mandrake preparation",
+        "Herbological basis of anti-venoms"
+      ],
+      "level": "",
+      "name": "Potions (Applied Herbology)"
+    }
+  ],
+  "volunteer": [
+    {
+      "endDate": "Present",
+      "highlights": [
+        "Supplied specially cultivated Mandrake rootstock for 'de-Petrification' therapy protocols, improving the potency and reliability of the restorative draught used for Petrification casualties",
+        "Consulted on the treatment of Venomous Tentacula exposure in four emergency cases, providing time-sensitive identification and recommended antidote plant components"
+      ],
+      "organization": "St Mungo's Hospital for Magical Maladies and Injuries",
+      "position": "Volunteer Herbological Consultant",
+      "startDate": "Jan 1999",
+      "summary": "",
+      "url": ""
+    }
+  ],
+  "work": [
+    {
+      "endDate": "Present",
+      "highlights": [
+        "Expanded the Hogwarts greenhouse complex, adding specialist facilities for venomous, carnivorous, and magically-active plant species, enhancing controlled research environments",
+        "Supervised 34 N.E.W.T.-level independent research projects over tenure, with twelve students pursuing careers in Herbological research or Magical Plant protection, demonstrating mentorship",
+        "Launched the Hogwarts Rare Wizarding Flora Preservation Programme, a collaboration with leading botanical institutions, focused on cataloguing and preserving endangered magical plant species",
+        "Led annual Forbidden Forest botanical surveys, resulting in the discovery and formal documentation of two previously uncatalogued magical plant species in the castle grounds",
+        "Introduced the 'Herbology in Healing' elective module for Fifth Years, linking plant-based potion ingredients to practical medical and apothecary applications, relevant for field sample collection"
+      ],
+      "name": "Hogwarts School of Witchcraft and Wizardry",
+      "position": "Professor of Herbology",
+      "startDate": "Sep 2000",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "endDate": "Jul 2000",
+      "highlights": [
+        "Participated in the capture of six Death Eaters during active field operations in 1998–1999, demonstrating tactical effectiveness and composure in hazardous environments",
+        "Commended by Head Auror Harry Potter for exceptional composure and tactical effectiveness during complex field operations",
+        "Completed the full Auror training programme in twelve months despite no formal post-Hogwarts qualification, accepted on battlefield record, indicating strong practical aptitude for field work",
+        "Contributed firsthand field notes on Death Eater tactics and safe houses that informed twelve successful warrant operations, showcasing strong observational and reporting skills"
+      ],
+      "name": "Ministry of Magic",
+      "position": "Auror, Second Grade",
+      "startDate": "Sep 1998",
+      "summary": "",
+      "url": ""
+    },
+    {
+      "endDate": "May 1998",
+      "highlights": [
+        "Reformed Dumbledore's Army in September 1997 under Death Eater occupation, demonstrating extreme leadership, personal risk assessment, and resilience in a hostile environment",
+        "Established and maintained a residential refuge for students in the Room of Requirement, sustainably housing up to twenty students with supplies and communication infrastructure under covert conditions",
+        "Coordinated supply lines and intelligence gathering with external contacts (Aberforth Dumbledore) to support resistance operations throughout the academic year",
+        "Commanded a section of Hogwarts's defensive perimeter during the Battle, directing student fighters and coordinating with staff and Order members, showcasing crisis leadership and resourcefulness",
+        "Destroyed Nagini (Voldemort's final Horcrux) with the Sword of Gryffindor, eliminating a primary threat under extreme duress and proving unwavering conviction in the face of overwhelming odds"
+      ],
+      "name": "Dumbledore's Army",
+      "position": "Operational Commander",
+      "startDate": "Sep 1997",
+      "summary": "",
+      "url": ""
+    }
+  ]
+}
