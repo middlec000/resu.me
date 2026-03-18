@@ -4,6 +4,7 @@ import os from 'os'
 import theme from 'jsonresume-theme-straightforward'
 import { tailorResumeToJobPosting } from './tailor_resume_to_posting.js'
 import { formatOutputResume } from './format_output_resume.js'
+import { validateResumeSchema } from './validate_resume_schema.js'
 
 async function main () {
   // Load API key
@@ -47,6 +48,12 @@ async function main () {
   // Tailor resume
   let resumeJson, prompt
   try {
+    const validation = validateResumeSchema(JSON.stringify(resumeData))
+    if (!validation.valid) {
+      throw new Error(
+        `Resume failed schema validation:\n${validation.errors.join('\n')}`
+      )
+    }
     ;({ resumeJson, prompt } = await tailorResumeToJobPosting({
       apiKey,
       jobPosting,
