@@ -20,18 +20,6 @@ ${jobPosting}
 `
 }
 
-function removeEmptyJSONEntries (obj) {
-  if (Array.isArray(obj)) return obj.map(removeEmptyJSONEntries)
-  if (obj && typeof obj === 'object') {
-    return Object.fromEntries(
-      Object.entries(obj)
-        .filter(([, v]) => v !== '')
-        .map(([k, v]) => [k, removeEmptyJSONEntries(v)])
-    )
-  }
-  return obj
-}
-
 export async function tailorResumeToJobPosting ({
   apiKey,
   jobPosting,
@@ -70,10 +58,6 @@ export async function tailorResumeToJobPosting ({
     timeout
   ])
 
-  const resumeJson = JSON.stringify(
-    removeEmptyJSONEntries(JSON.parse(response.text)),
-    null,
-    2
-  )
+  const resumeJson = JSON.stringify(JSON.parse(response.text), null, 2)
   return { resumeJson, prompt }
 }

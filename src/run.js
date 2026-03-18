@@ -2,7 +2,7 @@ import fs from 'fs/promises'
 import path from 'path'
 import os from 'os'
 import theme from 'jsonresume-theme-straightforward'
-import { tailorResumeToJobPosting } from './tailor_resume_to_posting.js'
+import { tailorResumeToJobPosting } from './tailor_resume_to_job_posting.js'
 import { formatOutputResume } from './format_output_resume.js'
 import { validateResumeSchema } from './validate_resume_schema.js'
 
@@ -30,16 +30,34 @@ async function main () {
     ),
     fs
       .readFile(
-        path.join(inputDir, 'resumes', 'neville_longbottom.json'),
+        path.join(inputDir, 'resumes_json', 'neville_longbottom.json'),
         'utf-8'
       )
       .then(JSON.parse),
-    fs.readFile(path.join(artifactsDir, 'agent_role_v1.txt'), 'utf-8'),
     fs.readFile(
-      path.join(artifactsDir, 'standard_instructions_v1.txt'),
+      path.join(
+        artifactsDir,
+        'tailor_resume_to_job_posting',
+        'agent_role_v1.txt'
+      ),
       'utf-8'
     ),
-    fs.readFile(path.join(artifactsDir, 'quality_constraints_v1.txt'), 'utf-8'),
+    fs.readFile(
+      path.join(
+        artifactsDir,
+        'tailor_resume_to_job_posting',
+        'standard_instructions_v1.txt'
+      ),
+      'utf-8'
+    ),
+    fs.readFile(
+      path.join(
+        artifactsDir,
+        'tailor_resume_to_job_posting',
+        'quality_constraints_v1.txt'
+      ),
+      'utf-8'
+    ),
     fs
       .readFile(path.join(artifactsDir, 'resume_schema_v1.json'), 'utf-8')
       .then(JSON.parse)
