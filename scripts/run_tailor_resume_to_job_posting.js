@@ -1,10 +1,8 @@
 import fs from 'fs/promises'
 import path from 'path'
 import os from 'os'
-import theme from 'jsonresume-theme-straightforward'
-import { tailorResumeToJobPosting } from './tailor_resume_to_job_posting.js'
-import { formatOutputResume } from './format_output_resume.js'
-import { validateResumeSchema } from './validate_resume_schema.js'
+import { tailorResumeToJobPosting } from '../src/tailor_resume_to_job_posting.js'
+import { validateResumeSchema } from '../src/validate_resume_schema.js'
 
 async function main () {
   // Load API key
@@ -12,7 +10,6 @@ async function main () {
     await fs.readFile(path.join(os.homedir(), 'code', 'api_keys.json'), 'utf-8')
   ).gemini_resume
 
-  // Load prompt components
   const inputDir = path.join(process.cwd(), 'examples')
   const artifactsDir = path.join(process.cwd(), 'artifacts')
 
@@ -63,7 +60,6 @@ async function main () {
       .then(JSON.parse)
   ])
 
-  // Tailor resume
   let resumeJson, prompt
   try {
     const validation = validateResumeSchema(JSON.stringify(resumeData))
@@ -86,24 +82,19 @@ async function main () {
     process.exit(1)
   }
 
-  // Format resume
-  const html = await formatOutputResume(resumeJson, theme)
-
-  // Save outputs
-  const outputDir = path.join(process.cwd(), 'output')
+  const outputDir = path.join(
+    process.cwd(),
+    'output',
+    'tailor_resume_to_job_posting'
+  )
   await fs.mkdir(outputDir, { recursive: true })
   await Promise.all([
-    fs.writeFile(
-      path.join(outputDir, 'prompt_tailor_resume_to_job_posting.txt'),
-      prompt,
-      'utf-8'
-    ),
+    fs.writeFile(path.join(outputDir, 'prompt.txt'), prompt, 'utf-8'),
     fs.writeFile(
       path.join(outputDir, 'resume_tailored.json'),
       resumeJson,
       'utf-8'
-    ),
-    fs.writeFile(path.join(outputDir, 'resume_tailored.html'), html, 'utf-8')
+    )
   ])
 
   console.log(`Outputs saved to ${outputDir}`)

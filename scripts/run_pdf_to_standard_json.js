@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import path from 'path'
 import os from 'os'
-import { pdfToJson } from './pdf_to_json.js'
+import { pdfToJson } from '../src/pdf_to_standard_json.js'
 
 async function main () {
   // Load API key
@@ -33,7 +33,7 @@ async function main () {
     process.exit(1)
   }
 
-  const outputDir = path.join(process.cwd(), 'output', 'pdf_to_json')
+  const outputDir = path.join(process.cwd(), 'output', 'pdf_to_standard_json')
   await fs.mkdir(outputDir, { recursive: true })
   await fs.writeFile(
     path.join(outputDir, 'neville_longbottom.json'),

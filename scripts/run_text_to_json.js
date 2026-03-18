@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import path from 'path'
 import os from 'os'
-import { textToStandardJson } from './text_to_standard_json.js'
+import { textToStandardJson } from '../src/text_to_standard_json.js'
 
 async function main () {
   // Load API key
@@ -18,7 +18,11 @@ async function main () {
       'utf-8'
     ),
     fs.readFile(
-      path.join(artifactsDir, 'text_to_formatted_json', 'standard_instructions_v1.txt'),
+      path.join(
+        artifactsDir,
+        'text_to_formatted_json',
+        'standard_instructions_v1.txt'
+      ),
       'utf-8'
     ),
     fs
