@@ -2,8 +2,8 @@ import fs from 'fs/promises'
 import path from 'path'
 import os from 'os'
 import theme from 'jsonresume-theme-straightforward'
-import { tailorResume } from './tailor_resume.js'
-import { formatResume } from './format_resume.js'
+import { tailorResumeToJobPosting } from './tailor_resume_to_posting.js'
+import { formatOutputResume } from './format_output_resume.js'
 
 async function main () {
   // Load API key
@@ -12,7 +12,7 @@ async function main () {
   ).gemini_resume
 
   // Load prompt components
-  const inputDir = path.join(process.cwd(), 'input')
+  const inputDir = path.join(process.cwd(), 'examples')
   const artifactsDir = path.join(process.cwd(), 'artifacts')
 
   const [
@@ -23,22 +23,31 @@ async function main () {
     qualityConstraints,
     responseSchema
   ] = await Promise.all([
-    fs.readFile(path.join(inputDir, 'job_posting.txt'), 'utf-8'),
+    fs.readFile(
+      path.join(inputDir, 'job_postings', 'cryptofaunal_field_researcher.txt'),
+      'utf-8'
+    ),
     fs
-      .readFile(path.join(inputDir, 'base_resume.json'), 'utf-8')
+      .readFile(
+        path.join(inputDir, 'resumes', 'neville_longbottom.json'),
+        'utf-8'
+      )
       .then(JSON.parse),
-    fs.readFile(path.join(inputDir, 'user_prompt.txt'), 'utf-8'),
-    fs.readFile(path.join(artifactsDir, 'standard_instructions.txt'), 'utf-8'),
-    fs.readFile(path.join(artifactsDir, 'quality_constraints.txt'), 'utf-8'),
+    fs.readFile(path.join(artifactsDir, 'agent_role_v1.txt'), 'utf-8'),
+    fs.readFile(
+      path.join(artifactsDir, 'standard_instructions_v1.txt'),
+      'utf-8'
+    ),
+    fs.readFile(path.join(artifactsDir, 'quality_constraints_v1.txt'), 'utf-8'),
     fs
-      .readFile(path.join(artifactsDir, 'response_schema.json'), 'utf-8')
+      .readFile(path.join(artifactsDir, 'resume_schema_v1.json'), 'utf-8')
       .then(JSON.parse)
   ])
 
   // Tailor resume
   let resumeJson, prompt
   try {
-    ;({ resumeJson, prompt } = await tailorResume({
+    ;({ resumeJson, prompt } = await tailorResumeToJobPosting({
       apiKey,
       jobPosting,
       resumeData,
@@ -53,7 +62,7 @@ async function main () {
   }
 
   // Format resume
-  const html = await formatResume(resumeJson, theme)
+  const html = await formatOutputResume(resumeJson, theme)
 
   // Save outputs
   const outputDir = path.join(process.cwd(), 'output')

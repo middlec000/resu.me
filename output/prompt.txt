@@ -6,221 +6,490 @@ Using the job posting provided in <JOB_POST> and the candidate info in <RESUME_J
 CRITICAL QUALITY CONSTRAINTS:
 - Ensure the output is a valid JSON object matching the schema exactly.
 - ONLY use information from the provided RESUME.
+- Ensure the output language matches the language of the input RESUME.
 - Do NOT change any dates or invent new information that is not present in the RESUME.
 
 <RESUME_JSON>
 {
   "basics": {
-    "name": "Colin Middleton",
-    "label": "Lead Data Scientist",
+    "name": "Neville Longbottom",
+    "label": "Professor of Herbology, Resistance Leader & Decorated War Veteran",
     "image": "",
-    "email": "example@gmail.com",
-    "phone": "(xxx)-xxx-xxxx",
-    "url": "https://middlec000.github.io/",
-    "summary": "Lead Data Scientist with deep expertise in building prediction models and analytics capabilities that drive measurable operational efficiency and growth. Adept at establishing data science functions from the ground up, partnering with cross-functional stakeholders to align technical work with business priorities, and delivering clear, quantified results that build organizational trust in data-driven decision-making.",
+    "email": "n.longbottom@hogwarts.ac.uk",
+    "phone": "0113-HOGWARTS",
+    "url": "",
+    "summary": "Accomplished Herbology scholar, internationally recognised experimental botanist, and decorated veteran of the Second Wizarding War. Professor of Herbology at Hogwarts School of Witchcraft and Wizardry, holding the position continuously since 2000. Led Dumbledore's Army resistance operations under Death Eater occupation at age seventeen, coordinated the defence of Hogwarts castle, and personally destroyed Voldemort's final Horcrux. Research focus on magically-responsive plant cultivars, medicinal herbological applications, and the conservation of endangered wizarding flora. Former Auror. Gryffindor, through and through.",
     "location": {
-      "address": "",
-      "postalCode": "",
-      "city": "Bellingham",
-      "countryCode": "US",
-      "region": "WA"
+      "address": "Hogwarts Castle, Greenhouse Wing Quarters",
+      "postalCode": "PH26 3HG",
+      "city": "Hogwarts",
+      "countryCode": "GB",
+      "region": "Scottish Highlands"
     },
     "profiles": [
       {
-        "network": "GitHub",
-        "username": "middlec000",
-        "url": "https://middlec000.github.io/"
+        "network": "Owl Post",
+        "username": "NLongbottom@HogwartsOwlery",
+        "url": ""
+      },
+      {
+        "network": "Wizarding Botanical Society (Directory)",
+        "username": "Prof. N. Longbottom, MWBS",
+        "url": ""
       }
     ]
   },
   "work": [
     {
-      "name": "MedRisk",
-      "position": "Data Scientist",
-      "startDate": "2025-05-01",
-      "summary": "Philadelphia, PA",
+      "name": "Hogwarts School of Witchcraft and Wizardry",
+      "position": "Professor of Herbology",
+      "url": "",
+      "startDate": "2000-09-01",
+      "endDate": "",
+      "summary": "Responsible for delivering Herbology instruction across all year groups, from First Year introduction to N.E.W.T.-level specialist coursework. Oversees the management of the Hogwarts greenhouse complex — a seven-greenhouse facility housing over 400 catalogued species. Serves on the staff curriculum committee, student welfare board, and heads the Gryffindor House pastoral team.",
       "highlights": [
-        "Designed and built next-generation prediction models for bill routing grounded in contract structure, delivering more granular, explainable outputs that gave business stakeholders clear visibility into routing decisions.",
-        "Architected modular codebase for model analysis pipelines, enabling flexible reuse across multiple use cases and significantly reducing the cost of future analyses.",
-        "Designed and built ETL pipeline for savings prediction models, implementing robust handling of malformed data to ensure consistent, reliable model inputs at scale.",
-        "Led cross-functional initiative to expand analytical capabilities, partnering with product and operations stakeholders to define requirements, align priorities, gather feedback, and drive adoption.",
-        "Architected intelligent backlog prioritization framework that optimized resource allocation, enabling human reviewers to focus on highest-impact work items.",
-        "Designed and built end-to-end prediction system for a bill treatment product, covering model development, scoring, and output delivery — establishing a reusable foundation for future model work.",
-        "Led effort to standardize and automate recurring analyses, reducing manual effort and enabling the team to scale output without proportional headcount growth."
+        "Redesigned the First through Third Year Herbology curriculum upon appointment, incorporating updated Ministry of Magic classification standards and hands-on practical assessment replacing written-only examinations",
+        "Expanded the Hogwarts greenhouse complex from five to seven structures, adding specialist facilities for venomous, carnivorous, and magically-active plant species",
+        "Supervised 34 N.E.W.T.-level independent research projects over his tenure, with twelve students going on to careers in Herbological research or the Magical Plant protection sector",
+        "Developed a post-war trauma-sensitive teaching approach, particularly for students who experienced Hogwarts under Death Eater administration, receiving commendation from the Headmistress",
+        "Launched the Hogwarts Rare Wizarding Flora Preservation Programme, a collaboration with the Royal Botanic Gardens at Kew and three European magical institutions, cataloguing and preserving seeds and cuttings of endangered magical plant species",
+        "Led annual Forbidden Forest botanical surveys, discovering and formally documenting two previously uncatalogued magical plant species in the castle grounds",
+        "Introduced the 'Herbology in Healing' elective module for Fifth Years, linking plant-based potion ingredients to practical medical and apothecary applications",
+        "Served as Head of Gryffindor House since 2003, overseeing pastoral care, scholarship guidance, and inter-house relations"
       ]
     },
     {
-      "name": "Pearl Health",
-      "position": "Data Scientist II",
-      "startDate": "2024-06-01",
-      "endDate": "2025-02-01",
-      "summary": "New York, NY",
+      "name": "Ministry of Magic — Auror Office",
+      "position": "Auror, Second Grade",
+      "url": "",
+      "startDate": "1998-09-01",
+      "endDate": "2000-07-31",
+      "summary": "Served as a trained Auror in the post-war Ministry following the fall of Voldemort. Participated in the identification and apprehension of Death Eaters who evaded capture in the immediate aftermath of the Battle of Hogwarts. Left the Auror Office to take up the Hogwarts Herbology post when a vacancy arose — a role considered better suited to his long-term aspirations and expertise.",
       "highlights": [
-        "Led the design and implementation of a CFR-compliant forecasting framework for the Medicare Shared Savings Program client segment, resulting in 15% improved prediction accuracy, enhanced client satisfaction, and a clear business case for continued model investment.",
-        "Spearheaded development of an enterprise-grade data ingestion and versioning pipeline, enabling robust data testing, cross-version model comparison, and transparent reporting that improved trust in model outputs.",
-        "Designed and deployed a comprehensive tracking system for model inputs, producing quantified insights that directly informed sales strategy and executive decision-making.",
-        "Led 50+ individualized growth analyses for strategic prospects, directly contributing to a 30% increase in client acquisition — establishing data science as a measurable driver of revenue growth."
+        "Participated in the capture of six Death Eaters during active field operations in 1998–1999, including two who had been wrongly cleared by the Ministry in the aftermath of the First Wizarding War",
+        "Commended by Head Auror Harry Potter for exceptional composure and tactical effectiveness during the Knockturn Alley sweep operations of late 1998",
+        "Completed the full Auror training programme in twelve months despite no formal post-Hogwarts qualification — accepted to the programme on the basis of battlefield record alone",
+        "Contributed firsthand field notes on Death Eater tactics and safe houses that informed twelve successful warrant operations",
+        "Remained on reserve call-up with the Auror Office following transition to teaching; participated in two subsequent special operations in 2002 and 2005"
       ]
     },
     {
-      "name": "Pearl Health",
-      "position": "Data Scientist I",
-      "startDate": "2023-05-01",
-      "endDate": "2024-06-01",
-      "summary": "New York, NY",
+      "name": "Dumbledore's Army — Hogwarts Resistance",
+      "position": "Operational Commander",
+      "url": "",
+      "startDate": "1997-09-01",
+      "endDate": "1998-05-02",
+      "summary": "Led the reformation and operational command of Dumbledore's Army during the Death Eater occupation of Hogwarts School under Headmaster Severus Snape and the Carrow siblings. Maintained active student resistance, coordinated protective actions for vulnerable students, and organised the defence of the castle during the Battle of Hogwarts.",
       "highlights": [
-        "Developed advanced forecasting and prediction models for client and prospect KPIs, leveraging statistical techniques including exponential smoothing, multivariate regression, and Theta modeling to support growth-oriented analytics for the client acquisition team.",
-        "Led the comprehensive refactoring of a mission-critical prediction tool (12k+ lines of Python), implementing modular architecture, configuration management, and documentation — transforming a fragile system into a scalable, maintainable platform for the team.",
-        "Engineered a proprietary I/O system that increased input accuracy by 25% and reduced processing time by 40%, eliminating a significant operational bottleneck and improving throughput at scale.",
-        "Conducted large-scale statistical analysis of KPI variability across provider networks, translating complex findings into operational recommendations that non-technical stakeholders could act on directly."
+        "Reformed Dumbledore's Army in September 1997 after the Death Eater takeover of the Ministry and Hogwarts, despite severe personal risk — willingly accepted repeated punishments from the Carrows to shield other students",
+        "Established the Room of Requirement as a full residential refuge for students at risk of persecution by the Carrows, sustainably housing up to twenty students at a time with food, supplies, and communication infrastructure",
+        "Coordinated the use of Aberforth Dumbledore's Hogsmeade contacts to maintain supply lines into the Room of Requirement throughout the 1997–98 academic year",
+        "Personally led DA fighters to admit Harry Potter, Ron Weasley, and Hermione Granger into the castle via the Hog's Head passage, facilitating the start of the Battle of Hogwarts",
+        "Commanded a section of Hogwarts's defensive perimeter during the Battle, directing student fighters and coordinating with staff and Order members throughout the engagement",
+        "Destroyed Nagini with the Sword of Gryffindor — eliminating Voldemort's final Horcrux and enabling Harry Potter to defeat Voldemort permanently"
+      ]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "St Mungo's Hospital for Magical Maladies and Injuries",
+      "position": "Volunteer Herbological Consultant",
+      "url": "",
+      "startDate": "1999-01-01",
+      "endDate": "",
+      "summary": "Provides ongoing consultancy to St Mungo's Potions-Based Treatment Division on the sourcing, cultivation, and preparation of medicinal magical plants used in long-term patient care. Donates annually from the Hogwarts greenhouse surplus to the hospital's apothecary stores.",
+      "highlights": [
+        "Supplied specially cultivated Mandrake rootstock for 'de-Petrification' therapy protocols, improving the potency and reliability of the restorative draught used for Petrification casualties",
+        "Consulted on the treatment of Venomous Tentacula exposure in four emergency cases, providing time-sensitive identification and recommended antidote plant components",
+        "Visits the Long-Term Residential Ward quarterly — where his parents remain patients — participating in the visiting relatives support group and advocating for patient welfare funding"
       ]
     },
     {
-      "name": "Gordian Data",
-      "position": "Data Scientist",
-      "startDate": "2022-07-01",
-      "endDate": "2023-05-01",
-      "summary": "Seattle, WA",
+      "organization": "Hogwarts Wizarding War Memorial Committee",
+      "position": "Co-Chair",
+      "url": "",
+      "startDate": "1999-06-01",
+      "endDate": "2002-05-02",
+      "summary": "Co-chaired the committee responsible for planning and erecting the Hogwarts memorial to those killed in the Battle of Hogwarts, including the design of the memorial gardens in the castle grounds.",
       "highlights": [
-        "Migrated and enhanced a client reporting tool from SAS to Python, improving maintainability and delivering a 10x reduction in runtime — a high-impact, low-disruption efficiency win.",
-        "Resolved a critical bug in a client pricing tool, increasing pricing accuracy by 5% and directly improving revenue operations.",
-        "Contributed to hiring and team-building efforts, including designing an applicant tracking system, participating in job fairs, interviewing candidates, and managing the candidate pipeline."
+        "Oversaw the design and planting of the Battle of Hogwarts Memorial Garden, a permanent installation in the castle's east grounds featuring plants selected to symbolise each fallen defender",
+        "Personally selected and planted the central memorial grove of white flowering hawthorn — sustaining three years of care until establishment",
+        "Coordinated the formal dedication ceremony attended by over two hundred families of the fallen and members of the wizarding government"
       ]
     }
   ],
   "education": [
     {
-      "institution": "Eastern Washington University",
-      "area": "Applied Math",
-      "studyType": "MS",
-      "startDate": "2019-09-01",
-      "endDate": "2021-06-01",
-      "score": "4.0",
+      "institution": "Hogwarts School of Witchcraft and Wizardry",
+      "url": "",
+      "area": "General Magical Education — Gryffindor House",
+      "studyType": "O.W.L.s and N.E.W.T.s",
+      "startDate": "1991-09-01",
+      "endDate": "1998-06-01",
+      "score": "5 O.W.L.s; 3 N.E.W.T.s",
       "courses": [
-        "Outstanding Graduate (2021)",
-        "Graduate Service Appointment (2020 - 2021)"
+        "Herbology — Outstanding (O.W.L. and N.E.W.T.)",
+        "Defence Against the Dark Arts — Exceeds Expectations (N.E.W.T., following Umbridge remediation)",
+        "Charms — Exceeds Expectations (O.W.L.)",
+        "Transfiguration — Acceptable (O.W.L.)",
+        "Potions — Acceptable (O.W.L.) — note: results improved significantly following Professor Snape's departure from the subject",
+        "Care of Magical Creatures — Acceptable (O.W.L.)",
+        "History of Magic — Poor (O.W.L.) — fainting episode during examination noted"
       ]
     },
     {
-      "institution": "Western Washington University",
-      "area": "Math",
-      "studyType": "BS",
-      "startDate": "2013-09-01",
-      "endDate": "2017-12-01",
-      "score": "3.5",
+      "institution": "Wizarding Botanical Society — Fellowship Programme",
+      "url": "",
+      "area": "Advanced Magical Botany Research Methods",
+      "studyType": "Fellowship (MWBS)",
+      "startDate": "2003-09-01",
+      "endDate": "2005-06-01",
+      "score": "Fellow — Full Membership",
       "courses": [
-        "Chemistry Minor"
+        "Advanced Magical Plant Cultivation Sciences",
+        "Conservation and Preservation of Endangered Wizarding Flora",
+        "Cross-Discipline Applications: Herbology and Potions Interface",
+        "Magical Ecosystem Dynamics",
+        "Research Publication Standards in the Botanical Sciences"
       ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Order of Merlin, First Class",
+      "date": "1998-12-10",
+      "awarder": "Ministry of Magic",
+      "summary": "Awarded for extraordinary bravery during the Battle of Hogwarts, specifically for the destruction of Voldemort's final Horcrux under extreme personal risk — an act directly enabling the defeat of Lord Voldemort."
+    },
+    {
+      "title": "Hogwarts School Medal for Magical Merit",
+      "date": "1998-06-01",
+      "awarder": "Hogwarts School of Witchcraft and Wizardry",
+      "summary": "Awarded for exceptional courage and leadership during the 1997–98 academic year under extraordinarily dangerous conditions."
+    },
+    {
+      "title": "Outstanding Achievement in Herbological Research",
+      "date": "2007-09-01",
+      "awarder": "Wizarding Botanical Society",
+      "summary": "Awarded for the discovery and documentation of two previously uncatalogued magical plant species in the grounds of Hogwarts School, and for contributions to the Rare Wizarding Flora Preservation Programme."
+    },
+    {
+      "title": "Gryffindor House Points — Single-Award Record",
+      "date": "1997-06-24",
+      "awarder": "Hogwarts School of Witchcraft and Wizardry",
+      "summary": "Received ten House Points from Headmaster Albus Dumbledore for 'the rare quality of standing up to one's friends' — a contribution regarded as decisive in Gryffindor winning the House Cup that year."
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Level 3 Magical Hazardous Plant Handling (Class IV — Carnivorous and Venomous)",
+      "date": "2001-04-20",
+      "issuer": "Ministry of Magic — Department for the Regulation and Control of Magical Creatures, Plant Division",
+      "url": ""
+    },
+    {
+      "name": "Auror Certification — Second Grade Field Operative",
+      "date": "1999-08-01",
+      "issuer": "Ministry of Magic — Auror Office",
+      "url": ""
+    },
+    {
+      "name": "Pedagogical Qualification in Magical Subject Teaching",
+      "date": "2002-07-01",
+      "issuer": "Wizarding Educational Standards Authority",
+      "url": ""
     }
   ],
   "publications": [
     {
-      "name": "The value of utility payment history in predicting first-time homelessness",
-      "publisher": "Plos one",
-      "releaseDate": "2023-10-01",
-      "url": "https://doi.org/10.1371/journal.pone.0292305",
-      "summary": "Middleton, Colin D., et al. Plos one 18.10 (2023): e0292305."
+      "name": "Aggressive Cultivar Suppression in Hogwarts Grounds: A 20-Year Survey",
+      "publisher": "Journal of the Wizarding Botanical Society",
+      "releaseDate": "2020-06-01",
+      "url": "",
+      "summary": "Longitudinal study examining the spread and management of invasive magical plant species in the Hogwarts grounds and Forbidden Forest, offering a long-term dataset on inter-species dynamics in a managed magical environment."
+    },
+    {
+      "name": "Mandrake Restorative Draught Potency: The Impact of Soil Composition and Maturation Rate",
+      "publisher": "Potions & Herbological Interdisciplinary Review",
+      "releaseDate": "2010-03-01",
+      "url": "",
+      "summary": "Research paper demonstrating that modifications to Mandrake cultivation soil composition and controlled maturation timing significantly improve the potency and reliability of the standard Restorative Draught formula. Adopted into revised St Mungo's treatment protocols."
+    },
+    {
+      "name": "Teaching Herbology to Traumatised Learners: A Framework for Post-Conflict Magical Education",
+      "publisher": "Wizarding Educational Studies Quarterly",
+      "releaseDate": "2005-11-01",
+      "url": "",
+      "summary": "Practitioner-focused paper drawing on Neville's experience teaching post-war students at Hogwarts, proposing a trauma-sensitive pedagogical framework applicable across magical subjects with particular relevance to Herbology's sensory and practical elements."
     }
   ],
   "skills": [
     {
-      "name": "Programming Languages",
-      "level": "",
+      "name": "Herbology",
+      "level": "Master",
       "keywords": [
-        "Python (polars, pandas, NumPy, statsmodels, scikit-learn, matplotlib, seaborn)",
-        "SQL"
+        "Cultivation of magical and mundane plant species",
+        "Magical hazardous plant handling",
+        "Plant-based potion ingredient preparation",
+        "Endangered species propagation",
+        "Greenhouse design and management"
       ]
     },
     {
-      "name": "Data Science Tools",
-      "level": "",
+      "name": "Combat Magic",
+      "level": "Advanced",
       "keywords": [
-        "Git",
-        "Jupyter Notebooks",
-        "dbt",
-        "Anaconda"
+        "Stunning spells",
+        "Shield charms",
+        "Reductor curses",
+        "Non-verbal casting",
+        "Tactical use of magical plants in combat"
       ]
     },
     {
-      "name": "Machine Learning",
-      "level": "",
+      "name": "Leadership & Command",
+      "level": "Expert",
       "keywords": [
-        "Linear/Logistic Regression",
-        "Cox Proportional Hazards",
-        "Decision Trees",
-        "K-Means/Hierarchical Clustering",
-        "PCA"
+        "Crisis leadership",
+        "Resistance operations",
+        "Team coordination under hostile conditions",
+        "Student mentoring",
+        "Head of House pastoral care"
       ]
     },
     {
-      "name": "Time Series Analysis",
-      "level": "",
+      "name": "Magical Research",
+      "level": "Proficient",
       "keywords": [
-        "Smoothing",
-        "Averaging",
-        "Autoregression",
-        "Theta"
+        "Experimental design",
+        "Field botanical surveys",
+        "Species documentation",
+        "Publication preparation",
+        "Interdisciplinary collaboration"
       ]
     },
     {
-      "name": "Data Analysis/Preparation",
-      "level": "",
+      "name": "Potions (Applied)",
+      "level": "Intermediate",
       "keywords": [
-        "Hypothesis testing",
-        "correlation analysis",
-        "data visualization",
-        "dimensionality reduction",
-        "class balancing",
-        "imputation",
-        "text processing"
+        "Ingredient sourcing and quality assessment",
+        "Restorative Draught components",
+        "Mandrake preparation",
+        "Herbological basis of anti-venoms"
       ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "Latin (Botanical)",
+      "fluency": "Proficient (reading and nomenclature use)"
+    },
+    {
+      "language": "Welsh",
+      "fluency": "Elementary (field research, Welsh highland flora documentation)"
+    }
+  ],
+  "interests": [
+    {
+      "name": "Magical Botany",
+      "keywords": [
+        "Venomous Tentacula propagation",
+        "Devil's Snare ecology",
+        "Magical orchidology",
+        "Mandrake cultivation variants",
+        "Gillyweed habitat research"
+      ]
+    },
+    {
+      "name": "Remembrall Collecting",
+      "keywords": [
+        "Vintage charm objects",
+        "Memory enhancement artefacts",
+        "Collector community"
+      ]
+    },
+    {
+      "name": "Gardening (Muggle)",
+      "keywords": [
+        "Kitchen garden",
+        "Heirloom vegetable cultivation",
+        "Composting",
+        "Beekeeping"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "name": "Harry Potter, Head Auror — Ministry of Magic",
+      "reference": "Neville is one of the bravest people I've ever known — and I mean that in a specific, evidence-based way. He spent an entire year leading resistance against Death Eaters while the rest of us were on the run, took punishment that would have broken most adults, and then showed up for the Battle without hesitation. He destroyed the last Horcrux while I was supposed to be dead. That sort of person, you don't forget. As a professor he's exceptional — every student who's come through his Herbology class comes out of it actually caring about the subject."
+    },
+    {
+      "name": "Professor Minerva McGonagall, Headmistress — Hogwarts School of Witchcraft and Wizardry",
+      "reference": "Professor Longbottom has exceeded every expectation I had when I appointed him, and my expectations were already high. He has built the Herbology programme into one of the finest in Britain while simultaneously serving as an exemplary Head of House. His commitment to student welfare — particularly to students who carry the weight of the war years — reflects the very best of Gryffindor values. I will not pretend he was my most promising student when in his first year. He has earned the right to find that funny."
+    },
+    {
+      "name": "Gran (Augusta Longbottom), Retired Healer and Family Matriarch",
+      "reference": "I am not surprised about any of it. I always knew he had it in him. I said so repeatedly. He also remembered to water my Mimbulus Mimbletonia when I was away for Christmas 1996, which speaks to reliable responsibility and that counts for a great deal."
     }
   ],
   "projects": [
     {
-      "name": "Homelessness Prediction",
-      "startDate": "2020-06-01",
-      "endDate": "2023-10-01",
-      "description": "Collaborated with data providers and city government stakeholders to align on data strategy and present findings to the Spokane City Council.",
+      "name": "Hogwarts Rare Wizarding Flora Preservation Programme",
+      "startDate": "2004-01-01",
+      "endDate": "",
+      "description": "A multi-institution conservation programme aimed at cataloguing, seed-banking, and cultivating endangered magical plant species. Partners include the Royal Botanic Gardens at Kew, the Beauxbatons Botanical Institute, and two Scandinavian magical natural history museums.",
       "highlights": [
-        "Led training and evaluation of predictive models (Linear Regression, Cox Proportional Hazards, LSTM, Logistic Regression, ANN), achieving a peak AUC of 0.81 with Logistic Regression.",
-        "Addressed extreme class imbalance (0.39% positive class) via minority oversampling."
-      ]
+        "Catalogued 63 species of endangered magical flora across the Hogwarts grounds and surrounding region",
+        "Established a living seed bank of over 200 species in the Hogwarts greenhouse complex",
+        "Developed propagation protocols for four species previously considered uncultivable in captivity",
+        "Trained twelve botanical researchers from partner institutions in magical plant handling and cultivation"
+      ],
+      "url": ""
+    },
+    {
+      "name": "Battle of Hogwarts Memorial Garden",
+      "startDate": "1999-06-01",
+      "endDate": "2001-05-02",
+      "description": "Designed, planted, and oversaw the establishment of the permanent memorial garden in Hogwarts's east grounds, commemorating those killed in the Battle of Hogwarts. Each planting was selected for symbolic resonance with the qualities of those remembered.",
+      "highlights": [
+        "Designed a planting scheme representing 51 individual fallen defenders, each with a named species chosen in consultation with their families",
+        "Personally planted and maintained all specimens until full establishment",
+        "Installed enchanted permanent-bloom charms on five central specimens, designed to flower year-round in perpetuity",
+        "The Garden has since become an annual pilgrimage site on the anniversary of the Battle, maintained by Hogwarts students as a service project"
+      ],
+      "url": ""
     }
   ]
 }
 </RESUME_JSON>
 <JOB_POST>
-Job Description
-Minimum qualifications:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+INTERNATIONAL CONFEDERATION OF WIZARDS
+Committee on Magical Creatures — Wildlife Field Research Unit
 
-    Bachelor's degree in Statistics, Mathematics, Data Science, Engineering, Physics, Economics, or a related quantitative field.
-    10 years of work experience using analytics to solve product or business problems, performing statistical analysis, and coding (e.g., Python, R, SQL) (or 8 years work experience and a Master's degree).
+CRYPTOFAUNAL FIELD RESEARCHER (Fixed-Term, 2 Years, Extension Likely)
+Location: Remote field deployments (primary base: Edinburgh Field Office)
+Salary: 44 Galleons per week + full expedition expenses
+Closing date: Rolling — position open until filled
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Preferred qualifications:
+ABOUT THE ROLE
 
-    Master's degree in Statistics, Mathematics, Data Science, Engineering, Physics, Economics, or a related quantitative field.
-    12 years of work experience using analytics to solve product or business problems, performing statistical analysis, and coding (e.g., Python, R, SQL).
+The International Confederation of Wizards' Wildlife Field Research Unit
+is expanding its Cryptofaunal Investigation Programme and seeks an
+exceptional Field Researcher to undertake multi-week expeditions across
+Northern Europe and Scandinavia to document magical species with disputed
+or unresolved classification status.
 
-About the job
+This is not a desk job. The successful candidate will spend significant
+portions of the year in the field, often in remote locations, working
+independently with minimal supervision to gather observational data,
+photographic evidence, and physical samples for formal submission to the
+ICW Species Classification Board.
 
-Help serve Google's worldwide user base of more than a billion people. Data Scientists provide quantitative support, market understanding and a strategic perspective to our partners throughout the organization. As a data-loving member of the team, you serve as an analytics expert for your partners, using numbers to help them make better decisions. You will weave stories with meaningful insight from data. You'll make critical recommendations for your fellow Googlers in Engineering and Product Management. You relish tallying up the numbers one minute and communicating your findings to a team leader the next.
+We are specifically looking for someone who does not dismiss a creature
+simply because the Ministry has not officially acknowledged its existence.
+Our current classification backlog includes over forty species held in
+'unresolved' status, several of which have been there since 1842. This is
+not acceptable and we intend to do something about it.
 
-We're looking for a creative data scientist to join a small, agile team developing new AI products and infrastructure. As part of this team, you will leverage your expertise to drive decision-making with data including making recommendations, measuring return on investment, and identifying new opportunities to pursue.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Applied AI builds conversational agents deployed at a large scale that achieve very meaningful results in the real world. Some examples include the customer agent built for large call center environments, to fast food ordering handled by our Food AI agent. The team is transforming how enterprises connect with customers through the power of AI. We also offer unique experiences for team members where you get to work directly with the model builders (Google DeepMind / Vertex), learn and work with brilliant AI leaders, and have access to Global 1000 customers via our existing Google Cloud relationships. The opportunity in this space is tremendous.
-The US base salary range for this full-time position is $183,000-$271,000 + bonus + equity + benefits. Our salary ranges are determined by role, level, and location. Within the range, individual pay is determined by work location and additional factors, including job-related skills, experience, and relevant education or training. Your recruiter can share more about the specific salary range for your preferred location during the hiring process.
- 
-Please note that the compensation details listed in US role postings reflect the base salary only, and do not include bonus, equity, or benefits. Learn more about benefits at Google: https://careers.google.com/benefits/
-Responsibilities
+KEY RESPONSIBILITIES
 
-    Perform analysis utilizing relevant tools (e.g., SQL, R, Python). Provide analytical thought leadership through proactive and strategic contributions (e.g., suggests new analyses, infrastructure or experiments to drive improvements in the business).
-    Own outcomes for projects by covering problem definition, metrics development, data extraction and manipulation, visualization, creation, implementation of analytical/statistical models, and presentation to stakeholders.
-    Develop solutions, lead, and manage problems that may be ambiguous and lacking clear precedent by framing problems, generating hypotheses, and making recommendations from a perspective that combines both, analytical and product-specific expertise.
-    Oversee the integration of cross-functional and cross-organizational project/process timelines, develop process improvements and recommendations, and help define operational goals and objectives.
-    Directly or indirectly oversee the contributions of others and develop colleagues’ capabilities in the area of specialization.
+  • Conduct independent field expeditions to document cryptofaunal
+    species, with particular focus on Scandinavia, Scotland, and
+    the Welsh Highlands
+  • Gather and prepare evidence packages for Species Classification Board
+    review, including observational notes, photographs, Pensieve archives,
+    and physical samples where ethically obtainable
+  • Develop and deploy passive observation methodologies that minimise
+    disturbance to target species
+  • Maintain accurate field journals and submit expedition reports within
+    four weeks of return to base
+  • Liaise with local magical naturalists and community contacts to
+    identify sighting records and historical habitat data
+  • Present findings at the annual ICW Cryptofaunal Symposium
+  • Mentoring of Research Assistant (post shared between two researchers)
 
-Salary
-$183,000-$271,000 + bonus + equity + benefits
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ESSENTIAL REQUIREMENTS
+
+  • Minimum Class II Field Magizoologist Licence
+  • Demonstrated experience in independent field research and species
+    documentation, evidenced by published work, formal reports, or a
+    portfolio of field observations
+  • Strong practical knowledge of magical creature tracking, passive
+    observation, and ethical capture-and-release protocols
+  • Willingness to work in remote and occasionally hazardous environments
+    for extended periods
+  • Excellent written reporting skills
+  • Physical fitness sufficient for extended wilderness fieldwork
+
+DESIRABLE
+
+  • Specific experience with disputed-classification or 'unclassified'
+    species — candidates who have already done fieldwork on species the
+    Ministry pretends don't exist are strongly preferred
+  • Published or submitted work in a relevant field
+  • Conversational Swedish, Norwegian, or Welsh for local liaison
+  • Experience with Nundu-proximate environments (SAFETY CERTIFIED ONLY)
+  • Background in magical journalism or science communication to support
+    public engagement work
+  • High tolerance for being told that what you saw 'probably doesn't
+    exist' by officials who weren't there
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT WE OFFER
+
+  • 44 Galleons per week
+  • All expedition costs covered including travel, accommodation,
+    specialist equipment, and emergency medical portkey insurance
+  • Two research assistants shared across the unit
+  • Access to the ICW's restricted archive of historical cryptofaunal
+    sighting records — including several not available to the public
+  • Annual budget for specialist field equipment
+  • Generous annual leave (22 days base + up to 15 additional field
+    acclimatisation days per year)
+  • Strong institutional backing for Classification Board submissions —
+    we have three sitting Board members and we are not afraid to use them
+
+We would like to be transparent: this role will at times involve
+presenting evidence that is contested by people with institutional power.
+Applicants should be comfortable holding their position calmly when
+confronted by scepticism from officials, academics, or colleagues who
+have made up their minds in advance. Resilience in the face of being
+thought a bit odd is considered an asset, not a liability.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+HOW TO APPLY
+
+Applications should include a curriculum vitae, a brief cover letter
+describing your specific interest in cryptofaunal research (please be
+specific — "I like magical creatures" is not sufficient), and examples of
+previous field documentation, published papers, or formal expedition
+reports.
+
+Send by owl to:
+
+  Dr. Phinneas Crabb, Programme Director
+  ICW Wildlife Field Research Unit
+  7 Caledonian Close, Edinburgh
+  EH3 7QW (Magical District Entrance: second alley left of The Crocked Wand)
+
+Informal enquiries welcome: p.crabb@icw-wildlife.wiz
+
+Note: we do not require applicants to have Ministry endorsement of the
+species they study. ICW classification operates independently. The words
+"but the Ministry says it doesn't exist" have never once been a valid
+reason to reject a field evidence package submitted to this office and
+they never will be.
 
 </JOB_POST>

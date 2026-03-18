@@ -20,19 +20,19 @@ ${jobPosting}
 `
 }
 
-function stripEmpty (obj) {
-  if (Array.isArray(obj)) return obj.map(stripEmpty)
+function removeEmptyJSONEntries (obj) {
+  if (Array.isArray(obj)) return obj.map(removeEmptyJSONEntries)
   if (obj && typeof obj === 'object') {
     return Object.fromEntries(
       Object.entries(obj)
         .filter(([, v]) => v !== '')
-        .map(([k, v]) => [k, stripEmpty(v)])
+        .map(([k, v]) => [k, removeEmptyJSONEntries(v)])
     )
   }
   return obj
 }
 
-export async function tailorResume ({
+export async function tailorResumeToJobPosting ({
   apiKey,
   jobPosting,
   resumeData,
@@ -71,7 +71,7 @@ export async function tailorResume ({
   ])
 
   const resumeJson = JSON.stringify(
-    stripEmpty(JSON.parse(response.text)),
+    removeEmptyJSONEntries(JSON.parse(response.text)),
     null,
     2
   )
