@@ -2,10 +2,8 @@
 
 Workflow
 
-1. Use an LLM to generate an initial JSON Resume using current resume.
-1. Paste this into the following tool and manually add to it: https://profile-studio.netlify.app/#/
-1. Use an LLM to tailor the resume.
-1. Use `resumed` to render it as html.
+1. Use an **JSON Resume Wizard** to generate an initial JSON Resume. Save your JSON Resume.
+1. Use **Resume Tailor** to tailor your resume to a particular job posting, then format it.
 
 ## JSON Resume Wizard
 
@@ -23,7 +21,7 @@ Tailor the content of your JSON Resume to a specific job posting.
 
 Steps
 
-1. Upload JSON Resume, Job Posting, paste Google Gemini API Key.
+1. Upload your JSON Resume, Job Posting, paste Google Gemini API Key.
 1. Review and download tailored JSON Resume.
 
 ## Notes
@@ -48,12 +46,7 @@ node src/run.js
 ./node_modules/.bin/resumed render model_output/resume_tailored_1.json --theme jsonresume-theme-straightforward --output model_output/resume_tailored_1.html
 
 # Validate resume conforms to schema
-./node_modules/.bin/resumed validate examples/fred_weasley.json
-./node_modules/.bin/resumed validate examples/luna_lovegood.json
-./node_modules/.bin/resumed validate examples/moaning_mertle.json
 ./node_modules/.bin/resumed validate examples/neville_longbottom.json
-
-npx resumed validate model_output/resume_tailored.json
 ```
 
 ## Data Sources

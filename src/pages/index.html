@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>resu.me — Get Started</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a1a;
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #004687;
+      letter-spacing: -0.5px;
+    }
+
+    .logo p {
+      color: #666;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 18px 22px 12px;
+    }
+
+    .card-header h2 {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-header p {
+      color: #666;
+      font-size: 13px;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .card-body {
+      padding: 0 22px 20px;
+    }
+
+    /* ── Field ── */
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .field input[type="text"],
+    .field input[type="password"] {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      font-size: 13px;
+      font-family: inherit;
+      color: #1a1a1a;
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+
+    .field input[type="text"]:focus,
+    .field input[type="password"]:focus {
+      border-color: #004687;
+      box-shadow: 0 0 0 3px rgba(0,70,135,0.1);
+    }
+
+    /* ── PDF drop zone ── */
+    .drop-zone {
+      border: 2px dashed #c4d4e8;
+      border-radius: 8px;
+      padding: 28px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      position: relative;
+    }
+
+    .drop-zone:hover,
+    .drop-zone.drag-over {
+      background: #f0f7ff;
+      border-color: #004687;
+    }
+
+    .drop-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .drop-zone-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .drop-zone-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #004687;
+    }
+
+    .drop-zone-sub {
+      font-size: 12px;
+      color: #888;
+      margin-top: 3px;
+    }
+
+    .drop-zone.has-file {
+      border-style: solid;
+      border-color: #22c55e;
+      background: #f0fdf4;
+    }
+
+    .drop-zone.has-file .drop-zone-icon { font-size: 24px; }
+    .drop-zone.has-file .drop-zone-label { color: #16a34a; }
+
+    /* ── Buttons ── */
+    .btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      font-weight: 600;
+      transition: opacity 0.15s, transform 0.1s;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    .btn-primary {
+      background: #004687;
+      color: white;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-primary:not(:disabled):hover { opacity: 0.88; }
+
+    .btn-ghost {
+      background: white;
+      color: #444;
+      border: 1px solid #d1d5db;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-ghost:hover { background: #f9fafb; }
+
+    .btn-success {
+      background: #16a34a;
+      color: white;
+      width: 100%;
+      justify-content: center;
+      font-size: 15px;
+      padding: 12px 18px;
+    }
+
+    .btn-success:hover { opacity: 0.88; }
+
+    /* ── Divider ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0;
+      color: #aaa;
+      font-size: 12px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e5e7eb;
+    }
+
+    /* ── Status / progress ── */
+    .status-box {
+      display: none;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .status-box.loading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+    }
+
+    .status-box.error {
+      display: block;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+    }
+
+    .status-box.success {
+      display: block;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+    }
+
+    /* ── Spinner ── */
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid #bfdbfe;
+      border-top-color: #1d4ed8;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── Result section (hidden until success) ── */
+    #result-section {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .result-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+      overflow: hidden;
+    }
+
+    .result-card-header {
+      background: #f0fdf4;
+      border-bottom: 1px solid #bbf7d0;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .result-card-header h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #166534;
+    }
+
+    .result-card-body {
+      padding: 20px;
+    }
+
+    .result-card-body p {
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    /* ── API key visibility toggle ── */
+    .api-key-wrapper {
+      position: relative;
+    }
+
+    .api-key-wrapper input {
+      padding-right: 44px;
+    }
+
+    .toggle-visibility {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #888;
+      font-size: 16px;
+      padding: 2px 4px;
+      line-height: 1;
+    }
+
+    .toggle-visibility:hover { color: #444; }
+
+    /* ── Tip ── */
+    .tip {
+      font-size: 12px;
+      color: #888;
+      line-height: 1.5;
+      margin-top: 6px;
+    }
+
+    .tip a {
+      color: #004687;
+      text-decoration: none;
+    }
+
+    .tip a:hover { text-decoration: underline; }
+
+    /* ── Badge ── */
+    .badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 99px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">
+    <h1>resu.me</h1>
+    <p>Build and export your JSON Resume</p>
+  </div>
+
+  <!-- ── Option A: PDF extraction ── -->
+  <div class="card">
+    <div class="card-header">
+      <h2>
+        <span>&#128196;</span>
+        Extract from PDF
+        <span class="badge">AI</span>
+      </h2>
+      <p>Upload your existing resume as a PDF. Gemini will read it and populate your resume automatically.</p>
+    </div>
+    <div class="card-body">
+
+      <!-- PDF drop zone -->
+      <div class="field">
+        <label>Resume PDF</label>
+        <div class="drop-zone" id="drop-zone">
+          <input type="file" id="pdf-input" accept="application/pdf" />
+          <div class="drop-zone-icon">&#128196;</div>
+          <div class="drop-zone-label">Click to choose a PDF, or drag and drop</div>
+          <div class="drop-zone-sub">PDF files only</div>
+        </div>
+      </div>
+
+      <!-- API key -->
+      <div class="field">
+        <label>Google Gemini API Key</label>
+        <div class="api-key-wrapper">
+          <input type="password" id="api-key" placeholder="Paste your Gemini API key…" autocomplete="off" />
+          <button class="toggle-visibility" id="toggle-key" title="Show / hide key">&#128065;</button>
+        </div>
+        <div class="tip">
+          Get a free key at <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">aistudio.google.com</a>. Your key is never stored or sent anywhere except directly to the Gemini API.
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="status-box loading" id="status-loading">
+        <div class="spinner"></div>
+        <span id="status-loading-text">Sending PDF to Gemini — this may take up to a minute…</span>
+      </div>
+      <div class="status-box error" id="status-error"></div>
+
+      <button class="btn btn-primary" id="extract-btn" disabled>
+        <span>&#10024;</span> Extract JSON Resume
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ── Result (shown after success) ── -->
+  <div id="result-section">
+    <div class="result-card">
+      <div class="result-card-header">
+        <span style="font-size:20px">&#9989;</span>
+        <div>
+          <h3>Extraction complete!</h3>
+        </div>
+      </div>
+      <div class="result-card-body">
+        <p>
+          Your resume has been extracted and is ready to review. Open the Resume Editor to inspect every field, make any corrections, and download your finished JSON Resume.
+        </p>
+        <button class="btn btn-success" id="open-editor-btn">
+          <span>&#9998;</span> Open in Resume Editor
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider">or</div>
+
+  <!-- ── Option B: Manual entry ── -->
+  <div class="card">
+    <div class="card-header">
+      <h2><span>&#9997;&#65039;</span> Start from scratch</h2>
+      <p>Enter your resume information manually using the guided editor.</p>
+    </div>
+    <div class="card-body">
+      <button class="btn btn-ghost" id="manual-btn">
+        <span>&#128196;</span> Open Resume Editor
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── State ──
+let pdfBase64 = null;
+let extractedJson = null;
+
+// ── File input / drop zone ──
+const dropZone = document.getElementById('drop-zone');
+const pdfInput = document.getElementById('pdf-input');
+const apiKeyInput = document.getElementById('api-key');
+const extractBtn = document.getElementById('extract-btn');
+
+function readFileAsBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      // result is "data:application/pdf;base64,XXXXXX" — strip the prefix
+      const base64 = reader.result.split(',')[1];
+      resolve(base64);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function handleFileSelect(file) {
+  if (!file || file.type !== 'application/pdf') {
+    setError('Please select a valid PDF file.');
+    return;
+  }
+  dropZone.classList.add('has-file');
+  dropZone.querySelector('.drop-zone-icon').textContent = '✅';
+  dropZone.querySelector('.drop-zone-label').textContent = file.name;
+  dropZone.querySelector('.drop-zone-sub').textContent =
+    (file.size / 1024).toFixed(1) + ' KB';
+  pdfBase64 = await readFileAsBase64(file);
+  updateExtractBtn();
+}
+
+pdfInput.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (file) handleFileSelect(file);
+});
+
+// Drag and drop
+dropZone.addEventListener('dragover', e => {
+  e.preventDefault();
+  dropZone.classList.add('drag-over');
+});
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) handleFileSelect(file);
+});
+
+// ── API key toggle visibility ──
+apiKeyInput.addEventListener('input', updateExtractBtn);
+document.getElementById('toggle-key').addEventListener('click', () => {
+  apiKeyInput.type = apiKeyInput.type === 'password' ? 'text' : 'password';
+});
+
+function updateExtractBtn() {
+  extractBtn.disabled = !(pdfBase64 && apiKeyInput.value.trim());
+}
+
+// ── Status helpers ──
+function setLoading(msg) {
+  document.getElementById('status-loading').style.display = 'flex';
+  document.getElementById('status-loading-text').textContent = msg || 'Processing…';
+  document.getElementById('status-error').style.display = 'none';
+}
+
+function clearLoading() {
+  document.getElementById('status-loading').style.display = 'none';
+}
+
+function setError(msg) {
+  clearLoading();
+  const el = document.getElementById('status-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+// ── JSON Resume schema (inlined) ──
+const RESPONSE_SCHEMA = {
+  "type": "object",
+  "properties": {
+    "basics": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "label": { "type": "string" },
+        "image": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "url": { "type": "string" },
+        "summary": { "type": "string" },
+        "location": {
+          "type": "object",
+          "properties": {
+            "address": { "type": "string" },
+            "postalCode": { "type": "string" },
+            "city": { "type": "string" },
+            "countryCode": { "type": "string" },
+            "region": { "type": "string" }
+          }
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "network": { "type": "string" },
+              "username": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "work": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "position": { "type": "string" },
+          "url": { "type": "string" },
+          "startDate": { "type": "string" },
+          "endDate": { "type": "string" },
+          "summary": { "type": "string" },
+          "highlights": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "volunteer": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "organization": { "type": "string" },
+          "position": { "type": "string" },
+          "url": { "type": "string" },
+          "startDate": { "type": "string" },
+          "endDate": { "type": "string" },
+          "summary": { "type": "string" },
+          "highlights": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "institution": { "type": "string" },
+          "url": { "type": "string" },
+          "area": { "type": "string" },
+          "studyType": { "type": "string" },
+          "startDate": { "type": "string" },
+          "endDate": { "type": "string" },
+          "score": { "type": "string" },
+          "courses": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "awards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "date": { "type": "string" },
+          "awarder": { "type": "string" },
+          "summary": { "type": "string" }
+        }
+      }
+    },
+    "certificates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "date": { "type": "string" },
+          "issuer": { "type": "string" },
+          "url": { "type": "string" }
+        }
+      }
+    },
+    "publications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "publisher": { "type": "string" },
+          "releaseDate": { "type": "string" },
+          "url": { "type": "string" },
+          "summary": { "type": "string" }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "level": { "type": "string" },
+          "keywords": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "language": { "type": "string" },
+          "fluency": { "type": "string" }
+        }
+      }
+    },
+    "interests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "keywords": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "reference": { "type": "string" }
+        }
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "startDate": { "type": "string" },
+          "endDate": { "type": "string" },
+          "description": { "type": "string" },
+          "highlights": { "type": "array", "items": { "type": "string" } },
+          "url": { "type": "string" }
+        }
+      }
+    }
+  }
+};
+
+// ── Extract ──
+extractBtn.addEventListener('click', async () => {
+  const apiKey = apiKeyInput.value.trim();
+  if (!pdfBase64 || !apiKey) return;
+
+  // Reset UI
+  document.getElementById('status-error').style.display = 'none';
+  document.getElementById('result-section').style.display = 'none';
+  extractBtn.disabled = true;
+  setLoading('Sending PDF to Gemini — this may take up to a minute…');
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 90_000);
+
+  try {
+    const endpoint =
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+
+    const body = {
+      contents: [
+        {
+          parts: [
+            {
+              inline_data: {
+                mime_type: 'application/pdf',
+                data: pdfBase64
+              }
+            },
+            {
+              text: 'Extract all resume information from this PDF and structure it as JSON conforming exactly to the provided schema. Preserve all content faithfully — do not summarise, embellish, or omit anything.'
+            }
+          ]
+        }
+      ],
+      generationConfig: {
+        response_mime_type: 'application/json',
+        response_schema: RESPONSE_SCHEMA
+      }
+    };
+
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: controller.signal
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({}));
+      const msg = errBody?.error?.message || `HTTP ${res.status}`;
+      throw new Error(msg);
+    }
+
+    const data = await res.json();
+    const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!rawText) throw new Error('Gemini returned an empty response. Please try again.');
+
+    extractedJson = JSON.parse(rawText);
+
+    // Store in localStorage for the editor to pick up
+    localStorage.setItem('resume_pending_load', JSON.stringify(extractedJson, null, 2));
+
+    clearLoading();
+    document.getElementById('result-section').style.display = 'block';
+    // Scroll to result
+    document.getElementById('result-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  } catch (err) {
+    clearTimeout(timeoutId);
+    if (err.name === 'AbortError') {
+      setError('Request timed out after 90 seconds. The PDF may be too large, or the Gemini API is slow. Please try again.');
+    } else {
+      setError('Error: ' + err.message);
+    }
+  } finally {
+    updateExtractBtn();
+  }
+});
+
+// ── Navigate to editor ──
+document.getElementById('open-editor-btn').addEventListener('click', () => {
+  window.location.href = 'resume_editor.html';
+});
+
+document.getElementById('manual-btn').addEventListener('click', () => {
+  window.location.href = 'resume_editor.html';
+});
+</script>
+</body>
+</html>
