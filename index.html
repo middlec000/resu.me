@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>resu.me</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a1a;
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .logo h1 {
+      font-size: 40px;
+      font-weight: 800;
+      color: #004687;
+      letter-spacing: -1px;
+    }
+
+    .logo p {
+      color: #666;
+      font-size: 15px;
+      margin-top: 8px;
+    }
+
+    .tools {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .tool-card {
+      display: block;
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+      padding: 24px 26px;
+      text-decoration: none;
+      color: inherit;
+      border: 2px solid transparent;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+    }
+
+    .tool-card:hover {
+      border-color: #004687;
+      box-shadow: 0 4px 16px rgba(0,70,135,0.12);
+      transform: translateY(-1px);
+    }
+
+    .tool-card:active {
+      transform: translateY(0);
+    }
+
+    .tool-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .tool-icon {
+      font-size: 26px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .tool-card-header h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: #004687;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 99px;
+    }
+
+    .tool-card p {
+      font-size: 13px;
+      color: #555;
+      line-height: 1.6;
+      margin-left: 38px;
+    }
+
+    .tool-card .steps {
+      margin-left: 38px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .step-num {
+      width: 18px;
+      height: 18px;
+      background: #f0f4f8;
+      color: #004687;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .arrow {
+      position: absolute;
+      right: 26px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #bbb;
+      font-size: 18px;
+      transition: color 0.15s, transform 0.15s;
+    }
+
+    .tool-card { position: relative; }
+    .tool-card:hover .arrow { color: #004687; transform: translateY(-50%) translateX(3px); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="logo">
+    <h1>resu.me</h1>
+    <p>Build and tailor your JSON Resume</p>
+  </div>
+
+  <div class="tools">
+
+    <a class="tool-card" href="/tools/wizard/web/index.html">
+      <div class="tool-card-header">
+        <span class="tool-icon">&#128196;</span>
+        <h2>JSON Resume Wizard <span class="badge">AI</span></h2>
+      </div>
+      <p>Create a structured JSON Resume from a PDF, a plain-text file, or from scratch.</p>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <span>Upload a PDF or plain-text resume (optional)</span>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <span>Review and edit every field in the guided editor</span>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <span>Download your <code>resume.json</code></span>
+        </div>
+      </div>
+      <span class="arrow">&#8594;</span>
+    </a>
+
+    <a class="tool-card" href="/tools/tailor/web/index.html">
+      <div class="tool-card-header">
+        <span class="tool-icon">&#127919;</span>
+        <h2>Resume Tailor <span class="badge">AI</span></h2>
+      </div>
+      <p>Tailor an existing JSON Resume to a specific job posting, then download or edit the result.</p>
+      <div class="steps">
+        <div class="step">
+          <span class="step-num">1</span>
+          <span>Upload your JSON Resume and the job posting</span>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          <span>Gemini rewrites the content to match the role</span>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          <span>Download the tailored JSON or open it in the editor</span>
+        </div>
+      </div>
+      <span class="arrow">&#8594;</span>
+    </a>
+
+  </div>
+</div>
+
+</body>
+</html>
