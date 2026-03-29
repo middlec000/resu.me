@@ -21,7 +21,7 @@ async function main () {
       )
     ),
     fs
-      .readFile(path.join(artifactsDir, 'resume_schema_v1.json'), 'utf-8')
+      .readFile(path.join(artifactsDir, 'json_resume_schema.json'), 'utf-8')
       .then(JSON.parse)
   ])
 

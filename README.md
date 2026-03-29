@@ -1,49 +1,23 @@
 # Resu.me
 
-## Development Phases
+## JSON Resume Wizard
 
-### V0
+Create a standardized JSON Resume.
 
-No persisted state (no db)
+Steps
 
-- Format resume as json standard
-  - Input
-    - PDF or text
-    - (Optional) User can manually add content through UI
-  - Output
-    - JSON standardized resume (must be saved by user to local storage)
-- Resume tailoring tool
-  - Input
-    - JSON base resume
-    - Job description (pasted text into text box)
-    - Selection of theme
-  - Output
-    - Tailored resume JSON standardized file
-    - Formatted tailored resume (PDF)
+1. (Optional) Upload file + Google Gemini API Key.
+1. Review and optionally manually update resume.
+1. Download.
 
-Inputs
-Expansive Resume Dataset (formatted)
-Job Description (formatted)
-LLM Prompt
+## Resume Tailor
 
-Output
-Tailored Resume (formatted)
+Tailor the content of your JSON Resume to a specific job posting.
 
-### V1
+Steps
 
-Add Resume (formatted) -> formatted PDF
-
-### V2
-
-Update expansive resume format to be more comprehensive
-
-### V3
-
-Add ingestion of existing resume to JSON format
-
-### V4
-
-Hire Jason to build website
+1. Upload JSON Resume, Job Posting, paste Google Gemini API Key.
+1. Review and download tailored JSON Resume.
 
 ## Notes
 
@@ -79,7 +53,7 @@ npx resumed validate model_output/resume_tailored.json
 
 - `examples/json_schema_example.json`
   - https://jsonresume.org/schema
-- `artifacts/resume_schema_v1.json`
+- `artifacts/json_resume_schema.json`
   - Generated from https://jsonresume.org/schema
 
 ## To Do

@@ -4,7 +4,7 @@ import { dirname, join } from 'path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const schema = JSON.parse(
-  readFileSync(join(__dirname, '../artifacts/resume_schema_v1.json'), 'utf-8')
+  readFileSync(join(__dirname, '../artifacts/json_resume_schema.json'), 'utf-8')
 )
 
 function validateNode (value, schemaDef, path, errors) {
