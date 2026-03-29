@@ -3,185 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>resu.me — Get Started</title>
-  <script type="application/json" id="response-schema">
-  {
-    "type": "object",
-    "properties": {
-      "basics": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "label": { "type": "string" },
-          "image": { "type": "string" },
-          "email": { "type": "string" },
-          "phone": { "type": "string" },
-          "url": { "type": "string" },
-          "summary": { "type": "string" },
-          "location": {
-            "type": "object",
-            "properties": {
-              "address": { "type": "string" },
-              "postalCode": { "type": "string" },
-              "city": { "type": "string" },
-              "countryCode": { "type": "string" },
-              "region": { "type": "string" }
-            }
-          },
-          "profiles": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "network": { "type": "string" },
-                "username": { "type": "string" },
-                "url": { "type": "string" }
-              }
-            }
-          }
-        }
-      },
-      "work": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": { "type": "string" },
-            "position": { "type": "string" },
-            "url": { "type": "string" },
-            "startDate": { "type": "string" },
-            "endDate": { "type": "string" },
-            "summary": { "type": "string" },
-            "highlights": { "type": "array", "items": { "type": "string" } }
-          }
-        }
-      },
-      "volunteer": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "organization": { "type": "string" },
-            "position": { "type": "string" },
-            "url": { "type": "string" },
-            "startDate": { "type": "string" },
-            "endDate": { "type": "string" },
-            "summary": { "type": "string" },
-            "highlights": { "type": "array", "items": { "type": "string" } }
-          }
-        }
-      },
-      "education": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "institution": { "type": "string" },
-            "url": { "type": "string" },
-            "area": { "type": "string" },
-            "studyType": { "type": "string" },
-            "startDate": { "type": "string" },
-            "endDate": { "type": "string" },
-            "score": { "type": "string" },
-            "courses": { "type": "array", "items": { "type": "string" } }
-          }
-        }
-      },
-      "awards": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "title": { "type": "string" },
-            "date": { "type": "string" },
-            "awarder": { "type": "string" },
-            "summary": { "type": "string" }
-          }
-        }
-      },
-      "certificates": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": { "type": "string" },
-            "date": { "type": "string" },
-            "issuer": { "type": "string" },
-            "url": { "type": "string" }
-          }
-        }
-      },
-      "publications": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": { "type": "string" },
-            "publisher": { "type": "string" },
-            "releaseDate": { "type": "string" },
-            "url": { "type": "string" },
-            "summary": { "type": "string" }
-          }
-        }
-      },
-      "skills": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": { "type": "string" },
-            "level": { "type": "string" },
-            "keywords": { "type": "array", "items": { "type": "string" } }
-          }
-        }
-      },
-      "languages": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "language": { "type": "string" },
-            "fluency": { "type": "string" }
-          }
-        }
-      },
-      "interests": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": { "type": "string" },
-            "keywords": { "type": "array", "items": { "type": "string" } }
-          }
-        }
-      },
-      "references": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": { "type": "string" },
-            "reference": { "type": "string" }
-          }
-        }
-      },
-      "projects": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": { "type": "string" },
-            "startDate": { "type": "string" },
-            "endDate": { "type": "string" },
-            "description": { "type": "string" },
-            "highlights": { "type": "array", "items": { "type": "string" } },
-            "url": { "type": "string" }
-          }
-        }
-      }
-    }
-  }
-  </script>
+  <title>resu.me — JSON Resume Wizard</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -641,42 +463,18 @@
 </div>
 
 <script type="module">
-// ── Inline schema validator (runs only after API response is received) ──
-function validateNode (value, schemaDef, path, errors) {
-  if (schemaDef.type) {
-    const actualType = Array.isArray(value) ? 'array' : value === null ? 'null' : typeof value
-    const expectedType = schemaDef.type
-    const typeMatch = expectedType === 'integer' ? Number.isInteger(value) : actualType === expectedType
-    if (!typeMatch) {
-      errors.push(`${path}: expected ${expectedType}, got ${Array.isArray(value) ? 'array' : value === null ? 'null' : typeof value}`)
-      return
-    }
-  }
-  if (schemaDef.required && typeof value === 'object' && value !== null) {
-    for (const field of schemaDef.required) {
-      if (!(field in value)) errors.push(`${path}: missing required field "${field}"`)
-    }
-  }
-  if (schemaDef.properties && typeof value === 'object' && value !== null) {
-    for (const [key, propSchema] of Object.entries(schemaDef.properties)) {
-      if (key in value) validateNode(value[key], propSchema, `${path}.${key}`, errors)
-    }
-  }
-  if (schemaDef.items && Array.isArray(value)) {
-    value.forEach((item, i) => validateNode(item, schemaDef.items, `${path}[${i}]`, errors))
-  }
-}
-
-function validateResumeSchema (obj, schema) {
-  const errors = []
-  validateNode(obj, schema, 'root', errors)
-  return { valid: errors.length === 0, errors }
-}
+import { validateResumeSchema } from '/shared/validate_resume_schema.js';
 
 // ── State ──
 let pdfBase64 = null;
 let extractedJson = null;
-const RESPONSE_SCHEMA = JSON.parse(document.getElementById('response-schema').textContent);
+let RESPONSE_SCHEMA = null;
+
+// Load schema from shared/
+fetch('/shared/json_resume_schema.json').then(r => r.json()).then(schema => {
+  RESPONSE_SCHEMA = schema;
+  updateExtractBtn();
+});
 
 // ── File input / drop zone ──
 const dropZone = document.getElementById('drop-zone');
@@ -741,7 +539,7 @@ document.getElementById('toggle-key').addEventListener('click', () => {
 });
 
 function updateExtractBtn() {
-  extractBtn.disabled = !(pdfBase64 && apiKeyInput.value.trim());
+  extractBtn.disabled = !(pdfBase64 && apiKeyInput.value.trim() && RESPONSE_SCHEMA);
 }
 
 // ── Status helpers ──
@@ -866,11 +664,11 @@ extractBtn.addEventListener('click', async () => {
 
 // ── Navigate to editor ──
 document.getElementById('open-editor-btn').addEventListener('click', () => {
-  window.location.href = 'resume_editor.html';
+  window.location.href = 'editor.html';
 });
 
 document.getElementById('manual-btn').addEventListener('click', () => {
-  window.location.href = 'resume_editor.html';
+  window.location.href = 'editor.html';
 });
 </script>
 </body>

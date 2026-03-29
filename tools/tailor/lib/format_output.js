@@ -12,7 +12,7 @@ function removeEmptyJSONEntries (obj) {
   return obj
 }
 
-export async function formatOutputResume (resumeJson, theme) {
+export async function formatOutput (resumeJson, theme) {
   const resumeData =
     typeof resumeJson === 'string' ? JSON.parse(resumeJson) : resumeJson
   const { schema_version: _, ...resumeDataWithoutVersion } = resumeData

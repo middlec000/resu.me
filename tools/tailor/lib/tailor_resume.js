@@ -1,21 +1,41 @@
 import { GoogleGenAI } from '@google/genai'
 
-function buildPrompt ({ resumeText, standardInstructions }) {
-  return `${standardInstructions}
-
-<RESUME_TEXT>
-${resumeText}
-</RESUME_TEXT>
+function buildPrompt ({
+  jobPosting,
+  resumeData,
+  userPrompt,
+  standardInstructions,
+  qualityConstraints
+}) {
+  return `
+${userPrompt}
+${standardInstructions}
+${qualityConstraints}
+<RESUME_JSON>
+${JSON.stringify(resumeData, null, 2)}
+</RESUME_JSON>
+<JOB_POST>
+${jobPosting}
+</JOB_POST>
 `
 }
 
-export async function textToStandardJson ({
+export async function tailorResume ({
   apiKey,
-  resumeText,
+  jobPosting,
+  resumeData,
+  userPrompt,
   standardInstructions,
+  qualityConstraints,
   responseSchema
 }) {
-  const prompt = buildPrompt({ resumeText, standardInstructions })
+  const prompt = buildPrompt({
+    jobPosting,
+    resumeData,
+    userPrompt,
+    standardInstructions,
+    qualityConstraints
+  })
 
   const ai = new GoogleGenAI({ apiKey })
 
