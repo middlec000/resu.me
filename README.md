@@ -1,5 +1,12 @@
 # Resu.me
 
+Workflow
+
+1. Use an LLM to generate an initial JSON Resume using current resume.
+1. Paste this into the following tool and manually add to it: https://profile-studio.netlify.app/#/
+1. Use an LLM to tailor the resume.
+1. Use `resumed` to render it as html.
+
 ## JSON Resume Wizard
 
 Create a standardized JSON Resume.
