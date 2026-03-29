@@ -57,3 +57,5 @@ node src/run.js
   - Generated from https://jsonresume.org/schema
 
 ## To Do
+
+uv run python -m http.server 8080 --directory src/pages 2>&1 &

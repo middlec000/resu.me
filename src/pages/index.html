@@ -4,6 +4,184 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>resu.me — Get Started</title>
+  <script type="application/json" id="response-schema">
+  {
+    "type": "object",
+    "properties": {
+      "basics": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "label": { "type": "string" },
+          "image": { "type": "string" },
+          "email": { "type": "string" },
+          "phone": { "type": "string" },
+          "url": { "type": "string" },
+          "summary": { "type": "string" },
+          "location": {
+            "type": "object",
+            "properties": {
+              "address": { "type": "string" },
+              "postalCode": { "type": "string" },
+              "city": { "type": "string" },
+              "countryCode": { "type": "string" },
+              "region": { "type": "string" }
+            }
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "network": { "type": "string" },
+                "username": { "type": "string" },
+                "url": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
+      "work": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "position": { "type": "string" },
+            "url": { "type": "string" },
+            "startDate": { "type": "string" },
+            "endDate": { "type": "string" },
+            "summary": { "type": "string" },
+            "highlights": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
+      "volunteer": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "organization": { "type": "string" },
+            "position": { "type": "string" },
+            "url": { "type": "string" },
+            "startDate": { "type": "string" },
+            "endDate": { "type": "string" },
+            "summary": { "type": "string" },
+            "highlights": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
+      "education": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "institution": { "type": "string" },
+            "url": { "type": "string" },
+            "area": { "type": "string" },
+            "studyType": { "type": "string" },
+            "startDate": { "type": "string" },
+            "endDate": { "type": "string" },
+            "score": { "type": "string" },
+            "courses": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
+      "awards": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "date": { "type": "string" },
+            "awarder": { "type": "string" },
+            "summary": { "type": "string" }
+          }
+        }
+      },
+      "certificates": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "date": { "type": "string" },
+            "issuer": { "type": "string" },
+            "url": { "type": "string" }
+          }
+        }
+      },
+      "publications": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "publisher": { "type": "string" },
+            "releaseDate": { "type": "string" },
+            "url": { "type": "string" },
+            "summary": { "type": "string" }
+          }
+        }
+      },
+      "skills": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "level": { "type": "string" },
+            "keywords": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
+      "languages": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "language": { "type": "string" },
+            "fluency": { "type": "string" }
+          }
+        }
+      },
+      "interests": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "keywords": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      },
+      "references": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "reference": { "type": "string" }
+          }
+        }
+      },
+      "projects": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "startDate": { "type": "string" },
+            "endDate": { "type": "string" },
+            "description": { "type": "string" },
+            "highlights": { "type": "array", "items": { "type": "string" } },
+            "url": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -133,6 +311,7 @@
       cursor: pointer;
       width: 100%;
       height: 100%;
+      z-index: 1;
     }
 
     .drop-zone-icon {
@@ -251,6 +430,7 @@
       background: #fef2f2;
       border: 1px solid #fecaca;
       color: #dc2626;
+      white-space: pre-wrap;
     }
 
     .status-box.success {
@@ -390,7 +570,7 @@
       <div class="field">
         <label>Resume PDF</label>
         <div class="drop-zone" id="drop-zone">
-          <input type="file" id="pdf-input" accept="application/pdf" />
+          <input type="file" id="pdf-input" accept=".pdf,application/pdf" />
           <div class="drop-zone-icon">&#128196;</div>
           <div class="drop-zone-label">Click to choose a PDF, or drag and drop</div>
           <div class="drop-zone-sub">PDF files only</div>
@@ -460,10 +640,43 @@
 
 </div>
 
-<script>
+<script type="module">
+// ── Inline schema validator (runs only after API response is received) ──
+function validateNode (value, schemaDef, path, errors) {
+  if (schemaDef.type) {
+    const actualType = Array.isArray(value) ? 'array' : value === null ? 'null' : typeof value
+    const expectedType = schemaDef.type
+    const typeMatch = expectedType === 'integer' ? Number.isInteger(value) : actualType === expectedType
+    if (!typeMatch) {
+      errors.push(`${path}: expected ${expectedType}, got ${Array.isArray(value) ? 'array' : value === null ? 'null' : typeof value}`)
+      return
+    }
+  }
+  if (schemaDef.required && typeof value === 'object' && value !== null) {
+    for (const field of schemaDef.required) {
+      if (!(field in value)) errors.push(`${path}: missing required field "${field}"`)
+    }
+  }
+  if (schemaDef.properties && typeof value === 'object' && value !== null) {
+    for (const [key, propSchema] of Object.entries(schemaDef.properties)) {
+      if (key in value) validateNode(value[key], propSchema, `${path}.${key}`, errors)
+    }
+  }
+  if (schemaDef.items && Array.isArray(value)) {
+    value.forEach((item, i) => validateNode(item, schemaDef.items, `${path}[${i}]`, errors))
+  }
+}
+
+function validateResumeSchema (obj, schema) {
+  const errors = []
+  validateNode(obj, schema, 'root', errors)
+  return { valid: errors.length === 0, errors }
+}
+
 // ── State ──
 let pdfBase64 = null;
 let extractedJson = null;
+const RESPONSE_SCHEMA = JSON.parse(document.getElementById('response-schema').textContent);
 
 // ── File input / drop zone ──
 const dropZone = document.getElementById('drop-zone');
@@ -485,7 +698,12 @@ function readFileAsBase64(file) {
 }
 
 async function handleFileSelect(file) {
-  if (!file || file.type !== 'application/pdf') {
+  const isPdf = file && (
+    file.type === 'application/pdf' ||
+    file.type === 'application/x-pdf' ||
+    file.name.toLowerCase().endsWith('.pdf')
+  );
+  if (!isPdf) {
     setError('Please select a valid PDF file.');
     return;
   }
@@ -544,184 +762,6 @@ function setError(msg) {
   el.style.display = 'block';
 }
 
-// ── JSON Resume schema (inlined) ──
-const RESPONSE_SCHEMA = {
-  "type": "object",
-  "properties": {
-    "basics": {
-      "type": "object",
-      "properties": {
-        "name": { "type": "string" },
-        "label": { "type": "string" },
-        "image": { "type": "string" },
-        "email": { "type": "string" },
-        "phone": { "type": "string" },
-        "url": { "type": "string" },
-        "summary": { "type": "string" },
-        "location": {
-          "type": "object",
-          "properties": {
-            "address": { "type": "string" },
-            "postalCode": { "type": "string" },
-            "city": { "type": "string" },
-            "countryCode": { "type": "string" },
-            "region": { "type": "string" }
-          }
-        },
-        "profiles": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "network": { "type": "string" },
-              "username": { "type": "string" },
-              "url": { "type": "string" }
-            }
-          }
-        }
-      }
-    },
-    "work": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "position": { "type": "string" },
-          "url": { "type": "string" },
-          "startDate": { "type": "string" },
-          "endDate": { "type": "string" },
-          "summary": { "type": "string" },
-          "highlights": { "type": "array", "items": { "type": "string" } }
-        }
-      }
-    },
-    "volunteer": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "organization": { "type": "string" },
-          "position": { "type": "string" },
-          "url": { "type": "string" },
-          "startDate": { "type": "string" },
-          "endDate": { "type": "string" },
-          "summary": { "type": "string" },
-          "highlights": { "type": "array", "items": { "type": "string" } }
-        }
-      }
-    },
-    "education": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "institution": { "type": "string" },
-          "url": { "type": "string" },
-          "area": { "type": "string" },
-          "studyType": { "type": "string" },
-          "startDate": { "type": "string" },
-          "endDate": { "type": "string" },
-          "score": { "type": "string" },
-          "courses": { "type": "array", "items": { "type": "string" } }
-        }
-      }
-    },
-    "awards": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "title": { "type": "string" },
-          "date": { "type": "string" },
-          "awarder": { "type": "string" },
-          "summary": { "type": "string" }
-        }
-      }
-    },
-    "certificates": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "date": { "type": "string" },
-          "issuer": { "type": "string" },
-          "url": { "type": "string" }
-        }
-      }
-    },
-    "publications": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "publisher": { "type": "string" },
-          "releaseDate": { "type": "string" },
-          "url": { "type": "string" },
-          "summary": { "type": "string" }
-        }
-      }
-    },
-    "skills": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "level": { "type": "string" },
-          "keywords": { "type": "array", "items": { "type": "string" } }
-        }
-      }
-    },
-    "languages": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "language": { "type": "string" },
-          "fluency": { "type": "string" }
-        }
-      }
-    },
-    "interests": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "keywords": { "type": "array", "items": { "type": "string" } }
-        }
-      }
-    },
-    "references": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "reference": { "type": "string" }
-        }
-      }
-    },
-    "projects": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "name": { "type": "string" },
-          "startDate": { "type": "string" },
-          "endDate": { "type": "string" },
-          "description": { "type": "string" },
-          "highlights": { "type": "array", "items": { "type": "string" } },
-          "url": { "type": "string" }
-        }
-      }
-    }
-  }
-};
-
 // ── Extract ──
 extractBtn.addEventListener('click', async () => {
   const apiKey = apiKeyInput.value.trim();
@@ -757,8 +797,8 @@ extractBtn.addEventListener('click', async () => {
         }
       ],
       generationConfig: {
-        response_mime_type: 'application/json',
-        response_schema: RESPONSE_SCHEMA
+        responseMimeType: 'application/json',
+        responseSchema: RESPONSE_SCHEMA
       }
     };
 
@@ -778,10 +818,31 @@ extractBtn.addEventListener('click', async () => {
     }
 
     const data = await res.json();
-    const rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!rawText) throw new Error('Gemini returned an empty response. Please try again.');
+    const candidate = data?.candidates?.[0]?.content?.parts?.[0];
+    if (!candidate) throw new Error('Gemini returned an empty response. Please try again.');
 
-    extractedJson = JSON.parse(rawText);
+    // With responseMimeType: 'application/json', the text field contains a JSON string.
+    // Occasionally the SDK/proxy returns a pre-parsed object instead.
+    let parsed;
+    if (typeof candidate.text === 'string') {
+      try {
+        parsed = JSON.parse(candidate.text);
+      } catch (e) {
+        throw new Error('Gemini response was not valid JSON: ' + e.message + '\n\nRaw response:\n' + candidate.text.slice(0, 300));
+      }
+    } else if (candidate.text && typeof candidate.text === 'object') {
+      parsed = candidate.text;
+    } else {
+      throw new Error('Unexpected Gemini response shape. Raw candidate:\n' + JSON.stringify(candidate, null, 2).slice(0, 300));
+    }
+
+    // Validate against resume schema
+    const { valid, errors } = validateResumeSchema(parsed, RESPONSE_SCHEMA);
+    if (!valid) {
+      throw new Error('Extracted JSON does not match resume schema:\n• ' + errors.slice(0, 5).join('\n• ') + (errors.length > 5 ? `\n  …and ${errors.length - 5} more` : ''));
+    }
+
+    extractedJson = parsed;
 
     // Store in localStorage for the editor to pick up
     localStorage.setItem('resume_pending_load', JSON.stringify(extractedJson, null, 2));

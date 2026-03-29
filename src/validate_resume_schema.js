@@ -1,12 +1,3 @@
-import { readFileSync } from 'fs'
-import { fileURLToPath } from 'url'
-import { dirname, join } from 'path'
-
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const schema = JSON.parse(
-  readFileSync(join(__dirname, '../artifacts/json_resume_schema.json'), 'utf-8')
-)
-
 function validateNode (value, schemaDef, path, errors) {
   if (schemaDef.type) {
     const actualType = Array.isArray(value)
@@ -59,19 +50,13 @@ function validateNode (value, schemaDef, path, errors) {
 }
 
 /**
- * Validates a JSON string against the resume schema.
- * @param {string} jsonString
+ * Validates a parsed resume object against the provided schema.
+ * @param {object} obj  - Already-parsed resume object
+ * @param {object} schema - JSON Schema object to validate against
  * @returns {{ valid: boolean, errors: string[] }}
  */
-export function validateResumeSchema (jsonString) {
-  let parsed
-  try {
-    parsed = JSON.parse(jsonString)
-  } catch (e) {
-    return { valid: false, errors: [`Invalid JSON: ${e.message}`] }
-  }
-
+export function validateResumeSchema (obj, schema) {
   const errors = []
-  validateNode(parsed, schema, 'root', errors)
+  validateNode(obj, schema, 'root', errors)
   return { valid: errors.length === 0, errors }
 }

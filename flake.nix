@@ -21,6 +21,7 @@
           buildInputs = [
             pkgs.git
             pkgs.nodejs
+            pkgs.uv
           ];
         };
       }

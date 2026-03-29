@@ -62,7 +62,7 @@ async function main () {
 
   let resumeJson, prompt
   try {
-    const validation = validateResumeSchema(JSON.stringify(resumeData))
+    const validation = validateResumeSchema(resumeData, responseSchema)
     if (!validation.valid) {
       throw new Error(
         `Resume failed schema validation:\n${validation.errors.join('\n')}`
