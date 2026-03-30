@@ -42,6 +42,18 @@
       margin-top: 6px;
     }
 
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: #004687;
+      text-decoration: none;
+      margin-bottom: 20px;
+      opacity: 0.75;
+    }
+    .back-link:hover { opacity: 1; text-decoration: underline; }
+
     /* ── Cards ── */
     .card {
       background: white;
@@ -371,6 +383,8 @@
 <body>
 
 <div class="container">
+  <a class="back-link" href="/index.html">&#8592; Home</a>
+
   <div class="logo">
     <h1>resu.me</h1>
     <p>Build and export your JSON Resume</p>
