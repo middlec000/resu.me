@@ -432,6 +432,20 @@ Promise.all([
 ]).then(([schema, agentRole, standardInstructions, qualityConstraints]) => {
   RESPONSE_SCHEMA = schema;
   PROMPTS = { agentRole, standardInstructions, qualityConstraints };
+  // Auto-populate resume if navigated from the editor
+  const prefill = localStorage.getItem('tailor_prefill_resume');
+  if (prefill) {
+    try {
+      resumeData = JSON.parse(prefill);
+      document.getElementById('resume-text').value = JSON.stringify(resumeData, null, 2);
+      const dz = document.getElementById('resume-drop-zone');
+      dz.classList.add('has-file');
+      dz.querySelector('.drop-zone-icon').textContent = '✅';
+      dz.querySelector('.drop-zone-label').textContent = 'Loaded from Resume Editor';
+      dz.querySelector('.drop-zone-sub').textContent = '';
+    } catch { resumeData = null; }
+    localStorage.removeItem('tailor_prefill_resume');
+  }
   updateTailorBtn();
 }).catch(err => setError('Failed to load assets: ' + err.message));
 

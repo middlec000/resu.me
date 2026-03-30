@@ -428,7 +428,7 @@
         </label>
         <button class="btn btn-ghost" id="copy-btn">Copy JSON</button>
         <button class="btn btn-primary" id="download-btn">Download JSON</button>
-        <a class="btn btn-ghost" href="/tools/tailor/web/index.html">&#127919; Tailor Resume</a>
+        <button class="btn btn-ghost" id="tailor-btn">&#127919; Tailor Resume</button>
       </div>
     </div>
 
@@ -1211,6 +1211,11 @@ document.getElementById('download-btn').onclick = () => {
   a.download = 'resume.json';
   a.click();
   showToast('Downloaded resume.json');
+};
+
+document.getElementById('tailor-btn').onclick = () => {
+  localStorage.setItem('tailor_prefill_resume', JSON.stringify(buildResume(), null, 2));
+  window.location.href = '/tools/tailor/web/index.html';
 };
 
 // ──────────────────────────────────────────────────────────────────────────────
