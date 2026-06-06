@@ -3,7 +3,8 @@
   "scripts": {
     "wizard": "node tools/wizard/cli.js",
     "tailor": "node tools/tailor/cli.js",
-    "serve": "uv run python3 -m http.server 8080"
+    "renderer": "node tools/renderer/cli.js",
+    "serve": "node server.js"
   },
   "dependencies": {
     "@google/genai": "^1.44.0",

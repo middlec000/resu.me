@@ -4,7 +4,6 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { program } from 'commander'
 import { tailorResume } from './lib/tailor_resume.js'
-import { formatOutput } from './lib/format_output.js'
 import { validateResumeSchema } from '../../shared/validate_resume_schema.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -20,10 +19,6 @@ program
   .option(
     '-o, --output <path>',
     'Path to write the tailored JSON Resume (default: output/tailor/<resume-basename>.json)'
-  )
-  .option(
-    '--render',
-    'Also render the tailored resume to HTML alongside the JSON output'
   )
   .option(
     '-k, --api-key <key>',
@@ -108,15 +103,6 @@ async function main () {
     fs.writeFile(outputPath, resumeJson, 'utf-8'),
     fs.writeFile(outputPath.replace(/\.json$/, '.prompt.txt'), prompt, 'utf-8')
   ]
-
-  if (opts.render) {
-    console.log('Rendering HTML…')
-    const { default: theme } = await import('jsonresume-theme-straightforward')
-    const html = await formatOutput(resumeJson, theme)
-    const htmlPath = outputPath.replace(/\.json$/, '.html')
-    writes.push(fs.writeFile(htmlPath, html, 'utf-8'))
-    console.log(`HTML saved to: ${htmlPath}`)
-  }
 
   await Promise.all(writes)
   console.log(`Tailored resume saved to: ${outputPath}`)
