@@ -1,8 +1,6 @@
 {
-  "buildCommand": null,
-  "functions": {
-    "api/render.js": {
-      "maxDuration": 30
-    }
-  }
+  "version": 2,
+  "builds": [
+    { "src": "api/render.js", "use": "@vercel/node" }
+  ]
 }
