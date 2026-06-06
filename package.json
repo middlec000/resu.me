@@ -4,7 +4,7 @@
     "wizard": "node tools/wizard/cli.js",
     "tailor": "node tools/tailor/cli.js",
     "renderer": "node tools/renderer/cli.js",
-    "serve": "node server.js"
+    "serve": "node dev-server.js"
   },
   "dependencies": {
     "@google/genai": "^1.44.0",
