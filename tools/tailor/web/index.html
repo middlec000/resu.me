@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>resu.me — Resume Tailor</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a1a;
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #004687;
+      letter-spacing: -0.5px;
+    }
+
+    .logo p {
+      color: #666;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: #004687;
+      text-decoration: none;
+      margin-bottom: 20px;
+      opacity: 0.75;
+    }
+    .back-link:hover { opacity: 1; text-decoration: underline; }
+
+    /* ── Cards ── */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 18px 22px 12px;
+    }
+
+    .card-header h2 {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-header p {
+      color: #666;
+      font-size: 13px;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .card-body {
+      padding: 0 22px 20px;
+    }
+
+    /* ── Field ── */
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .field input[type="text"],
+    .field input[type="password"],
+    .field textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      font-size: 13px;
+      font-family: inherit;
+      color: #1a1a1a;
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+      resize: vertical;
+    }
+
+    .field textarea {
+      min-height: 120px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: #004687;
+      box-shadow: 0 0 0 3px rgba(0,70,135,0.1);
+    }
+
+    /* ── Drop zone ── */
+    .drop-zone {
+      border: 2px dashed #c4d4e8;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      position: relative;
+    }
+
+    .drop-zone:hover,
+    .drop-zone.drag-over {
+      background: #f0f7ff;
+      border-color: #004687;
+    }
+
+    .drop-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .drop-zone-icon { font-size: 22px; margin-bottom: 6px; }
+    .drop-zone-label { font-size: 13px; font-weight: 600; color: #004687; }
+    .drop-zone-sub { font-size: 12px; color: #888; margin-top: 3px; }
+
+    .drop-zone.has-file { border-style: solid; border-color: #22c55e; background: #f0fdf4; }
+    .drop-zone.has-file .drop-zone-label { color: #16a34a; }
+
+    /* ── OR divider ── */
+    .or-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      color: #aaa;
+      font-size: 12px;
+    }
+    .or-row::before, .or-row::after { content: ''; flex: 1; height: 1px; background: #e5e7eb; }
+
+    /* ── Buttons ── */
+    .btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      font-weight: 600;
+      transition: opacity 0.15s, transform 0.1s;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    .btn-primary {
+      background: #004687;
+      color: white;
+      width: 100%;
+      justify-content: center;
+    }
+    .btn-primary:not(:disabled):hover { opacity: 0.88; }
+
+    .btn-success {
+      background: #16a34a;
+      color: white;
+      justify-content: center;
+      font-size: 15px;
+      padding: 12px 18px;
+    }
+    .btn-success:hover { opacity: 0.88; }
+
+    .btn-ghost {
+      background: white;
+      color: #444;
+      border: 1px solid #d1d5db;
+      justify-content: center;
+    }
+    .btn-ghost:hover { background: #f9fafb; }
+
+    /* ── API key toggle ── */
+    .api-key-wrapper { position: relative; }
+    .api-key-wrapper input { padding-right: 44px; }
+    .toggle-visibility {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #888;
+      font-size: 16px;
+      padding: 2px 4px;
+      line-height: 1;
+    }
+    .toggle-visibility:hover { color: #444; }
+
+    /* ── Status ── */
+    .status-box {
+      display: none;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .status-box.loading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+    }
+    .status-box.error {
+      display: block;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      white-space: pre-wrap;
+    }
+
+    /* ── Spinner ── */
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid #bfdbfe;
+      border-top-color: #1d4ed8;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Result ── */
+    #result-section { display: none; margin-top: 16px; }
+
+    .result-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+      overflow: hidden;
+    }
+    .result-card-header {
+      background: #f0fdf4;
+      border-bottom: 1px solid #bbf7d0;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .result-card-header h3 { font-size: 15px; font-weight: 700; color: #166534; }
+    .result-card-body { padding: 20px; }
+    .result-card-body p { font-size: 13px; color: #555; margin-bottom: 14px; line-height: 1.6; }
+
+    .result-actions { display: flex; gap: 10px; flex-direction: column; }
+
+    /* ── Tip ── */
+    .tip { font-size: 12px; color: #888; line-height: 1.5; margin-top: 6px; }
+    .tip a { color: #004687; text-decoration: none; }
+    .tip a:hover { text-decoration: underline; }
+
+    /* ── Badge ── */
+    .badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 99px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a class="back-link" href="/index.html">&#8592; Home</a>
+
+  <div class="logo">
+    <h1>resu.me</h1>
+    <p>Tailor your JSON Resume to a job posting</p>
+  </div>
+
+  <!-- ── Main card ── -->
+  <div class="card">
+    <div class="card-header">
+      <h2>
+        <span>&#127919;</span>
+        Resume Tailor
+        <span class="badge">AI</span>
+      </h2>
+      <p>Upload your JSON Resume and a job posting. Gemini will tailor the resume content to match the role.</p>
+    </div>
+    <div class="card-body">
+
+      <!-- JSON Resume input -->
+      <div class="field">
+        <label>JSON Resume</label>
+        <div class="drop-zone" id="resume-drop-zone">
+          <input type="file" id="resume-file-input" accept=".json,application/json" />
+          <div class="drop-zone-icon">&#128196;</div>
+          <div class="drop-zone-label">Click to choose a JSON Resume, or drag and drop</div>
+          <div class="drop-zone-sub">.json files only</div>
+        </div>
+        <div class="or-row">or paste JSON</div>
+        <textarea id="resume-text" placeholder='{ "basics": { "name": "..." }, ... }'></textarea>
+      </div>
+
+      <!-- Job posting input -->
+      <div class="field">
+        <label>Job Posting</label>
+        <div class="drop-zone" id="job-drop-zone">
+          <input type="file" id="job-file-input" accept=".txt,text/plain" />
+          <div class="drop-zone-icon">&#128203;</div>
+          <div class="drop-zone-label">Click to choose a .txt file, or drag and drop</div>
+          <div class="drop-zone-sub">.txt files only</div>
+        </div>
+        <div class="or-row">or paste text</div>
+        <textarea id="job-text" placeholder="Paste the full job posting here…"></textarea>
+      </div>
+
+      <!-- API key -->
+      <div class="field">
+        <label>Google Gemini API Key</label>
+        <div class="api-key-wrapper">
+          <input type="password" id="api-key" placeholder="Paste your Gemini API key…" autocomplete="off" />
+          <button class="toggle-visibility" id="toggle-key" title="Show / hide key">&#128065;</button>
+        </div>
+        <div class="tip">
+          Get a free key at <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener">aistudio.google.com</a>. Your key is never stored or sent anywhere except directly to the Gemini API.
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div class="status-box loading" id="status-loading">
+        <div class="spinner"></div>
+        <span id="status-loading-text">Sending to Gemini — this may take up to a minute…</span>
+      </div>
+      <div class="status-box error" id="status-error"></div>
+
+      <button class="btn btn-primary" id="tailor-btn" disabled>
+        <span>&#127919;</span> Tailor Resume
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ── Result ── -->
+  <div id="result-section">
+    <div class="result-card">
+      <div class="result-card-header">
+        <span style="font-size:20px">&#9989;</span>
+        <div>
+          <h3>Tailoring complete!</h3>
+        </div>
+      </div>
+      <div class="result-card-body">
+        <p>
+          Your resume has been tailored to the job posting. Download the JSON file, or open it in the Resume Editor to review and make further changes.
+        </p>
+        <div class="result-actions">
+          <button class="btn btn-success" id="download-btn">
+            <span>&#11015;&#65039;</span> Download Tailored JSON
+          </button>
+          <button class="btn btn-ghost" id="open-editor-btn">
+            <span>&#9998;</span> Open in Resume Editor
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script type="module">
+import { validateResumeSchema } from '/shared/validate_resume_schema.js';
+
+// ── State ──
+let resumeData = null;    // parsed JSON Resume object
+let jobText = null;       // job posting string
+let tailoredJson = null;  // result JSON string
+let RESPONSE_SCHEMA = null;
+let PROMPTS = null;
+
+// Load shared assets
+Promise.all([
+  fetch('/shared/json_resume_schema.json').then(r => r.json()),
+  fetch('/artifacts/tailor_resume_to_job_posting/agent_role_v1.txt').then(r => r.text()),
+  fetch('/artifacts/tailor_resume_to_job_posting/standard_instructions_v1.txt').then(r => r.text()),
+  fetch('/artifacts/tailor_resume_to_job_posting/quality_constraints_v1.txt').then(r => r.text()),
+]).then(([schema, agentRole, standardInstructions, qualityConstraints]) => {
+  RESPONSE_SCHEMA = schema;
+  PROMPTS = { agentRole, standardInstructions, qualityConstraints };
+  // Auto-populate resume if navigated from the editor
+  const prefill = localStorage.getItem('tailor_prefill_resume');
+  if (prefill) {
+    try {
+      resumeData = JSON.parse(prefill);
+      document.getElementById('resume-text').value = JSON.stringify(resumeData, null, 2);
+      const dz = document.getElementById('resume-drop-zone');
+      dz.classList.add('has-file');
+      dz.querySelector('.drop-zone-icon').textContent = '✅';
+      dz.querySelector('.drop-zone-label').textContent = 'Loaded from Resume Editor';
+      dz.querySelector('.drop-zone-sub').textContent = '';
+    } catch { resumeData = null; }
+    localStorage.removeItem('tailor_prefill_resume');
+  }
+  updateTailorBtn();
+}).catch(err => setError('Failed to load assets: ' + err.message));
+
+// ── File drop helpers ──
+function setupDropZone(dropZone, fileInput, accept, onLoad) {
+  fileInput.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (file) loadFile(file, dropZone, accept, onLoad);
+  });
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) loadFile(file, dropZone, accept, onLoad);
+  });
+}
+
+function loadFile(file, dropZone, accept, onLoad) {
+  const ext = file.name.toLowerCase().split('.').pop();
+  if (!accept.includes(ext)) {
+    setError(`Please select a ${accept.join(' or ')} file.`);
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    dropZone.classList.add('has-file');
+    dropZone.querySelector('.drop-zone-icon').textContent = '✅';
+    dropZone.querySelector('.drop-zone-label').textContent = file.name;
+    dropZone.querySelector('.drop-zone-sub').textContent = (file.size / 1024).toFixed(1) + ' KB';
+    onLoad(e.target.result, file.name);
+    updateTailorBtn();
+  };
+  reader.readAsText(file);
+}
+
+// JSON Resume drop zone
+setupDropZone(
+  document.getElementById('resume-drop-zone'),
+  document.getElementById('resume-file-input'),
+  ['json'],
+  (text) => {
+    try {
+      resumeData = JSON.parse(text);
+      document.getElementById('resume-text').value = JSON.stringify(resumeData, null, 2);
+    } catch {
+      setError('The JSON Resume file contains invalid JSON.');
+      resumeData = null;
+    }
+  }
+);
+
+// Job posting drop zone
+setupDropZone(
+  document.getElementById('job-drop-zone'),
+  document.getElementById('job-file-input'),
+  ['txt'],
+  (text) => {
+    jobText = text;
+    document.getElementById('job-text').value = text;
+  }
+);
+
+// Textarea inputs also update state
+document.getElementById('resume-text').addEventListener('input', () => {
+  const raw = document.getElementById('resume-text').value.trim();
+  if (!raw) { resumeData = null; updateTailorBtn(); return; }
+  try { resumeData = JSON.parse(raw); } catch { resumeData = null; }
+  updateTailorBtn();
+});
+
+document.getElementById('job-text').addEventListener('input', () => {
+  jobText = document.getElementById('job-text').value.trim() || null;
+  updateTailorBtn();
+});
+
+document.getElementById('api-key').addEventListener('input', updateTailorBtn);
+
+document.getElementById('toggle-key').addEventListener('click', () => {
+  const el = document.getElementById('api-key');
+  el.type = el.type === 'password' ? 'text' : 'password';
+});
+
+function updateTailorBtn() {
+  document.getElementById('tailor-btn').disabled = !(
+    resumeData && jobText && document.getElementById('api-key').value.trim() &&
+    RESPONSE_SCHEMA && PROMPTS
+  );
+}
+
+// ── Status helpers ──
+function setLoading(msg) {
+  document.getElementById('status-loading').style.display = 'flex';
+  document.getElementById('status-loading-text').textContent = msg || 'Processing…';
+  document.getElementById('status-error').style.display = 'none';
+}
+
+function clearLoading() {
+  document.getElementById('status-loading').style.display = 'none';
+}
+
+function setError(msg) {
+  clearLoading();
+  const el = document.getElementById('status-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+// ── Build prompt ──
+function buildPrompt() {
+  return `
+${PROMPTS.standardInstructions}
+${PROMPTS.qualityConstraints}
+<RESUME_JSON>
+${JSON.stringify(resumeData, null, 2)}
+</RESUME_JSON>
+<JOB_POST>
+${jobText}
+</JOB_POST>
+`;
+}
+
+// ── Tailor ──
+document.getElementById('tailor-btn').addEventListener('click', async () => {
+  const apiKey = document.getElementById('api-key').value.trim();
+  if (!resumeData || !jobText || !apiKey) return;
+
+  // Validate input resume
+  const validation = validateResumeSchema(resumeData, RESPONSE_SCHEMA);
+  if (!validation.valid) {
+    setError('Input resume failed schema validation:\n• ' + validation.errors.slice(0, 5).join('\n• '));
+    return;
+  }
+
+  document.getElementById('status-error').style.display = 'none';
+  document.getElementById('result-section').style.display = 'none';
+  document.getElementById('tailor-btn').disabled = true;
+  setLoading('Sending to Gemini — this may take up to a minute…');
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 90_000);
+
+  try {
+    const endpoint =
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`;
+
+    const body = {
+      systemInstruction: { parts: [{ text: PROMPTS.agentRole }] },
+      contents: [{ parts: [{ text: buildPrompt() }] }],
+      generationConfig: {
+        responseMimeType: 'application/json',
+        responseSchema: RESPONSE_SCHEMA
+      }
+    };
+
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: controller.signal
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({}));
+      throw new Error(errBody?.error?.message || `HTTP ${res.status}`);
+    }
+
+    const data = await res.json();
+    const candidate = data?.candidates?.[0]?.content?.parts?.[0];
+    if (!candidate) throw new Error('Gemini returned an empty response. Please try again.');
+
+    let parsed;
+    if (typeof candidate.text === 'string') {
+      try { parsed = JSON.parse(candidate.text); }
+      catch (e) { throw new Error('Gemini response was not valid JSON: ' + e.message); }
+    } else if (candidate.text && typeof candidate.text === 'object') {
+      parsed = candidate.text;
+    } else {
+      throw new Error('Unexpected Gemini response shape:\n' + JSON.stringify(candidate, null, 2).slice(0, 300));
+    }
+
+    // Validate output
+    const outValidation = validateResumeSchema(parsed, RESPONSE_SCHEMA);
+    if (!outValidation.valid) {
+      throw new Error('Tailored JSON does not match resume schema:\n• ' +
+        outValidation.errors.slice(0, 5).join('\n• ') +
+        (outValidation.errors.length > 5 ? `\n  …and ${outValidation.errors.length - 5} more` : ''));
+    }
+
+    tailoredJson = JSON.stringify(parsed, null, 2);
+    localStorage.setItem('resume_pending_load', tailoredJson);
+
+    clearLoading();
+    document.getElementById('result-section').style.display = 'block';
+    document.getElementById('result-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  } catch (err) {
+    clearTimeout(timeoutId);
+    if (err.name === 'AbortError') {
+      setError('Request timed out after 90 seconds. Please try again.');
+    } else {
+      setError('Error: ' + err.message);
+    }
+  } finally {
+    updateTailorBtn();
+  }
+});
+
+// ── Result actions ──
+document.getElementById('download-btn').addEventListener('click', () => {
+  if (!tailoredJson) return;
+  const a = document.createElement('a');
+  a.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(tailoredJson);
+  a.download = 'resume_tailored.json';
+  a.click();
+});
+
+document.getElementById('open-editor-btn').addEventListener('click', () => {
+  window.location.href = '/tools/wizard/web/editor.html';
+});
+</script>
+</body>
+</html>

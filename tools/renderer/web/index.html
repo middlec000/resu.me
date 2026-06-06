@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>resu.me — Resume Renderer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f2f5;
+      color: #1a1a1a;
+      font-size: 14px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #004687;
+      letter-spacing: -0.5px;
+    }
+
+    .logo p {
+      color: #666;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: #004687;
+      text-decoration: none;
+      margin-bottom: 20px;
+      opacity: 0.75;
+    }
+    .back-link:hover { opacity: 1; text-decoration: underline; }
+
+    /* ── Cards ── */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 18px 22px 12px;
+    }
+
+    .card-header h2 {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-header p {
+      color: #666;
+      font-size: 13px;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+
+    .card-body {
+      padding: 0 22px 20px;
+    }
+
+    /* ── Field ── */
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 7px;
+      font-size: 13px;
+      font-family: inherit;
+      color: #1a1a1a;
+      background: white;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      outline: none;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 120px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+    }
+
+    .field select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+
+    .field textarea:focus,
+    .field select:focus {
+      border-color: #004687;
+      box-shadow: 0 0 0 3px rgba(0,70,135,0.1);
+    }
+
+    /* ── Drop zone ── */
+    .drop-zone {
+      border: 2px dashed #c4d4e8;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      position: relative;
+    }
+
+    .drop-zone:hover,
+    .drop-zone.drag-over {
+      background: #f0f7ff;
+      border-color: #004687;
+    }
+
+    .drop-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .drop-zone-icon { font-size: 22px; margin-bottom: 6px; }
+    .drop-zone-label { font-size: 13px; font-weight: 600; color: #004687; }
+    .drop-zone-sub { font-size: 12px; color: #888; margin-top: 3px; }
+
+    .drop-zone.has-file { border-style: solid; border-color: #22c55e; background: #f0fdf4; }
+    .drop-zone.has-file .drop-zone-label { color: #16a34a; }
+
+    /* ── OR divider ── */
+    .or-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0;
+      color: #aaa;
+      font-size: 12px;
+    }
+    .or-row::before, .or-row::after { content: ''; flex: 1; height: 1px; background: #e5e7eb; }
+
+    /* ── Buttons ── */
+    .btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 7px;
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      font-weight: 600;
+      transition: opacity 0.15s, transform 0.1s;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .btn:active { transform: scale(0.98); }
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+
+    .btn-primary {
+      background: #004687;
+      color: white;
+      width: 100%;
+      justify-content: center;
+    }
+    .btn-primary:not(:disabled):hover { opacity: 0.88; }
+
+    .btn-success {
+      background: #16a34a;
+      color: white;
+      justify-content: center;
+      font-size: 15px;
+      padding: 12px 18px;
+    }
+    .btn-success:hover { opacity: 0.88; }
+
+    .btn-ghost {
+      background: white;
+      color: #444;
+      border: 1px solid #d1d5db;
+      justify-content: center;
+    }
+    .btn-ghost:hover { background: #f9fafb; }
+
+    /* ── Status ── */
+    .status-box {
+      display: none;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .status-box.loading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+    }
+    .status-box.error {
+      display: block;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      white-space: pre-wrap;
+    }
+
+    /* ── Spinner ── */
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid #bfdbfe;
+      border-top-color: #1d4ed8;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Result ── */
+    #result-section { display: none; margin-top: 16px; }
+
+    .result-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.09);
+      overflow: hidden;
+    }
+    .result-card-header {
+      background: #f0fdf4;
+      border-bottom: 1px solid #bbf7d0;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .result-card-header h3 { font-size: 15px; font-weight: 700; color: #166534; }
+    .result-card-body { padding: 20px; }
+    .result-card-body p { font-size: 13px; color: #555; margin-bottom: 14px; line-height: 1.6; }
+
+    .result-actions { display: flex; gap: 10px; flex-direction: column; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a class="back-link" href="/index.html">&#8592; Home</a>
+
+  <div class="logo">
+    <h1>resu.me</h1>
+    <p>Render your JSON Resume to a styled HTML file</p>
+  </div>
+
+  <!-- ── Main card ── -->
+  <div class="card">
+    <div class="card-header">
+      <h2>
+        <span>&#127760;</span>
+        Resume Renderer
+      </h2>
+      <p>Upload your JSON Resume and choose a theme. The resume will be rendered to a styled HTML file you can download or preview.</p>
+    </div>
+    <div class="card-body">
+
+      <!-- JSON Resume input -->
+      <div class="field">
+        <label>JSON Resume</label>
+        <div class="drop-zone" id="resume-drop-zone">
+          <input type="file" id="resume-file-input" accept=".json,application/json" />
+          <div class="drop-zone-icon">&#128196;</div>
+          <div class="drop-zone-label">Click to choose a JSON Resume, or drag and drop</div>
+          <div class="drop-zone-sub">.json files only</div>
+        </div>
+        <div class="or-row">or paste JSON</div>
+        <textarea id="resume-text" placeholder='{ "basics": { "name": "..." }, ... }'></textarea>
+      </div>
+
+      <!-- Theme selector -->
+      <div class="field">
+        <label>Theme</label>
+        <select id="theme-select">
+          <option value="straightforward">straightforward</option>
+        </select>
+      </div>
+
+      <!-- Status -->
+      <div class="status-box loading" id="status-loading">
+        <div class="spinner"></div>
+        <span>Rendering resume…</span>
+      </div>
+      <div class="status-box error" id="status-error"></div>
+
+      <button class="btn btn-primary" id="render-btn" disabled>
+        <span>&#127760;</span> Render Resume
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ── Result ── -->
+  <div id="result-section">
+    <div class="result-card">
+      <div class="result-card-header">
+        <span style="font-size:20px">&#9989;</span>
+        <div>
+          <h3>Rendering complete!</h3>
+        </div>
+      </div>
+      <div class="result-card-body">
+        <p>
+          Your resume has been rendered to HTML. Download the file to save it, or open a preview in a new tab.
+        </p>
+        <div class="result-actions">
+          <a class="btn btn-success" id="download-btn" download="resume.html">
+            <span>&#11015;&#65039;</span> Download HTML
+          </a>
+          <button class="btn btn-ghost" id="preview-btn">
+            <span>&#128065;</span> Preview in New Tab
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+let resumeText = null;   // raw JSON string from input
+let renderedHtml = null; // HTML string returned from server
+let previewUrl = null;   // blob URL for preview/download
+
+// ── Drop zone setup ──
+const dropZone = document.getElementById('resume-drop-zone');
+const fileInput = document.getElementById('resume-file-input');
+
+fileInput.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (file) loadFile(file);
+});
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (file) loadFile(file);
+});
+
+function loadFile(file) {
+  if (!file.name.toLowerCase().endsWith('.json')) {
+    setError('Please select a .json file.');
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = e => {
+    const text = e.target.result;
+    try {
+      JSON.parse(text); // validate it's parseable
+      resumeText = text;
+      document.getElementById('resume-text').value = JSON.stringify(JSON.parse(text), null, 2);
+      dropZone.classList.add('has-file');
+      dropZone.querySelector('.drop-zone-icon').textContent = '✅';
+      dropZone.querySelector('.drop-zone-label').textContent = file.name;
+      dropZone.querySelector('.drop-zone-sub').textContent = (file.size / 1024).toFixed(1) + ' KB';
+    } catch {
+      setError('The selected file contains invalid JSON.');
+      resumeText = null;
+    }
+    updateRenderBtn();
+  };
+  reader.readAsText(file);
+}
+
+document.getElementById('resume-text').addEventListener('input', () => {
+  const raw = document.getElementById('resume-text').value.trim();
+  if (!raw) { resumeText = null; updateRenderBtn(); return; }
+  try {
+    JSON.parse(raw);
+    resumeText = raw;
+  } catch {
+    resumeText = null;
+  }
+  updateRenderBtn();
+});
+
+function updateRenderBtn() {
+  document.getElementById('render-btn').disabled = !resumeText;
+}
+
+// ── Status helpers ──
+function setLoading() {
+  document.getElementById('status-loading').style.display = 'flex';
+  document.getElementById('status-error').style.display = 'none';
+}
+
+function clearLoading() {
+  document.getElementById('status-loading').style.display = 'none';
+}
+
+function setError(msg) {
+  clearLoading();
+  const el = document.getElementById('status-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+// ── Render ──
+document.getElementById('render-btn').addEventListener('click', async () => {
+  if (!resumeText) return;
+
+  const theme = document.getElementById('theme-select').value;
+
+  document.getElementById('status-error').style.display = 'none';
+  document.getElementById('result-section').style.display = 'none';
+  document.getElementById('render-btn').disabled = true;
+  setLoading();
+
+  // Revoke previous blob URL to avoid memory leaks
+  if (previewUrl) {
+    URL.revokeObjectURL(previewUrl);
+    previewUrl = null;
+  }
+
+  try {
+    const res = await fetch('/api/render', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ resumeJson: resumeText, theme })
+    });
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      throw new Error(data.error || `Server error: HTTP ${res.status}`);
+    }
+
+    renderedHtml = await res.text();
+
+    const blob = new Blob([renderedHtml], { type: 'text/html' });
+    previewUrl = URL.createObjectURL(blob);
+
+    document.getElementById('download-btn').href = previewUrl;
+    clearLoading();
+    document.getElementById('result-section').style.display = 'block';
+    document.getElementById('result-section').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+  } catch (err) {
+    setError('Error: ' + err.message);
+  } finally {
+    updateRenderBtn();
+  }
+});
+
+document.getElementById('preview-btn').addEventListener('click', () => {
+  if (previewUrl) window.open(previewUrl, '_blank');
+});
+</script>
+</body>
+</html>

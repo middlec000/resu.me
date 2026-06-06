@@ -69,6 +69,18 @@
     .page-header h1 { font-size: 22px; font-weight: 700; }
     .page-header p { color: #666; font-size: 13px; margin-top: 3px; }
 
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: #004687;
+      text-decoration: none;
+      margin-bottom: 8px;
+      opacity: 0.75;
+    }
+    .back-link:hover { opacity: 1; text-decoration: underline; }
+
     .header-actions { display: flex; gap: 8px; align-items: center; }
 
     /* ── Buttons ── */
@@ -405,6 +417,7 @@
   <div class="editor">
     <div class="page-header">
       <div>
+        <a class="back-link" href="index.html">&#8592; Back to Home</a>
         <h1>Resume Editor</h1>
         <p>JSON Resume format &mdash; all fields optional</p>
       </div>
@@ -415,6 +428,7 @@
         </label>
         <button class="btn btn-ghost" id="copy-btn">Copy JSON</button>
         <button class="btn btn-primary" id="download-btn">Download JSON</button>
+        <button class="btn btn-ghost" id="tailor-btn">&#127919; Tailor Resume</button>
       </div>
     </div>
 
@@ -1199,6 +1213,11 @@ document.getElementById('download-btn').onclick = () => {
   showToast('Downloaded resume.json');
 };
 
+document.getElementById('tailor-btn').onclick = () => {
+  localStorage.setItem('tailor_prefill_resume', JSON.stringify(buildResume(), null, 2));
+  window.location.href = '/tools/tailor/web/index.html';
+};
+
 // ──────────────────────────────────────────────────────────────────────────────
 // Load from JSON
 // ──────────────────────────────────────────────────────────────────────────────
@@ -1317,9 +1336,23 @@ function populateForm(data) {
 }
 
 // ──────────────────────────────────────────────────────────────────────────────
-// Init
+// Init — auto-load extracted resume from PDF extractor page if present
 // ──────────────────────────────────────────────────────────────────────────────
-updatePreview();
+(function init() {
+  const pending = localStorage.getItem('resume_pending_load');
+  if (pending) {
+    try {
+      populateForm(JSON.parse(pending));
+      localStorage.removeItem('resume_pending_load');
+      showToast('Resume loaded from PDF extraction ✓');
+    } catch (e) {
+      console.warn('Could not auto-load resume from localStorage:', e);
+      updatePreview();
+    }
+  } else {
+    updatePreview();
+  }
+}());
 </script>
 </body>
 </html>

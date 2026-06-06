@@ -1,66 +1,141 @@
-# Resu.me
+# resu.me
 
-Workflow
+Two tools for creating and tailoring a [JSON Resume](https://jsonresume.org/).
 
-1. Use an LLM to generate an initial JSON Resume using current resume.
-1. Paste this into the following tool and manually add to it: https://profile-studio.netlify.app/#/
-1. Use an LLM to tailor the resume.
-1. Use `resumed` to render it as html.
+| Tool                   | Purpose                                                                                        |
+| ---------------------- | ---------------------------------------------------------------------------------------------- |
+| **JSON Resume Wizard** | Extract a JSON Resume from a PDF or plain-text file (AI), or build one manually in the browser |
+| **Resume Tailor**      | Tailor an existing JSON Resume to a specific job posting (AI) and optionally render to HTML    |
+
+---
+
+## Quick start
+
+```bash
+# Install dependencies
+npm install
+
+# Start the web server (serves from repo root)
+npm run serve
+# → http://localhost:8080/tools/wizard/web/   JSON Resume Wizard
+# → http://localhost:8080/tools/tailor/web/   Resume Tailor
+```
+
+Set your Gemini API key once so you don't have to paste it every time:
+
+```bash
+export GEMINI_API_KEY=your_key_here
+```
+
+Get a free key at <https://aistudio.google.com/api-keys>.
+
+---
 
 ## JSON Resume Wizard
 
-Create a standardized JSON Resume.
+Create a standardised JSON Resume from a PDF, plain-text file, or from scratch.
 
-Steps
+### Web UI
 
-1. (Optional) Upload file + Google Gemini API Key.
-1. Review and optionally manually update resume.
-1. Download.
+```
+http://localhost:8080/tools/wizard/web/
+```
+
+1. Drop a PDF or fill in the form manually.
+2. Review all fields in the Resume Editor.
+3. Download `resume.json`.
+
+### CLI
+
+```bash
+# From a PDF
+npm run wizard -- --input path/to/resume.pdf --output output/wizard/resume.json
+
+# From a plain-text file
+npm run wizard -- --input path/to/resume.txt
+
+# All options
+npm run wizard -- --help
+```
+
+Options:
+
+| Flag                  | Description                                                    |
+| --------------------- | -------------------------------------------------------------- |
+| `-i, --input <path>`  | Resume PDF (`.pdf`) or plain-text (`.txt`) file — **required** |
+| `-o, --output <path>` | Output JSON path (default: `output/wizard/<basename>.json`)    |
+| `-k, --api-key <key>` | Gemini API key (falls back to `GEMINI_API_KEY` env var)        |
+
+---
 
 ## Resume Tailor
 
-Tailor the content of your JSON Resume to a specific job posting.
+Tailor an existing JSON Resume to a specific job posting.
 
-Steps
+### Web UI
 
-1. Upload JSON Resume, Job Posting, paste Google Gemini API Key.
-1. Review and download tailored JSON Resume.
-
-## Notes
-
-Google Gemini API Key: https://aistudio.google.com/api-keys?projectFilter=gen-lang-client-0692511141
-
-```bash
-# Validate resume conforms to schema
-./node_modules/.bin/resumed validate examples/json_schema_example.json
-
-# Transform resume to html with specific format
-./node_modules/.bin/resumed render examples/json_resume.json --theme jsonresume-theme-straightforward --output examples/json_resume.html
-
-# Tailor resume to job posting
-node src/tailor_resume.js; tput bel
-
-node src/format_resume.js; tput bel
-
-node src/run.js
-
-# Transform resume to html with specific format
-./node_modules/.bin/resumed render model_output/resume_tailored_1.json --theme jsonresume-theme-straightforward --output model_output/resume_tailored_1.html
-
-# Validate resume conforms to schema
-./node_modules/.bin/resumed validate examples/fred_weasley.json
-./node_modules/.bin/resumed validate examples/luna_lovegood.json
-./node_modules/.bin/resumed validate examples/moaning_mertle.json
-./node_modules/.bin/resumed validate examples/neville_longbottom.json
-
-npx resumed validate model_output/resume_tailored.json
+```
+http://localhost:8080/tools/tailor/web/
 ```
 
-## Data Sources
+1. Upload your JSON Resume and paste or upload the job posting.
+2. Click **Tailor Resume**.
+3. Download the tailored JSON, or open it in the Resume Editor.
 
-- `examples/json_schema_example.json`
-  - https://jsonresume.org/schema
-- `artifacts/json_resume_schema.json`
-  - Generated from https://jsonresume.org/schema
+### CLI
 
-## To Do
+```bash
+# Tailor only (outputs JSON)
+npm run tailor -- --resume path/to/resume.json --job path/to/job_posting.txt
+
+# Tailor and render to HTML
+npm run tailor -- --resume path/to/resume.json --job path/to/job_posting.txt --render
+
+# All options
+npm run tailor -- --help
+```
+
+Options:
+
+| Flag                  | Description                                                 |
+| --------------------- | ----------------------------------------------------------- |
+| `-r, --resume <path>` | Input JSON Resume — **required**                            |
+| `-j, --job <path>`    | Job posting `.txt` file — **required**                      |
+| `-o, --output <path>` | Output JSON path (default: `output/tailor/<basename>.json`) |
+| `--render`            | Also render the tailored resume to HTML alongside the JSON  |
+| `-k, --api-key <key>` | Gemini API key (falls back to `GEMINI_API_KEY` env var)     |
+
+---
+
+## Repo structure
+
+```
+shared/
+  validate_resume_schema.js   Lightweight JSON Schema validator (shared by CLI + browser)
+  json_resume_schema.json     JSON Resume schema (responseSchema for Gemini + browser validation)
+
+tools/
+  wizard/
+    cli.js                    CLI entry point  (`npm run wizard`)
+    lib/
+      pdf_to_json.js          Gemini: PDF → JSON Resume
+      text_to_json.js         Gemini: plain text → JSON Resume
+    web/
+      index.html              Get Started page (PDF upload or manual entry)
+      editor.html             Full-featured Resume Editor SPA
+
+  tailor/
+    cli.js                    CLI entry point (`npm run tailor`)
+    lib/
+      tailor_resume.js        Gemini: JSON Resume + job posting → tailored JSON Resume
+      format_output.js        JSON Resume → HTML (via `resumed` + theme)
+    web/
+      index.html              Resume Tailor SPA
+
+artifacts/
+  tailor_resume_to_job_posting/   Prompt text files for the tailor tool
+  text_to_formatted_json/         Prompt text files for the wizard text→JSON tool
+
+examples/                     Sample resumes and job postings for testing
+output/                       Generated artefacts (gitignored)
+```
