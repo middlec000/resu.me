@@ -435,19 +435,21 @@ function updateRenderBtn() {
 
 // ── Status helpers ──
 function setLoading() {
-  document.getElementById('status-loading').style.display = 'flex';
-  document.getElementById('status-error').style.display = 'none';
+  const loadingEl = document.getElementById('status-loading');
+  loadingEl.classList.add('loading');
+  const errorEl = document.getElementById('status-error');
+  errorEl.classList.remove('error');
 }
 
 function clearLoading() {
-  document.getElementById('status-loading').style.display = 'none';
+  document.getElementById('status-loading').classList.remove('loading');
 }
 
 function setError(msg) {
   clearLoading();
   const el = document.getElementById('status-error');
+  el.classList.add('error');
   el.textContent = msg;
-  el.style.display = 'block';
 }
 
 // ── Render ──
@@ -456,7 +458,7 @@ document.getElementById('render-btn').addEventListener('click', async () => {
 
   const theme = document.getElementById('theme-select').value;
 
-  document.getElementById('status-error').style.display = 'none';
+  document.getElementById('status-error').classList.remove('error');
   document.getElementById('result-section').style.display = 'none';
   document.getElementById('render-btn').disabled = true;
   setLoading();
