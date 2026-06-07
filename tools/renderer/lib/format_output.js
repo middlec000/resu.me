@@ -1,5 +1,3 @@
-import { render } from 'resumed'
-
 function removeEmptyJSONEntries (obj) {
   if (Array.isArray(obj)) return obj.map(removeEmptyJSONEntries)
   if (obj && typeof obj === 'object') {
@@ -16,5 +14,5 @@ export async function formatOutput (resumeJson, theme) {
   const resumeData =
     typeof resumeJson === 'string' ? JSON.parse(resumeJson) : resumeJson
   const { schema_version: _, ...resumeDataWithoutVersion } = resumeData
-  return render(removeEmptyJSONEntries(resumeDataWithoutVersion), theme)
+  return theme.render(removeEmptyJSONEntries(resumeDataWithoutVersion))
 }
