@@ -426,11 +426,11 @@
       </div>
 
       <!-- Status -->
-      <div class="status-box loading" id="status-loading">
+      <div class="status-box" id="status-loading">
         <div class="spinner"></div>
         <span id="status-loading-text">Sending PDF to Gemini — this may take up to a minute…</span>
       </div>
-      <div class="status-box error" id="status-error"></div>
+      <div class="status-box" id="status-error"></div>
 
       <button class="btn btn-primary" id="extract-btn" disabled>
         <span>&#10024;</span> Extract JSON Resume
@@ -558,20 +558,23 @@ function updateExtractBtn() {
 
 // ── Status helpers ──
 function setLoading(msg) {
-  document.getElementById('status-loading').style.display = 'flex';
+  const loadingEl = document.getElementById('status-loading');
+  loadingEl.classList.add('loading');
   document.getElementById('status-loading-text').textContent = msg || 'Processing…';
-  document.getElementById('status-error').style.display = 'none';
+  const errorEl = document.getElementById('status-error');
+  errorEl.classList.remove('error');
 }
 
 function clearLoading() {
-  document.getElementById('status-loading').style.display = 'none';
+  const loadingEl = document.getElementById('status-loading');
+  loadingEl.classList.remove('loading');
 }
 
 function setError(msg) {
   clearLoading();
   const el = document.getElementById('status-error');
+  el.classList.add('error');
   el.textContent = msg;
-  el.style.display = 'block';
 }
 
 // ── Extract ──
@@ -580,7 +583,9 @@ extractBtn.addEventListener('click', async () => {
   if (!pdfBase64 || !apiKey) return;
 
   // Reset UI
-  document.getElementById('status-error').style.display = 'none';
+  const errorEl = document.getElementById('status-error');
+  errorEl.classList.remove('error');
+  errorEl.textContent = '';
   document.getElementById('result-section').style.display = 'none';
   extractBtn.disabled = true;
   setLoading('Sending PDF to Gemini — this may take up to a minute…');
