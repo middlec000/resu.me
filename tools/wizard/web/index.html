@@ -560,17 +560,14 @@ function updateExtractBtn() {
 function setLoading(msg) {
   const loadingEl = document.getElementById('status-loading');
   loadingEl.classList.add('loading');
-  loadingEl.style.display = 'flex';
   document.getElementById('status-loading-text').textContent = msg || 'Processing…';
   const errorEl = document.getElementById('status-error');
   errorEl.classList.remove('error');
-  errorEl.style.display = 'none';
 }
 
 function clearLoading() {
   const loadingEl = document.getElementById('status-loading');
   loadingEl.classList.remove('loading');
-  loadingEl.style.display = 'none';
 }
 
 function setError(msg) {
@@ -578,7 +575,6 @@ function setError(msg) {
   const el = document.getElementById('status-error');
   el.classList.add('error');
   el.textContent = msg;
-  el.style.display = 'block';
 }
 
 // ── Extract ──
@@ -589,7 +585,7 @@ extractBtn.addEventListener('click', async () => {
   // Reset UI
   const errorEl = document.getElementById('status-error');
   errorEl.classList.remove('error');
-  errorEl.style.display = 'none';
+  errorEl.textContent = '';
   document.getElementById('result-section').style.display = 'none';
   extractBtn.disabled = true;
   setLoading('Sending PDF to Gemini — this may take up to a minute…');
