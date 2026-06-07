@@ -430,7 +430,7 @@
         <div class="spinner"></div>
         <span id="status-loading-text">Sending PDF to Gemini — this may take up to a minute…</span>
       </div>
-      <div class="status-box error" id="status-error"></div>
+      <div class="status-box" id="status-error"></div>
 
       <button class="btn btn-primary" id="extract-btn" disabled>
         <span>&#10024;</span> Extract JSON Resume
@@ -562,7 +562,9 @@ function setLoading(msg) {
   loadingEl.classList.add('loading');
   loadingEl.style.display = 'flex';
   document.getElementById('status-loading-text').textContent = msg || 'Processing…';
-  document.getElementById('status-error').style.display = 'none';
+  const errorEl = document.getElementById('status-error');
+  errorEl.classList.remove('error');
+  errorEl.style.display = 'none';
 }
 
 function clearLoading() {
@@ -574,6 +576,7 @@ function clearLoading() {
 function setError(msg) {
   clearLoading();
   const el = document.getElementById('status-error');
+  el.classList.add('error');
   el.textContent = msg;
   el.style.display = 'block';
 }
@@ -584,7 +587,9 @@ extractBtn.addEventListener('click', async () => {
   if (!pdfBase64 || !apiKey) return;
 
   // Reset UI
-  document.getElementById('status-error').style.display = 'none';
+  const errorEl = document.getElementById('status-error');
+  errorEl.classList.remove('error');
+  errorEl.style.display = 'none';
   document.getElementById('result-section').style.display = 'none';
   extractBtn.disabled = true;
   setLoading('Sending PDF to Gemini — this may take up to a minute…');
