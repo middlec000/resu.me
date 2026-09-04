@@ -26,7 +26,17 @@ npm run serve
 Set your Gemini API key once so you don't have to paste it every time:
 
 ```bash
+# macOS / Linux
 export GEMINI_API_KEY=your_key_here
+
+# PowerShell (temporary for the session)
+$env:GEMINI_API_KEY = 'your_key_here'
+
+# Persist for your user in PowerShell
+[Environment]::SetEnvironmentVariable('GEMINI_API_KEY', 'your_key_here', 'User')
+
+# Windows CMD (persist)
+setx GEMINI_API_KEY "your_key_here"
 ```
 
 Get a free key at <https://aistudio.google.com/api-keys>.
