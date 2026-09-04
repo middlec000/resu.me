@@ -1,5 +1,6 @@
 import http from 'http'
 import fs from 'fs/promises'
+import fsSync from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { formatOutput } from './tools/renderer/lib/format_output.js'
@@ -18,7 +19,16 @@ const MIME = {
   '.ico': 'image/x-icon'
 }
 
-const ALLOWED_THEMES = new Set(['straightforward'])
+// Load allowed themes from shared/allowed_themes.json when available.
+let ALLOWED_THEMES = new Set(['straightforward'])
+try {
+  const themesPath = path.join(__dirname, 'shared', 'allowed_themes.json')
+  const raw = fsSync.readFileSync(themesPath, 'utf8')
+  const arr = JSON.parse(raw)
+  if (Array.isArray(arr) && arr.length) ALLOWED_THEMES = new Set(arr)
+} catch (e) {
+  // fallback to default set above
+}
 
 async function readBody (req) {
   const chunks = []
@@ -36,7 +46,15 @@ const server = http.createServer(async (req, res) => {
       if (!ALLOWED_THEMES.has(themeName)) {
         throw new Error(`Unknown theme: ${themeName}`)
       }
-      const { default: theme } = await import(`jsonresume-theme-${themeName}`)
+      // prefer the compiled dist build to avoid importing .jsx sources
+      let theme
+      try {
+        const mod = await import(`jsonresume-theme-${themeName}/dist`)
+        theme = mod.default || mod
+      } catch (e) {
+        const mod = await import(`jsonresume-theme-${themeName}`)
+        theme = mod.default || mod
+      }
       const html = await formatOutput(resumeJson, theme)
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' })
       res.end(html)
