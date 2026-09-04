@@ -1,5 +1,7 @@
 # resu.me
 
+Visit the published website at https://resu-me-henna.vercel.app/
+
 Two tools for creating and tailoring a [JSON Resume](https://jsonresume.org/).
 
 | Tool                   | Purpose                                                                                        |
